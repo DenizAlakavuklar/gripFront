@@ -1,6 +1,6 @@
 import React from 'react'
 import {  useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const TripForm= ({
     tripName="",
@@ -13,7 +13,7 @@ const TripForm= ({
 }) => {
 
     const navigate = useNavigate()
-
+    const { tripId } = useParams()
 
   const [name, setName] = useState(tripName)
   const [desc, setDesc] = useState(description)
@@ -39,7 +39,7 @@ const TripForm= ({
                         description: desc,
                         budget: budg,
                         location: loc,
-                        attendees: [tripAttendees],
+                        attendees: tripAttendees,
                     }),
                 }
             );
@@ -59,8 +59,6 @@ const TripForm= ({
     
   return (
     <div>
-
-    <h2> Form to create a new trip</h2>
     <form onSubmit={handleSubmit}>
 
         <label> Trip Name:
@@ -77,7 +75,7 @@ const TripForm= ({
 
         <label>
             Budget:
-            <select value={budg} onChange={(e) => setBudg(e.target.value)}>
+            <select value={budg} onChange={(e) => setBu(e.target.value)}>
                 <option value="budget">Budget</option>
                 <option value="moderate">Moderate</option>
                 <option value="luxury">Luxury</option>

@@ -8,13 +8,7 @@ function NewTripPage() {
         <h2>Create your trip</h2>
         <TripForm/>
     
-    
-    
-    
-    
-    
-    
-    
+
     </div>
   )
 }

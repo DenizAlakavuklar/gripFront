@@ -1,8 +1,21 @@
 import React from 'react'
+import TripForm from '../components/TripForm'
+
 
 function NewTripPage() {
   return (
-    <div>NewTripPage</div>
+    <div>
+        <h2>Create your trip</h2>
+        <TripForm/>
+    
+    
+    
+    
+    
+    
+    
+    
+    </div>
   )
 }
 

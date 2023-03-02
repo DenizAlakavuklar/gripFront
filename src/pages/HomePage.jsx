@@ -11,7 +11,7 @@ const HomePage = () => {
       }}
     >
       <Text size='xl' weight='bold' align='center'>
-        Some place to talk about something like unicorns for example
+       Who does not like TRIPS? Ready to GRIP?
       </Text>
     </Box>
   )

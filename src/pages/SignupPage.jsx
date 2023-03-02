@@ -17,17 +17,13 @@ const SignupPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-
-
-
       await axios.post("http://localhost:5005/auth/signup", { username: username, email: email, password: password });
       navigate("/login")
     } catch (error) {
       console.log(error, "???????");
       const errorDescription = error.response.data.message;
       setErrorMessage(errorDescription);
-   
-    }
+       }
   }
 
   return (
@@ -62,8 +58,8 @@ const SignupPage = () => {
         </Button>
       </Box>
 
-      { errorMessage && <p className="error-message">{errorMessage}</p> }
-      <p>Already have account?</p>
+      { errorMessage && <p className="error-message" style={{color: "red"}}>{errorMessage}</p> }
+      <p >Already have account?</p>
       <Link to={"/auth/login"}> Login</Link>
     </Box>
    

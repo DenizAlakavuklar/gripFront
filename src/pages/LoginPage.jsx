@@ -1,14 +1,19 @@
 import { Box, Button, PasswordInput, Text, TextInput } from '@mantine/core'
 import axios from 'axios';
 import { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import { SessionContext } from '../contexts/SessionContext';
 
 
 const LoginPage = () => {
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { setToken } = useContext(SessionContext);
+ 
+    // States for checking the errors
+    const [errorMessage, setErrorMessage] = useState(undefined);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -25,6 +30,8 @@ const LoginPage = () => {
 
     } catch (error) {
       console.log("Error: ", error);
+      const errorDescription = error.response.data.message;
+      setErrorMessage(errorDescription);
     }
   }
 
@@ -58,6 +65,10 @@ const LoginPage = () => {
           Connect
         </Button>
       </Box>
+      { errorMessage && <p className="error-message" style={{color: "red"}}>{errorMessage}</p> }
+ 
+ <p>Don't have an account yet?</p>
+ <Link to={"/signup"}> Sign Up</Link>
     </Box>
   )
 }

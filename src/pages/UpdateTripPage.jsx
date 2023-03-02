@@ -1,3 +1,11 @@
+import React from 'react'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import TripForm from '../components/TripForm'
+
+
+
+
 const UpdateTripPage = () => {
     const { tripId } = useParams()
   
@@ -24,6 +32,7 @@ const UpdateTripPage = () => {
   
     return (
       <div>
+      <p> Update your trip!</p>
         {isLoading ? (
           <h1>Loading ...</h1>
         ) : (

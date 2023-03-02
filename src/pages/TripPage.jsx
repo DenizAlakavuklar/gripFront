@@ -1,8 +1,7 @@
 import React from 'react'
-
-
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+
 
 const TripPage= () => {
   const { tripId } = useParams()
@@ -35,21 +34,24 @@ const TripPage= () => {
     await fetch(`http://localhost:5005/trip/trips/${tripId}`, {
       method: 'DELETE',
     })
-    navigate('/trips')
+    navigate('/trips/alltrips')
   }
 
   return isLoading ? (
     <h1>Loading...</h1>
   ) : (
     <>
-      <h1>{trip.name}</h1>
-      <p>Description: {trip.description}</p>
-      <Link to={`/trips/update/${trip._id}`}>
-        <button type='button'>Update</button>
-      </Link>
-      <button type='button' onClick={handleDelete}>
-        Delete
-      </button>
+    <div style={{ border: "1px solid black", padding: "10px" }}>
+        <h1>{trip.tripName}</h1>
+        <img src={trip.image} alt="Trip" />
+        <p>Description: {trip.description}</p>
+        <Link to={`/trips/update/${trip._id}`}>
+            <button type='button'>Update</button>
+        </Link>
+        <button type='button' onClick={handleDelete}>
+            Delete
+        </button>
+      </div>
     </>
   )
 }

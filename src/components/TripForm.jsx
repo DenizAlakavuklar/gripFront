@@ -38,7 +38,7 @@ const TripForm= ({
                         image: img,
                         description: desc,
                         budget: budg,
-                        location: [loc],
+                        location: loc,
                         attendees: [tripAttendees],
                     }),
                 }

@@ -32,7 +32,7 @@ const UpdateTripPage = () => {
   
     return (
       <div>
-      <p> Update your trip!</p>
+      <> Update your trip!</>
         {isLoading ? (
           <h1>Loading ...</h1>
         ) : (

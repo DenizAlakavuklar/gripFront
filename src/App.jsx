@@ -5,6 +5,12 @@ import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 import Profile from "./pages/Profile";
 import PrivateRoute from './components/Privateroute'
+import AllTripsPage from './pages/AllTripsPage'
+import NewTripPage from './pages/NewTripPage'
+import TripPage from './pages/TripPage'
+import UpdateTripPage from './pages/UpdateTripPage'
+
+
 
 function App() {
   return (
@@ -35,6 +41,12 @@ function App() {
         <Route path='/login' element={<LoginPage />} />
         {/* <Route path='/profile/' element={<PrivateRoute><Profile /></PrivateRoute>} /> */}
         <Route path='/profile/:userId' element={<PrivateRoute><Profile /></PrivateRoute>} />
+        
+        {/* //Trip routes */}
+        <Route path='/trip/new' element={<NewTripPage />} />
+        <Route path='/trip/:tripId' element={<TripPage />} />
+        <Route path='/trip/alltrips' element={<AllTripsPage/>} />
+        <Route path='/trip/update/:tripId' element={<UpdateTripPage />} />
 
         {/* Add some new route(s) on what you want to work, don't forget to make a PrivateRoute component */}
       </Routes>

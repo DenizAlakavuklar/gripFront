@@ -43,10 +43,10 @@ function App() {
         <Route path='/profile/:userId' element={<PrivateRoute><Profile /></PrivateRoute>} />
         
         {/* //Trip routes */}
-        <Route path='/trip/new' element={<NewTripPage />} />
-        <Route path='/trip/:tripId' element={<TripPage />} />
-        <Route path='/trip/alltrips' element={<AllTripsPage/>} />
-        <Route path='/trip/update/:tripId' element={<UpdateTripPage />} />
+        <Route path='/trips/new' element={<NewTripPage />} />
+        <Route path='/trips/:tripId' element={<TripPage />} />
+        <Route path='/trips/alltrips' element={<AllTripsPage/>} />
+        <Route path='/trips/update/:tripId' element={<UpdateTripPage />} />
 
       {/* //Adding a page not found: */}
       <Route path='*' element={<h1>404 Not Found</h1>} />

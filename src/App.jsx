@@ -22,7 +22,7 @@ function App() {
             <Button component={Link} to='/login' variant='subtle' color='cyan'>
               Login
             </Button>
-            <Button component={Link} to='/pofile' variant='subtle' color='cyan'>
+            <Button component={Link} to='/profile' variant='subtle' color='cyan'>
               Profile
             </Button>
           </Box>
@@ -33,12 +33,9 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/signup' element={<SignupPage />} />
         <Route path='/login' element={<LoginPage />} />
-        <Route path="/profile" element={ 
-          <PrivateRoute> 
-            <Profile /> 
-          </PrivateRoute> 
-          } 
-        />
+        {/* <Route path='/profile/' element={<PrivateRoute><Profile /></PrivateRoute>} /> */}
+        <Route path='/profile/:userId' element={<PrivateRoute><Profile /></PrivateRoute>} />
+
         {/* Add some new route(s) on what you want to work, don't forget to make a PrivateRoute component */}
       </Routes>
     </AppShell>

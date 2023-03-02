@@ -13,7 +13,7 @@ const SessionContextProvider = ({children}) => {
         try {
             await axios.post("http://localhost:5005/auth/verify", undefined, {
                 headers: {
-                    Authorization: `Hopper ${jwt}`
+                    authorization: `Hopper ${jwt}`
                 },
             })
             setToken(jwt);
@@ -41,7 +41,7 @@ const SessionContextProvider = ({children}) => {
     }, [token])
 
     return (
-        <SessionContext.Provider value={{setToken, isAuthenticated, isLoading}} >{children}</SessionContext.Provider>
+        <SessionContext.Provider value={{setToken, isAuthenticated, isLoading, token}} >{children}</SessionContext.Provider>
     )
 }
 

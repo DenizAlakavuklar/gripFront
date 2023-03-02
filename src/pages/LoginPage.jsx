@@ -4,6 +4,7 @@ import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { SessionContext } from '../contexts/SessionContext';
 
+
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -12,10 +13,16 @@ const LoginPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    // console.log("This is the userID:", userId)
     try {
       const response = await axios.post("http://localhost:5005/auth/login", {username: username, password: password}) 
       setToken(response.data.token);
-      navigate("/profile");
+
+      const userId = response.data.userId;
+      navigate(`/profile/${userId}`);
+      
+      console.log(response.data)
+
     } catch (error) {
       console.log("Error: ", error);
     }

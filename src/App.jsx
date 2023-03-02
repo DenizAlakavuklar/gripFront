@@ -9,12 +9,18 @@ import AllTripsPage from './pages/AllTripsPage'
 import NewTripPage from './pages/NewTripPage'
 import TripPage from './pages/TripPage'
 import UpdateTripPage from './pages/UpdateTripPage'
+import { SessionContext } from './contexts/SessionContext'
+import { useContext } from 'react'
 
 
 
 function App() {
+const {isAuthenticated, logOutUser} = useContext(SessionContext)
+
   return (
+
     <AppShell
+
       padding='md'
       header={
         <Header height={60} p='xs' sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -31,6 +37,15 @@ function App() {
             <Button component={Link} to='/profile' variant='subtle' color='cyan'>
               Profile
             </Button>
+            {isAuthenticated && (
+              <>
+            <Button component={Link} to='/' variant='subtle' color='cyan' onClick={logOutUser} >
+              Logout
+            </Button>
+            
+            </>
+            )
+      }
           </Box>
         </Header>
       }
@@ -41,6 +56,7 @@ function App() {
         <Route path='/login' element={<LoginPage />} />
         {/* <Route path='/profile/' element={<PrivateRoute><Profile /></PrivateRoute>} /> */}
         <Route path='/profile/:userId' element={<PrivateRoute><Profile /></PrivateRoute>} />
+       
         
         {/* //Trip routes */}
         <Route path='/trips/new' element={<NewTripPage />} />

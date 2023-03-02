@@ -7,6 +7,7 @@ const SessionContextProvider = ({children}) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [token, setToken] = useState("");
     const [isLoading, setIsLoading] = useState(true);
+
     
     const verifyToken = async (jwt) => {
         console.log("JWT: ", jwt);
@@ -40,8 +41,24 @@ const SessionContextProvider = ({children}) => {
         }
     }, [token])
 
+    const removeToken = () => {                    // <== ADD
+        // Upon logout, remove the token from the localStorage
+        localStorage.removeItem("hopper");
+      }
+     
+     
+      const logOutUser = () => {                   // <== ADD    
+        // To log out the user, remove the token
+        removeToken();
+        // and update the state variables    
+        setIsAuthenticated(false);
+      }  
+    
+
+
+
     return (
-        <SessionContext.Provider value={{setToken, isAuthenticated, isLoading, token}} >{children}</SessionContext.Provider>
+        <SessionContext.Provider value={{setToken, isAuthenticated, isLoading, token, logOutUser}} >{children}</SessionContext.Provider>
     )
 }
 

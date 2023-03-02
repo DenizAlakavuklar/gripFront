@@ -48,6 +48,8 @@ function App() {
         <Route path='/trip/alltrips' element={<AllTripsPage/>} />
         <Route path='/trip/update/:tripId' element={<UpdateTripPage />} />
 
+      {/* //Adding a page not found: */}
+      <Route path='*' element={<h1>404 Not Found</h1>} />
         {/* Add some new route(s) on what you want to work, don't forget to make a PrivateRoute component */}
       </Routes>
     </AppShell>

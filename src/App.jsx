@@ -1,5 +1,5 @@
 import { AppShell, Box, Button, Header } from '@mantine/core'
-import { Link, Route, Routes, useParams } from 'react-router-dom'
+import { Link, Route, Routes } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
@@ -9,6 +9,9 @@ import AllTripsPage from './pages/AllTripsPage'
 import NewTripPage from './pages/NewTripPage'
 import TripPage from './pages/TripPage'
 import UpdateTripPage from './pages/UpdateTripPage'
+import UserTrips from './pages/UserTrips'
+import { useContext } from 'react'
+import { SessionContext } from './contexts/SessionContext'
 
 
 
@@ -16,7 +19,10 @@ import UpdateTripPage from './pages/UpdateTripPage'
 
 function App() {
 
-  const { userId } = useParams();
+  const { userId } = useContext(SessionContext);
+  
+
+
 
   return (
     <AppShell
@@ -50,7 +56,7 @@ function App() {
         <Route path='/trips/new' element={<NewTripPage />} />
         <Route path='/trips/:tripId' element={<TripPage />} />
         <Route path='/trips/alltrips' element={<AllTripsPage/>} />
-        {/* <Route path='/trips/mytrips' element={<MyTrips/>} /> */}
+        <Route path='/trips/usertrips' element={<UserTrips/>} />
         <Route path='/trips/update/:tripId' element={<UpdateTripPage />} />
 
       {/* //Adding a page not found: */}

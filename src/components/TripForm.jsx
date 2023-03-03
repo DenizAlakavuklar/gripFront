@@ -1,35 +1,32 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {  useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams} from 'react-router-dom'
+import { SessionContext } from '../contexts/SessionContext'
 
-const TripForm= ({
-    tripName="",
-    image="",
-    description="",
-    budget,
-    location="",
-    attendees,
-    isUpdating = false,
-}) => {
+
+const TripForm= () => {
 
     const navigate = useNavigate()
     const { tripId } = useParams()
 
-  const [name, setName] = useState(tripName)
-  const [desc, setDesc] = useState(description)
-  const [img, setImg] = useState(image)
-  const [budg, setBudg] = useState(budget)
-  const [loc, setLoc] = useState(location)
-  const [tripAttendees, setTripAttendees] = useState(attendees)
+    const { userId } = useContext(SessionContext);
 
+  const [name, setName] = useState("")
+  const [desc, setDesc] = useState("")
+  const [img, setImg] = useState("")
+  const [budg, setBudg] = useState("")
+  const [loc, setLoc] = useState("")
+  const [tripAttendees, setTripAttendees] = useState([])
+
+  console.log(userId)
 
     const handleSubmit = async event => {
         event.preventDefault()
         try {
             const response = await fetch(
-                `http://localhost:5005/trip/trips${isUpdating ? `/${tripId}` : ''}`,
+                `http://localhost:5005/trip/trips`,
                 {
-                    method: isUpdating ? 'PUT' : 'POST',
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -40,6 +37,7 @@ const TripForm= ({
                         budget: budg,
                         location: loc,
                         attendees: tripAttendees,
+                        createdBy: userId,
                     }),
                 }
             );
@@ -55,6 +53,8 @@ const TripForm= ({
           console.log(error)
         }
       }
+
+
     
     
   return (
@@ -75,7 +75,7 @@ const TripForm= ({
 
         <label>
             Budget:
-            <select value={budg} onChange={(e) => setBu(e.target.value)}>
+            <select value={budg} onChange={(e) => setBudg(e.target.value)}>
                 <option value="budget">Budget</option>
                 <option value="moderate">Moderate</option>
                 <option value="luxury">Luxury</option>
@@ -89,7 +89,7 @@ const TripForm= ({
         <label> Attendees:
             <input type="text" value={tripAttendees} onChange={event => setTripAttendees(event.target.value)}/>
         </label>
-<button type="submit">{isUpdating? "Update your trip" : "Create your trip"}</button>
+<button type="submit">{ "Create your trip"}</button>
 
     </form>
     

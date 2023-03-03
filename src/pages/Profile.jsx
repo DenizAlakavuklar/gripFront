@@ -9,17 +9,27 @@ function Profile() {
   const [trips, setTrips] = useState([]);
   const [tripCount, setTripCount] = useState(0);
 
+  const fetchUser = async () => {
+    const response = await fetch(`http://localhost:5005/auth/user/${userId}`, {
+      method: 'GET',
+      headers: {
+        authorization: `Hopper ${token}`
+      },
+    });
+    const user = await response.json();
+    setUser(user);
+  };
+
+
+
+useEffect(() =>{
+fetchUser()
+}, [])
+
+
+
   useEffect(() => {
-    const fetchUser = async () => {
-      const response = await fetch(`http://localhost:5005/auth/user/${userId}`, {
-        method: 'GET',
-        headers: {
-          authorization: `Hopper ${token}`
-        },
-      });
-      const user = await response.json();
-      setUser(user);
-    };
+
     fetchUser();
 
     const fetchTrips = async () => {
@@ -45,29 +55,14 @@ function Profile() {
 
   return (
     <div>
+
       <h1>Welcome, {user.username}!</h1>
-      
-      <h2>You have {tripCount} {tripCount === 1 ? 'trip' : 'trips'} created</h2>
-      
-      {trips.length > 0 ? (
-        <>
-          <ul>
-            {trips.map((trip) => {
-            return(
-              <li key={trip._id}>
-                <Link to={`/trips/${trip._id}`}>{trip.tripName}</Link>
-              </li>
-            )})}
-          </ul>
-        </>
-      ) : (
-        <div>
-          <p>You don't have any trips created.</p>
-          <Link to="/trips/new">
-            <button>Create one</button>
-          </Link>
-        </div>
-      )}
+          <p>Explore and .</p>
+
+      <Link to="/trips/new">
+        <button>Create a trip</button>
+      </Link>
+
       <Link to="/trips/mytrips">
         <button>Explore my trips</button>
       </Link>

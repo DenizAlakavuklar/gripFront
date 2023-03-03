@@ -39,7 +39,7 @@ function App() {
         <Route path='/trips/update/:tripId' element={<UpdateTripPage />} />
 
         {/* //Proposal routes */}
-        <Route path='/proposal/:tripId/:proposalId' element={<ProposalDetailsPage />} />
+        <Route path='/proposals/:tripId/:proposalId' element={<ProposalDetailsPage />} />
 
       {/* //Adding a page not found: */}
       <Route path='*' element={<h1>404 Not Found</h1>} />

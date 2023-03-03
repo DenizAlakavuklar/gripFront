@@ -47,8 +47,24 @@ const SessionContextProvider = ({children}) => {
         }
     }, [token])
 
+    const removeToken = () => {                    // <== ADD
+        // Upon logout, remove the token from the localStorage
+        localStorage.removeItem("hopper");
+      }
+     
+     
+      const logOutUser = () => {                   // <== ADD    
+        // To log out the user, remove the token
+        removeToken();
+        // and update the state variables    
+        setIsAuthenticated(false);
+      }  
+    
+
+
+
     return (
-        <SessionContext.Provider value={{setToken, isAuthenticated, isLoading, token, setUserId, userId}} >{children}</SessionContext.Provider>
+        <SessionContext.Provider value={{setToken, isAuthenticated, isLoading, token, setUserId, userId, logOutUser}} >{children}</SessionContext.Provider>
     )
 }
 

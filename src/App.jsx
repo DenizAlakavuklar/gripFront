@@ -14,6 +14,10 @@ import { useContext } from 'react'
 import { SessionContext } from './contexts/SessionContext'
 
 
+import ProposalDetailsPage from './pages/ProposalDetailsPage'
+import NewProposalPage from './pages/NewProposalPage'
+import NavBar from './components/NavBar'
+import AboutGRIP from './pages/AboutGrip'
 
 
 
@@ -21,8 +25,6 @@ function App() {
 
   const { userId } = useContext(SessionContext);
   
-
-
 
   return (
     <AppShell
@@ -43,6 +45,7 @@ function App() {
               Profile
             </Button>
           </Box>
+       {/* <NavBar /> */}
         </Header>
       }
     >
@@ -50,7 +53,10 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/signup' element={<SignupPage />} />
         <Route path='/login' element={<LoginPage />} />
+        <Route path='/about' element={<AboutGRIP />} />
+        {/* <Route path='/profile/' element={<PrivateRoute><Profile /></PrivateRoute>} /> */}
         <Route path='/profile/:userId' element={<PrivateRoute><Profile /></PrivateRoute>} />
+       
         
         {/* //Trip routes */}
         <Route path='/trips/new' element={<NewTripPage />} />
@@ -58,6 +64,10 @@ function App() {
         <Route path='/trips/alltrips' element={<AllTripsPage/>} />
         <Route path='/trips/usertrips' element={<UserTrips/>} />
         <Route path='/trips/update/:tripId' element={<UpdateTripPage />} />
+
+        {/* //Proposal routes */}
+        <Route path='/proposals/:tripId/add' element={<NewProposalPage />} />
+        <Route path='/proposals/:tripId/:proposalId' element={<ProposalDetailsPage />} />
 
       {/* //Adding a page not found: */}
       <Route path='*' element={<h1>404 Not Found</h1>} />

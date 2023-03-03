@@ -15,7 +15,7 @@ const TripPage= () => {
       const response = await fetch(`http://localhost:5005/trip/trips/${tripId}`)
       const parsed = await response.json()
       if (parsed === null) {
-        navigate('/404')
+        navigate('/trips/:tripId')
       } else {
         console.log(parsed)
         setTrip(parsed)
@@ -34,7 +34,7 @@ const TripPage= () => {
     await fetch(`http://localhost:5005/trip/trips/${tripId}`, {
       method: 'DELETE',
     })
-    navigate('/trips/alltrips')
+    navigate('/trips/usertrips')
   }
 
   return isLoading ? (

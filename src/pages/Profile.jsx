@@ -57,7 +57,7 @@ fetchUser()
     <div>
 
       <h1>Welcome, {user.username}!</h1>
-          <p>Explore and go on a new adventure! .</p>
+          <p>Explore and .</p>
 
       <Link to="/trips/new">
         <button>Create a trip</button>

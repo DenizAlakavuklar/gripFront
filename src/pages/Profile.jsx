@@ -57,13 +57,13 @@ fetchUser()
     <div>
 
       <h1>Welcome, {user.username}!</h1>
-          <p>Explore and .</p>
+          <p>Explore and go on a new adventure! .</p>
 
       <Link to="/trips/new">
         <button>Create a trip</button>
       </Link>
 
-      <Link to="/trips/mytrips">
+      <Link to="/trips/usertrips">
         <button>Explore my trips</button>
       </Link>
 

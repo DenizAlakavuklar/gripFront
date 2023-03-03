@@ -1,5 +1,5 @@
 import { AppShell, Box, Button, Header } from '@mantine/core'
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes, useParams } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
@@ -12,7 +12,12 @@ import UpdateTripPage from './pages/UpdateTripPage'
 
 
 
+
+
 function App() {
+
+  const { userId } = useParams();
+
   return (
     <AppShell
       padding='md'
@@ -28,7 +33,7 @@ function App() {
             <Button component={Link} to='/login' variant='subtle' color='cyan'>
               Login
             </Button>
-            <Button component={Link} to='/profile' variant='subtle' color='cyan'>
+            <Button component={Link} to={`/profile/${userId}`}  variant='subtle' color='cyan'>
               Profile
             </Button>
           </Box>
@@ -39,13 +44,13 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/signup' element={<SignupPage />} />
         <Route path='/login' element={<LoginPage />} />
-        {/* <Route path='/profile/' element={<PrivateRoute><Profile /></PrivateRoute>} /> */}
         <Route path='/profile/:userId' element={<PrivateRoute><Profile /></PrivateRoute>} />
         
         {/* //Trip routes */}
         <Route path='/trips/new' element={<NewTripPage />} />
         <Route path='/trips/:tripId' element={<TripPage />} />
         <Route path='/trips/alltrips' element={<AllTripsPage/>} />
+        {/* <Route path='/trips/mytrips' element={<MyTrips/>} /> */}
         <Route path='/trips/update/:tripId' element={<UpdateTripPage />} />
 
       {/* //Adding a page not found: */}
@@ -57,3 +62,4 @@ function App() {
 }
 
 export default App
+

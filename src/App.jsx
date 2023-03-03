@@ -9,44 +9,17 @@ import AllTripsPage from './pages/AllTripsPage'
 import NewTripPage from './pages/NewTripPage'
 import TripPage from './pages/TripPage'
 import UpdateTripPage from './pages/UpdateTripPage'
-import { SessionContext } from './contexts/SessionContext'
-import { useContext } from 'react'
-
-
+import NavBar from './components/NavBar'
 
 function App() {
-const {isAuthenticated, logOutUser} = useContext(SessionContext)
 
-  return (
+ return (
 
     <AppShell
-
       padding='md'
       header={
         <Header height={60} p='xs' sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Button component={Link} to='/' variant='subtle' color='cyan'>
-            Home
-          </Button>
-          <Box>
-            <Button component={Link} to='/signup' variant='subtle' color='cyan'>
-              Signup
-            </Button>
-            <Button component={Link} to='/login' variant='subtle' color='cyan'>
-              Login
-            </Button>
-            <Button component={Link} to='/profile' variant='subtle' color='cyan'>
-              Profile
-            </Button>
-            {isAuthenticated && (
-              <>
-            <Button component={Link} to='/' variant='subtle' color='cyan' onClick={logOutUser} >
-              Logout
-            </Button>
-            
-            </>
-            )
-      }
-          </Box>
+       <NavBar />
         </Header>
       }
     >

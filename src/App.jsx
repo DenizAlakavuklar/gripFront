@@ -13,9 +13,12 @@ import ProposalDetailsPage from './pages/ProposalDetailsPage'
 import NewProposalPage from './pages/NewProposalPage'
 import NavBar from './components/NavBar'
 import AboutGRIP from './pages/AboutGrip'
+import UserTrips from './pages/UserTrips'
+import { useContext } from 'react'
+import { SessionContext } from './contexts/SessionContext'
 
 function App() {
-
+  const { userId } = useContext(SessionContext);
  return (
 
     <AppShell
@@ -39,6 +42,7 @@ function App() {
         <Route path='/trips/new' element={<NewTripPage />} />
         <Route path='/trips/:tripId' element={<TripPage />} />
         <Route path='/trips/alltrips' element={<AllTripsPage/>} />
+        <Route path='/trips/usertrips' element={<UserTrips/>} />
         <Route path='/trips/update/:tripId' element={<UpdateTripPage />} />
 
         {/* //Proposal routes */}

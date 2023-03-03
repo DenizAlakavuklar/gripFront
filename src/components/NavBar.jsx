@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext'
 import { useContext } from 'react'
 
+
 const NavBar = () => {
 
   const { isAuthenticated, logOutUser } = useContext(SessionContext)
+  const { userId } = useContext(SessionContext);
   return (
     <>
       <Button component={Link} to='/' variant='subtle' color='cyan'>
@@ -28,7 +30,7 @@ const NavBar = () => {
 
         {isAuthenticated && (
           <>
-            <Button component={Link} to='/profile' variant='subtle' color='cyan'>
+              <Button component={Link} to={`/profile/${userId}`}  variant='subtle' color='cyan'>
               Profile
             </Button>
             <Button component={Link} to='/' variant='subtle' color='cyan' onClick={logOutUser} >

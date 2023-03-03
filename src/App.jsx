@@ -10,6 +10,7 @@ import NewTripPage from './pages/NewTripPage'
 import TripPage from './pages/TripPage'
 import UpdateTripPage from './pages/UpdateTripPage'
 import ProposalDetailsPage from './pages/ProposalDetailsPage'
+import NewProposalPage from './pages/NewProposalPage'
 import NavBar from './components/NavBar'
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Route path='/trips/update/:tripId' element={<UpdateTripPage />} />
 
         {/* //Proposal routes */}
+        <Route path='/proposals/:tripId/add' element={<NewProposalPage />} />
         <Route path='/proposals/:tripId/:proposalId' element={<ProposalDetailsPage />} />
 
       {/* //Adding a page not found: */}

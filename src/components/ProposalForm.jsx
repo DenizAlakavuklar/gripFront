@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { useState } from 'react'
 import { useNavigate, useParams} from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext'
+import placeholderImage from "../images/placeholder-image.jpg"
 
 function ProposalForm() {
     const navigate = useNavigate()
@@ -10,7 +11,7 @@ function ProposalForm() {
     const { userId } = useContext(SessionContext);
 
     const [title, setTitle] = useState("")
-    const [image, setImage] = useState("")
+    const [image, setImage] = useState(placeholderImage)
     const [location, setLocation] = useState("")
     const [type, setType] = useState("AirBnB")
     const [totalPrice, setTotalPrice] = useState(0)

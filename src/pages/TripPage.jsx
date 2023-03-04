@@ -96,7 +96,7 @@ const TripPage = () => {
           <button type='button'>Add Proposal</button>
           </Link>
         {/* If 0 proposals, show text, if not, show proposals */}
-    {proposals.length===0 ? "This trip has no proposals yet! Be the first to create one!" :
+    {proposals.length===0 ? <p>This trip has no proposals yet! Be the first to create one!</p> :
 
       <div style={{ display: "flex", width: "600px" }}>
         {proposals.map(proposal => {

@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, useParams} from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext'
-
+import placeholderImage from "../images/placeholder-image.jpg"
 
 const TripForm= () => {
     const navigate = useNavigate()
@@ -12,7 +12,7 @@ const TripForm= () => {
 
     const [name, setName] = useState("")
     const [desc, setDesc] = useState("")
-    const [img, setImg] = useState("")
+    const [img, setImg] = useState(placeholderImage)
     const [budg, setBudg] = useState("")
     const [loc, setLoc] = useState("")
     const [tripAttendees, setTripAttendees] = useState([])
@@ -21,6 +21,8 @@ const TripForm= () => {
     const handleSubmit = async event => {
         event.preventDefault()
         try {
+
+
             const response = await fetch(
                 `http://localhost:5005/trip/trips`,
                 {
@@ -55,7 +57,7 @@ const TripForm= () => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}  style={{ display: "flex", flexDirection: "column" }}>
                 <label> Trip Name:
                     <input type="text" value={name} onChange={event => setName(event.target.value)} />
                 </label>

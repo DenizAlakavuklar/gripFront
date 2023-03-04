@@ -13,7 +13,7 @@ const TripPage = () => {
 
   const fetchTrip = async () => {
     try {
-      console.log(userId)
+      //console.log(userId)
       const response = await fetch(`http://localhost:5005/trip/trips/${tripId}`)
       const parsed = await response.json()
       if (parsed === null) {
@@ -51,6 +51,14 @@ const TripPage = () => {
       method: 'DELETE',
     })
     navigate('/trips/usertrips')
+  }
+
+  const handleProposalDelete = async (proposalId) => {
+    console.log("proposalId", proposalId)
+    await fetch(`http://localhost:5005/proposals/${tripId}/${proposalId}`, {
+      method: 'DELETE',
+    })
+    navigate(`/trips/${tripId}`)
   }
 
   return isLoading ? (
@@ -117,6 +125,20 @@ const TripPage = () => {
 
               <Link to={`/proposals/${tripId}/${proposal._id}`}>
                 <button type='button'>View proposal</button>
+
+
+              {/* Only show update and delete buttons if you were the creator */}
+        {userId===proposal.createdBy ? 
+        <>
+          <Link to={`/${trip._id}/${proposal._id}/update/`}>
+          <button type='button'>Update</button>
+          </Link>
+          <button type='button' onClick={(e)=>{handleProposalDelete(proposal._id)}}>
+              Delete
+          </button>
+        </>
+        : ""}
+                
               </Link>
 
             </div>)

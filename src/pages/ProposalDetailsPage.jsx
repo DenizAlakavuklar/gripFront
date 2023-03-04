@@ -1,16 +1,18 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { SessionContext } from '../contexts/SessionContext';
 
 
 
 function ProposalDetailsPage() {
     const { tripId, proposalId } = useParams()
-
+    const navigate = useNavigate()
 
     const [proposals, setProposals] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-  
+    const { userId } = useContext(SessionContext);
+
 
    const fetchProposals = async () => {
       try {
@@ -18,7 +20,7 @@ function ProposalDetailsPage() {
         const parsed = await response.json()
         setProposals(parsed[0])
         setIsLoading(false)
-        console.log("parsed :", parsed)
+        //console.log("parsed :", parsed)
       } catch (error) {
         console.log(error)
       }
@@ -28,12 +30,23 @@ function ProposalDetailsPage() {
       fetchProposals()
     }, [proposalId]) 
 
+    const handleProposalDelete = async (proposalId) => {
+      console.log("proposalId", proposalId)
+      await fetch(`http://localhost:5005/proposals/${tripId}/${proposalId}`, {
+        method: 'DELETE',
+      })
+      navigate(`/trips/${tripId}`)
+    }
+
 
     return isLoading ? (
         <h1>Loading...</h1>
       ) : (
         <>
         <div style={{ border: "1px solid black", padding: "10px" }}>
+        <Link to={`/trips/${proposals.trip}/`}>
+          <button type='button'>Go back to trip</button>
+          </Link>
             <h1>{proposals.title}</h1>
             <img src={proposals.image} alt={proposals.title} width="300"/>
             <p><b>Type:</b> {proposals.type}</p>
@@ -52,6 +65,18 @@ function ProposalDetailsPage() {
 
             <p>Votes: {proposals.votes}</p>
             <p>Created By: {proposals.createdBy}</p>
+
+        {/* Only show update and delete buttons if you were the creator */}
+        {userId===proposals.createdBy ? 
+        <>
+          <Link to={`/${proposals.trip}/${proposals._id}/update/`}>
+          <button type='button'>Update</button>
+          </Link>
+          <button type='button' onClick={(e)=>{handleProposalDelete(proposals._id)}}>
+              Delete
+          </button>
+        </>
+        : ""}
 
           </div>
         </>

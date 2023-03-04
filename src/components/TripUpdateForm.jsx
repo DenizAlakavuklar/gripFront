@@ -59,7 +59,7 @@ const TripUpdateForm= ({tripName, image, description, budget, location, attendee
 
   return (
     <div>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column" }}>
 
         <label> Trip Name:
             <input type="text" value={name} onChange={event => setName(event.target.value)}/>

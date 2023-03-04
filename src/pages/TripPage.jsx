@@ -130,7 +130,7 @@ const TripPage = () => {
               {/* Only show update and delete buttons if you were the creator */}
         {userId===proposal.createdBy ? 
         <>
-          <Link to={`/${trip._id}/${proposal._id}/update/`}>
+          <Link to={`/proposals/${trip._id}/${proposal._id}/update/`}>
           <button type='button'>Update</button>
           </Link>
           <button type='button' onClick={(e)=>{handleProposalDelete(proposal._id)}}>

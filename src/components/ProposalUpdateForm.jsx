@@ -1,72 +1,72 @@
 import React, { useContext } from 'react'
-import { useState } from 'react'
+import {  useState, useEffect } from 'react'
 import { useNavigate, useParams} from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext'
-import placeholderImage from "../images/placeholder-image.jpg"
 
-function ProposalForm() {
+function ProposalUpdateForm({currentTitle,
+    currentImage,
+    currentLocation,
+    currentType,
+    currentTotalPrice,
+    currentNights,
+    currentLink,
+    currentLink2}) {
+
+    const { tripId, proposalId } = useParams()
     const navigate = useNavigate()
-    const { tripId } = useParams()
-
     const { userId } = useContext(SessionContext);
 
-    const [title, setTitle] = useState("")
-    const [image, setImage] = useState(placeholderImage)
-    const [location, setLocation] = useState("")
-    const [type, setType] = useState("AirBnB")
-    const [totalPrice, setTotalPrice] = useState(0)
-    const [nights, setNights] = useState(0)
-    const [link, setLink] = useState("")
-    const [link2, setLink2] = useState("")
+    const [title, setTitle] = useState(currentTitle)
+    const [image, setImage] = useState(currentImage)
+    const [location, setLocation] = useState(currentLocation)
+    const [type, setType] = useState(currentType)
+    const [totalPrice, setTotalPrice] = useState(currentTotalPrice)
+    const [nights, setNights] = useState(currentNights)
+    const [link, setLink] = useState(currentLink)
+    const [link2, setLink2] = useState(currentLink2)
 
+    //console.log(title, image)
 
     const handleSubmit = async event => {
-      event.preventDefault()
-      try {
-          const response = await fetch(
-              `http://localhost:5005/proposals/${tripId}/add`,
-              {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify({
-                      title: title,
-                      image: image,
-                      location: location,
-                      type: type,
-                      totalPrice: totalPrice,
-                      nights: nights,
-                      link: link,
-                      link2: link2,
-                      trip: tripId,
-                      createdBy: userId
-                  }),
-              }
-          )
-          console.log("response", response)
-          
+        event.preventDefault()
+        try {
+            const response = await fetch(
+                `http://localhost:5005/proposals/${tripId}/update`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        title: title,
+                        image: image,
+                        location: location,
+                        type: type,
+                        totalPrice: totalPrice,
+                        nights: nights,
+                        link: link,
+                        link2: link2,
+                        trip: tripId,
+                        createdBy: userId
+                    }),
+                }
+            );
+
           if (response.status === 201) {
             const parsed = await response.json()
-            console.log("parsed", parsed)
-              navigate(`/trips/${tripId}/`)
+            navigate(`/trips/${parsed._id}`)
           }
           if (response.status === 200) {
-              navigate(`/trips/${tripId}`)
+            navigate(`/trips/${tripId}`)
           }
-      } catch (error) {
+        } catch (error) {
           console.log(error)
+        }
       }
-  }
-
-
-
-
 
   return (
+    
     <div>
-      <h1>Create New Proposal</h1>
-      <h2>for: {tripId}</h2>
 
       <div>
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column" }}>
@@ -106,7 +106,7 @@ function ProposalForm() {
                 </label>
     
 
-                <button type="submit">{"Create your proposal"}</button>
+                <button type="submit">{"Update your proposal"}</button>
 
             </form>
 
@@ -119,4 +119,4 @@ function ProposalForm() {
   )
 }
 
-export default ProposalForm
+export default ProposalUpdateForm

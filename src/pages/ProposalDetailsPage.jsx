@@ -69,7 +69,7 @@ function ProposalDetailsPage() {
         {/* Only show update and delete buttons if you were the creator */}
         {userId===proposals.createdBy ? 
         <>
-          <Link to={`/${proposals.trip}/${proposals._id}/update/`}>
+          <Link to={`/proposals/${proposals.trip}/${proposals._id}/update/`}>
           <button type='button'>Update</button>
           </Link>
           <button type='button' onClick={(e)=>{handleProposalDelete(proposals._id)}}>

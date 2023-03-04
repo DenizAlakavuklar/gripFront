@@ -16,6 +16,7 @@ import AboutGRIP from './pages/AboutGrip'
 import UserTrips from './pages/UserTrips'
 import { useContext } from 'react'
 import { SessionContext } from './contexts/SessionContext'
+import UpdateProposalPage from './pages/UpdateProposalPage'
 
 function App() {
   const { userId } = useContext(SessionContext);
@@ -47,6 +48,7 @@ function App() {
 
         {/* //Proposal routes */}
         <Route path='/proposals/:tripId/add' element={<NewProposalPage />} />
+        <Route path='/proposals/:tripId/:proposalId/update'  element={<UpdateProposalPage />} />
         <Route path='/proposals/:tripId/:proposalId' element={<ProposalDetailsPage />} />
 
       {/* //Adding a page not found: */}

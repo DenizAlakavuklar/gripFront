@@ -30,6 +30,13 @@ const NavBar = () => {
 
         {isAuthenticated && (
           <>
+
+            <Button component={Link} to={`/trips/usertrips`}  variant='subtle' color='cyan'>
+              My Trips
+            </Button>
+            <Button component={Link} to={`/trips/alltrips`}  variant='subtle' color='cyan'>
+              All Trips
+            </Button>
               <Button component={Link} to={`/profile/${userId}`}  variant='subtle' color='cyan'>
               Profile
             </Button>

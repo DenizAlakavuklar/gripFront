@@ -37,6 +37,9 @@ const NavBar = () => {
             <Button component={Link} to={`/trips/alltrips`}  variant='subtle' color='cyan'>
               All Trips
             </Button>
+            <Button component={Link} to={`/trips/new`}  variant='subtle' color='cyan'>
+              Create A Trip
+            </Button>
               <Button component={Link} to={`/profile/${userId}`}  variant='subtle' color='cyan'>
               Profile
             </Button>

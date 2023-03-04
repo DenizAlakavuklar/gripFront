@@ -56,7 +56,7 @@ const TripPage = () => {
     <>
     <div style={{ border: "1px solid black", padding: "10px" }}>
         <h1>{trip.tripName}</h1>
-        <img src={trip.image} alt="Trip" />
+        <img src={trip.image} alt="Trip" width="300" />
         <p>Description: {trip.description}</p>
         <Link to={`/trips/update/${trip._id}`}>
             <button type='button'>Update</button>
@@ -66,7 +66,9 @@ const TripPage = () => {
         </button>
       </div>
 
-
+        <h2>Proposals</h2>
+    {proposals.length===0 ? "This trip has no proposals yet! Be the first to create one!" :
+    
       <div style={{ display: "flex" }}>
         {proposals.map(proposal => {
           return (
@@ -103,7 +105,7 @@ const TripPage = () => {
 
 
       </div>
-
+}
 
     </>
   )

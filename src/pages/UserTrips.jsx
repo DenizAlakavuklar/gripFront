@@ -56,7 +56,7 @@ function UserTrips() {
                   return(
             <div key={userTrip._id} style={{ justifyContent:"center", alignItems:"center", border: "1px solid black", padding: "20px", margin: "20px" }}>
                 <h2>{userTrip.tripName}</h2>
-                <img src={userTrip.image} alt="Trip" />
+                <img src={userTrip.image} alt="Trip" width="300" />
                 <p>Description: {userTrip.description}</p>
                 <Link to={`/trips/${userTrip._id}`}>
                     <button type='button'>Details</button>

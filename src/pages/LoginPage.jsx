@@ -9,7 +9,7 @@ const LoginPage = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { setToken } = useContext(SessionContext);
+  const { setToken, setUserId } = useContext(SessionContext);
  
     // States for checking the errors
     const [errorMessage, setErrorMessage] = useState(undefined);
@@ -24,6 +24,7 @@ const LoginPage = () => {
       setToken(response.data.token);
 
       const userId = response.data.userId;
+      setUserId(userId);
       navigate(`/profile/${userId}`);
       
       console.log(response.data)

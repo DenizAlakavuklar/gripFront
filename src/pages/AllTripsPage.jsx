@@ -17,8 +17,7 @@ const AllTripsPage = () => {
   }
 
   useEffect(() => {
-    console.log("Hello")
-    fetchTrips()
+     fetchTrips()
   }, [])
 
   console.log("THESE ARE TRIPS:", trips)

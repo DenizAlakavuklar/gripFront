@@ -67,7 +67,6 @@ const TripPage = () => {
         <p>Attendees: {trip.attendees}</p>
         <p>createdBy: {trip.createdBy}</p>
 
-
 {/* Only show update and delete buttons if you were the creator */}
         {userId===trip.createdBy ? 
         <>
@@ -85,10 +84,13 @@ const TripPage = () => {
       </div>
 
         <h2>Proposals</h2>
+        <Link to={`/proposals/${trip._id}/add`}>
+          <button type='button'>Add Proposal</button>
+          </Link>
         {/* If 0 proposals, show text, if not, show proposals */}
     {proposals.length===0 ? "This trip has no proposals yet! Be the first to create one!" :
 
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", width: "600px" }}>
         {proposals.map(proposal => {
           return (
 

@@ -1,6 +1,7 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { SessionContext } from '../contexts/SessionContext';
 
 const TripPage = () => {
   const { tripId } = useParams()
@@ -8,15 +9,17 @@ const TripPage = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [trip, setTrip] = useState()
   const [proposals, setProposals] = useState([])
+  const { userId } = useContext(SessionContext);
 
   const fetchTrip = async () => {
     try {
+      console.log(userId)
       const response = await fetch(`http://localhost:5005/trip/trips/${tripId}`)
       const parsed = await response.json()
       if (parsed === null) {
         navigate('/trips/:tripId')
       } else {
-        console.log(parsed)
+        //console.log(parsed)
         setTrip(parsed)
         setIsLoading(false)
       }
@@ -37,7 +40,7 @@ const TripPage = () => {
       const parsed = await response.json()
       setProposals(parsed)
       setIsLoading(false)
-      console.log("parsed :", parsed)
+      //console.log("parsed :", parsed)
     } catch (error) {
       console.log(error)
     }
@@ -56,24 +59,40 @@ const TripPage = () => {
     <>
     <div style={{ border: "1px solid black", padding: "10px" }}>
         <h1>{trip.tripName}</h1>
+        <p>Date estimation: {trip.dateDescription}</p>
         <img src={trip.image} alt="Trip" width="300" />
         <p>Description: {trip.description}</p>
-        <Link to={`/trips/update/${trip._id}`}>
-            <button type='button'>Update</button>
-        </Link>
-        <button type='button' onClick={handleDelete}>
-            Delete
-        </button>
+        <p>Budget: {trip.budget}</p>
+        <p>Location: {trip.location}</p>
+        <p>Attendees: {trip.attendees}</p>
+        <p>createdBy: {trip.createdBy}</p>
+
+
+{/* Only show update and delete buttons if you were the creator */}
+        {userId===trip.createdBy ? 
+        <>
+          <Link to={`/trips/update/${trip._id}`}>
+          <button type='button'>Update</button>
+          </Link>
+          <button type='button' onClick={handleDelete}>
+              Delete
+          </button>
+        </>
+        : ""}
+
+        
+
       </div>
 
         <h2>Proposals</h2>
+        {/* If 0 proposals, show text, if not, show proposals */}
     {proposals.length===0 ? "This trip has no proposals yet! Be the first to create one!" :
-    
+
       <div style={{ display: "flex" }}>
         {proposals.map(proposal => {
           return (
 
-            <div style={{ border: "1px solid black", padding: "10px" }}>
+            <div key={proposal._id} style={{ border: "1px solid black", padding: "10px" }}>
 
 
               <h3>{proposal.title}</h3>

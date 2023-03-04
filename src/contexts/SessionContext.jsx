@@ -26,7 +26,7 @@ const SessionContextProvider = ({ children }) => {
 
             // put .data for axios
             setUserId(user.data._id)
-            console.log("user from verify", user.data)
+            //console.log("user from verify", user.data)
 
 
         } catch (error) {

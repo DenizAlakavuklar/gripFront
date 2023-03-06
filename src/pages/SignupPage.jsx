@@ -38,6 +38,7 @@ const SignupPage = () => {
       }}
     >
       <Text align='center' size='xl' weight='bold'>
+        <h2> Welcome to your next adventure</h2>
         Signup
       </Text>
       <Box

@@ -1,4 +1,4 @@
-import { Box, Button, PasswordInput, Text, TextInput } from '@mantine/core'
+import { Box, Button, PasswordInput, Text, TextInput, BackgroundImage } from '@mantine/core'
 import axios from 'axios';
 import { useContext, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
@@ -37,40 +37,56 @@ const LoginPage = () => {
   }
 
   return (
-    <Box
-      sx={{
-        margin: '0 auto',
-        maxWidth: '400px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        height: 'calc(100vh - 100px)',
-      }}
-    >
-      <Text align='center' size='xl' weight='bold'>
-        Login
-      </Text>
-      <Box
-        component='form'
-        sx={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '2rem' }}
-        onSubmit={handleSubmit}
+
+    <>   
+    <Box>
+      <BackgroundImage
+        src="https://images.unsplash.com/photo-1453974336165-b5c58464f1ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3546&q=800"
       >
-        <TextInput label='Username' variant='filled' withAsterisk value={username} onChange={(e) => setUsername(e.target.value)} />
-        <PasswordInput label='Password' variant='filled' withAsterisk value={password} onChange={(e) => setPassword(e.target.value)} />
-        <Button
-          type='submit'
-          variant='filled'
-          color='cyan'
-          sx={{ marginTop: '1rem', alignSelf: 'center' }}
+
+    
+        <Box
+          sx={{
+            margin: '0 auto',
+            maxWidth: '400px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            height: 'calc(100vh - 100px)',
+          }}
         >
-          Connect
-        </Button>
-      </Box>
-      { errorMessage && <p className="error-message" style={{color: "red"}}>{errorMessage}</p> }
- 
- <p>Don't have an account yet?</p>
- <Link to={"/signup"}> Sign Up</Link>
+          <Text align='center' size='xl' weight='bold' color="white">
+            <h1> Are you ready to adventure?</h1>
+            Login
+          </Text>
+          <Box
+            component='form'
+            sx={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '2rem' }}
+            onSubmit={handleSubmit}
+          >
+            <TextInput label='Username' variant='filled' withAsterisk value={username} onChange={(e) => setUsername(e.target.value)} />
+            <PasswordInput label='Password' variant='filled' withAsterisk value={password} onChange={(e) => setPassword(e.target.value)} />
+            <Button
+              type='submit'
+              variant='filled'
+              color='cyan'
+              sx={{ marginTop: '1rem', alignSelf: 'center' }}
+            >
+              Connect
+            </Button>
+          </Box>
+          { errorMessage && <p className="error-message" style={{color: "red"}}>{errorMessage}</p> }
+    
+    <p>You don't have an account yet?</p>
+    <Link to={"/signup"}> Sign Up Now</Link>
+        </Box>
+
+    </BackgroundImage>
     </Box>
+
+    </>
+
+
   )
 }
 

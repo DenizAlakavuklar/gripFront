@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import SessionContextProvider from './contexts/SessionContext'
+import AllUsersContextProvider from './contexts/AllUsersContext'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(

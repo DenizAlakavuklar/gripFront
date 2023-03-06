@@ -27,9 +27,9 @@ const [attendeesString, setAttendeesString] = useState()
 
 const handleAttendeesChange = (e) => {
   //console.log("HELLO")
-      var options = e.target.options;
-      var attendeesArr = [];
-      for (var i = 0, l = options.length; i < l; i++) {
+      let options = e.target.options;
+      let attendeesArr = [];
+      for (let i = 0, l = options.length; i < l; i++) {
         if (options[i].selected) {
           attendeesArr.push(options[i].value);
           }

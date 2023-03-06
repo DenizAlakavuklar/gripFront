@@ -1,6 +1,8 @@
 import React from 'react'
 import { useEffect, useState, useContext } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import VoteButton from '../components/VoteButton';
+import VotingList from '../components/VotingList';
 import { SessionContext } from '../contexts/SessionContext';
 
 const TripPage = () => {
@@ -134,11 +136,10 @@ const TripPage = () => {
               </Link>) : ''}
 
                <p>Votes: </p>
-              <ul>
-              {proposal.votes.map(vote =>{
-            return <li>{vote.username}</li>
-            })}
-            </ul>
+
+               <VotingList key={proposal._id} allVotes={proposal.votes}/>
+
+            <VoteButton allVotes={proposal.votes}/>
             <p>CreatedBy: {proposal.createdBy.username} <img src={proposal.createdBy.picture} width="20"/></p>
 
               <Link to={`/proposals/${tripId}/${proposal._id}`}>

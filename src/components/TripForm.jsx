@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate, useParams} from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext'
 import placeholderImage from "../images/placeholder-image.jpg"
+import axios from 'axios'
 
 const TripForm= () => {
     const navigate = useNavigate()
@@ -21,7 +22,7 @@ const TripForm= () => {
     const handleSubmit = async event => {
         event.preventDefault()
         try {
-           /*  const tripAttendeesArr = tripAttendees.split(',')
+            /* const tripAttendeesArr = tripAttendees.split(',')
             console.log("tripAttendeesArr:", tripAttendeesArr) */
             const response = await fetch(
                 `http://localhost:5005/trip/trips`,
@@ -41,6 +42,15 @@ const TripForm= () => {
                     }),
                 }
             );
+
+            /* const response = await axios.post("http://localhost:5005/trip/trips", { 
+            tripName: name,
+            image: img,
+            description: desc,
+            budget: budg,
+            location: loc,
+            attendees: tripAttendees,
+            createdBy: userId,}) */
 
             if (response.status === 201) {
                 const parsed = await response.json()

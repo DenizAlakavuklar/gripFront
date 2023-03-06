@@ -14,13 +14,24 @@ const TripPage = () => {
   const fetchTrip = async () => {
     try {
       //console.log(userId)
+      //TRIPS
       const response = await fetch(`http://localhost:5005/trip/trips/${tripId}`)
       const parsed = await response.json()
-      if (parsed === null) {
+      console.log(parsed)
+
+      //PROPOSALS
+
+      const response2 = await fetch(`http://localhost:5005/proposals/${tripId}/`)
+      const parsed2 = await response2.json()
+      
+
+
+      if (parsed === null || parsed2 === null) {
         navigate('/trips/:tripId')
       } else {
-        //console.log(parsed)
+        console.log(parsed)
         setTrip(parsed)
+        setProposals(parsed2)
         setIsLoading(false)
       }
     } catch (error) {
@@ -30,20 +41,18 @@ const TripPage = () => {
 
   useEffect(() => {
     fetchTrip()
-    fetchProposals()
+    /* fetchProposals() */
   }, [tripId])
 
-  const fetchProposals = async () => {
+ /*  const fetchProposals = async () => {
     try {
-      const response = await fetch(`http://localhost:5005/proposals/${tripId}/`)
-      const parsed = await response.json()
-      setProposals(parsed)
+
       setIsLoading(false)
       //console.log("parsed :", parsed)
     } catch (error) {
       console.log(error)
     }
-  }
+  } */
 
   const handleDelete = async () => {
     await fetch(`http://localhost:5005/trip/trips/${tripId}`, {

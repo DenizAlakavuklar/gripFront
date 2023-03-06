@@ -19,9 +19,9 @@ const TripForm= ({allUsers}) => {
     const [budg, setBudg] = useState("")
     const [loc, setLoc] = useState("")
     const [tripAttendees, setTripAttendees] = useState([])
-
+console.log("attendees", attendees)
    const handleAttendeesChange = (e) => {
-    console.log("HELLO")
+    //console.log("HELLO")
         var options = e.target.options;
         var attendeesArr = [];
         for (var i = 0, l = options.length; i < l; i++) {

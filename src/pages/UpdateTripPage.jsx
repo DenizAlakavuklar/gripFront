@@ -31,6 +31,24 @@ const UpdateTripPage = () => {
     useEffect(() => {
       fetchTypedTripData()
     }, [tripId])
+
+    const [allUsers, setAllUsers] = useState("")
+
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch('http://localhost:5005/auth/allusers')
+        const parsed = await response.json()
+        setAllUsers(parsed)
+        console.log("Parsed users is :", parsed)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  
+    useEffect(()=>{
+      fetchUsers()
+      console.log("HELLO mounted")
+    }, [])
   
     return (
       <div>
@@ -44,9 +62,10 @@ const UpdateTripPage = () => {
           description={trip.description}
           budget={trip.budget}
           location={trip.location}
-          attendees={trip.attendees}
+          currentAttendees={trip.attendees}
           isUpdating
           tripId={tripId}
+          allUsers={allUsers}
         />
       )}
     </div>

@@ -1,4 +1,5 @@
-import { BackgroundImage, Box, Text, Flex, Button } from '@mantine/core';
+import { BackgroundImage, Box, Text, Flex, Button, Grid,ThemeIcon, Paper } from '@mantine/core';
+import { IconBackpack, IconDirections, IconBrain  } from '@tabler/icons-react';
 
 const HomePage = () => {
 
@@ -32,13 +33,58 @@ const HomePage = () => {
         </Box>
 
         <Box>
-          <Flex   justify="flex-start" align="center" justify="center" >
+          <Flex   justify="center" align="center" >
+
             <Text size={20} weight='bold'>
               <h2> Travel with peace of mind </h2>
             </Text>
+
           </Flex>
+
+          <Box mt={50}>
+              <Flex justify="center" align="center">
+                <Grid  gutter={300}>
+                    <Grid.Col  span={4} width={550}> 
+                    <Paper shadow="xl" radius="md" p="xl" >
+                      <ThemeIcon variant="light" radius="xl" size="xl" color="cyan">
+                        <IconBrain  />
+                      </ThemeIcon>
+                      <h3>Simplified brainstorming </h3>
+                  </Paper> 
+                  </Grid.Col>  
+
+                  <Grid.Col  span={4}> 
+                  <Paper shadow="xl" radius="md" p="xl">
+                      <ThemeIcon variant="light" radius="xl" size="xl" color="cyan">
+                        <IconBackpack  />
+                      </ThemeIcon>
+                      <h3>Friendly exploration   </h3>
+                  </Paper> 
+                  </Grid.Col> 
+
+                  <Grid.Col  span={4}> 
+                  <Paper shadow="xl" radius="md" p="xl">
+                      <ThemeIcon variant="light" radius="xl" size="xl" color="cyan">
+                        <IconDirections  />
+                      </ThemeIcon>
+                      <h3>Centralized decision making </h3>
+                  </Paper> 
+                  </Grid.Col> 
+
+                </Grid>
+              </Flex>
+          </Box>
           
         </Box>
+
+        <Box mt={50} >
+          <Paper shadow="xl" radius="md" p="xl">
+            <Text> Hello </Text>
+          </Paper>
+        </Box>
+
+
+
 
 
 

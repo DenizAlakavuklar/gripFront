@@ -1,4 +1,4 @@
-import { Box, Button, PasswordInput, Text, TextInput } from '@mantine/core'
+import { Box, Button, PasswordInput, Text, TextInput, BackgroundImage } from '@mantine/core'
 import axios from 'axios';
 import { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
@@ -27,6 +27,13 @@ const SignupPage = () => {
   }
 
   return (
+
+    <>   
+    <Box>
+      <BackgroundImage
+        src="https://images.unsplash.com/photo-1542235222-30e843cb43a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80"
+      >
+
     <Box
       sx={{
         margin: '0 auto',
@@ -63,6 +70,11 @@ const SignupPage = () => {
       <p >Already have account?</p>
       <Link to={"/auth/login"}> Login</Link>
     </Box>
+
+    </BackgroundImage>
+    </Box>
+
+    </>
    
   )
 }

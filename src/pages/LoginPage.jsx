@@ -56,7 +56,7 @@ const LoginPage = () => {
           }}
         >
           <Text align='center' size='xl' weight='bold' color="white">
-            <h1> Are you ready to adventure?</h1>
+            <h1> Are you ready to explore?</h1>
             Login
           </Text>
           <Box

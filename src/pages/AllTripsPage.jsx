@@ -36,7 +36,7 @@ const AllTripsPage = () => {
             <Grid.Col key={trip._id} md={6} lg={3} maw={150}>
 
               <Card shadow="sm" padding="lg" radius="md" withBorder>
-                <Card.Section component="a" href="https://mantine.dev/">
+                <Card.Section component="a">
                   <Image
                     src={trip.image}
                     height={160}

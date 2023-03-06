@@ -51,7 +51,7 @@ function UserTrips() {
         return (
             <>
             <h1>Explore your next trips</h1>
-            <div style={{ display: 'flex', flexWrap: 'wrap'}}>
+            <div>
                      {userTrips.map((userTrip) => {
                   return(
             <div key={userTrip._id} style={{ justifyContent:"center", alignItems:"center", border: "1px solid black", padding: "20px", margin: "20px" }}>

@@ -21,8 +21,8 @@ const TripForm= () => {
     const handleSubmit = async event => {
         event.preventDefault()
         try {
-
-
+           /*  const tripAttendeesArr = tripAttendees.split(',')
+            console.log("tripAttendeesArr:", tripAttendeesArr) */
             const response = await fetch(
                 `http://localhost:5005/trip/trips`,
                 {

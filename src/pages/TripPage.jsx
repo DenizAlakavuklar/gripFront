@@ -33,7 +33,6 @@ const TripPage = () => {
     fetchProposals()
   }, [tripId])
 
-
   const fetchProposals = async () => {
     try {
       const response = await fetch(`http://localhost:5005/proposals/${tripId}/`)
@@ -72,11 +71,16 @@ const TripPage = () => {
         <p>Description: {trip.description}</p>
         <p>Budget: {trip.budget}</p>
         <p>Location: {trip.location}</p>
-        <p>Attendees: {trip.attendees}</p>
-        <p>createdBy: {trip.createdBy}</p>
-
+        <p>Attendees: </p>
+          <ul>
+          {trip.attendees.map(attendee =>{
+         return <li>{attendee.username}</li>
+        })}
+        </ul>
+        <p>Created By: {trip.createdBy.username}</p>
+        {console.log("userId: ", userId, "trip.createdBy: ", trip.createdBy)}
 {/* Only show update and delete buttons if you were the creator */}
-        {userId===trip.createdBy ? 
+        {userId===trip.createdBy._id ? 
         <>
           <Link to={`/trips/update/${trip._id}`}>
           <button type='button'>Update</button>
@@ -120,19 +124,24 @@ const TripPage = () => {
                 <button type='button'>More info</button>
               </Link>) : ''}
 
-              <p>Votes: {proposal.votes}</p>
-              <p>Created By: {proposal.createdBy}</p>
+               <p>Votes: </p>
+              <ul>
+              {proposal.votes.map(vote =>{
+            return <li>{vote.username}</li>
+            })}
+            </ul>
+            <p>CreatedBy: {proposal.createdBy.username}</p>
 
               <Link to={`/proposals/${tripId}/${proposal._id}`}>
                 <button type='button'>View proposal</button>
 
 
               {/* Only show update and delete buttons if you were the creator */}
-        {userId===proposal.createdBy ? 
+        {userId===proposal.createdBy._id ? 
         <>
-          <Link to={`/${trip._id}/${proposal._id}/update/`}>
+         {/*  <Link to={`/${trip._id}/${proposal._id}/update/`}>
           <button type='button'>Update</button>
-          </Link>
+          </Link> */}
           <button type='button' onClick={(e)=>{handleProposalDelete(proposal._id)}}>
               Delete
           </button>

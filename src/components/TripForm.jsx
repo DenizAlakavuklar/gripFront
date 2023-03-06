@@ -5,11 +5,13 @@ import { SessionContext } from '../contexts/SessionContext'
 import placeholderImage from "../images/placeholder-image.jpg"
 import axios from 'axios'
 
-const TripForm= () => {
+const TripForm= ({allUsers}) => {
     const navigate = useNavigate()
     const { tripId } = useParams()
 
     const { userId } = useContext(SessionContext);
+    const [attendees, setAttendees] = useState([])
+    const [attendeesString, setAttendeesString] = useState('')
 
     const [name, setName] = useState("")
     const [desc, setDesc] = useState("")
@@ -17,11 +19,32 @@ const TripForm= () => {
     const [budg, setBudg] = useState("")
     const [loc, setLoc] = useState("")
     const [tripAttendees, setTripAttendees] = useState([])
-    console.log(userId)
 
+   const handleAttendeesChange = (e) => {
+    console.log("HELLO")
+        var options = e.target.options;
+        var attendeesArr = [];
+        for (var i = 0, l = options.length; i < l; i++) {
+          if (options[i].selected) {
+            attendeesArr.push(options[i].value);
+            }
+        }
+        //add yourself to attendees
+        attendeesArr.push(userId)
+        //set attendees as array
+        setAttendees(attendeesArr)
+        //stringify the attendees array because form takes string
+        const regex = /['"]/g
+        const stringifiedAttendees = JSON.stringify(attendeesArr.join(",")).replace(regex, ``)
+
+        
+        setAttendeesString(stringifiedAttendees)
+
+      } 
     const handleSubmit = async event => {
         event.preventDefault()
         try {
+
             /* const tripAttendeesArr = tripAttendees.split(',')
             console.log("tripAttendeesArr:", tripAttendeesArr) */
             const response = await fetch(
@@ -37,7 +60,7 @@ const TripForm= () => {
                         description: desc,
                         budget: budg,
                         location: loc,
-                        attendees: tripAttendees,
+                        attendees: attendeesString,
                         createdBy: userId,
                     }),
                 }
@@ -65,6 +88,7 @@ const TripForm= () => {
     }
 
 
+
     return (
         <div>
             <form onSubmit={handleSubmit}  style={{ display: "flex", flexDirection: "column" }}>
@@ -89,8 +113,22 @@ const TripForm= () => {
                 <label> Location:
                     <input type="text" value={loc} onChange={event => setLoc(event.target.value)} />
                 </label>
-                <label> Attendees:
+                {/* <label> Attendees:
                     <input type="text" value={tripAttendees} onChange={event => setTripAttendees(event.target.value)} />
+                </label> */}
+       {/*  {console.log({allUsers})} */}
+                <label> Attendees:
+                <select name="attendees" id="attendees-select" multiple value={attendees} onChange={(e)=>handleAttendeesChange(e)}>
+                    <option value="">--Please choose an option--</option>
+                    {allUsers ? allUsers.map(user=>{
+                        if(userId !== user._id){
+                            return <option value={user._id} key={user._id}>{user.username}</option>
+                        }
+                    }) : "Loading"}
+                    
+
+                </select>
+
                 </label>
 
                 <button type="submit">{"Create your trip"}</button>

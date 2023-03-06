@@ -73,7 +73,7 @@ const TripPage = () => {
     <h1>Loading...</h1>
   ) : (
     <>
-    <div style={{ border: "1px solid black", padding: "10px" }}>
+    <div  key={trip._id} style={{ border: "1px solid black", padding: "10px" }}>
         <h1>{trip.tripName}</h1>
         <p>Date estimation: {trip.dateDescription}</p>
         <img src={trip.image} alt="Trip" width="300" />
@@ -83,11 +83,11 @@ const TripPage = () => {
         <p>Attendees: </p>
           <ul>
           {trip.attendees.map(attendee =>{
-         return <li>{attendee.username}</li>
+         return <li>{attendee.username} <img src={attendee.picture} width="20"/></li>
         })}
         </ul>
         <p>Created By: {trip.createdBy.username}</p>
-        {console.log("userId: ", userId, "trip.createdBy: ", trip.createdBy)}
+       {/*  {console.log("userId: ", userId, "trip.createdBy: ", trip.createdBy)} */}
 {/* Only show update and delete buttons if you were the creator */}
         {userId===trip.createdBy._id ? 
         <>
@@ -139,7 +139,7 @@ const TripPage = () => {
             return <li>{vote.username}</li>
             })}
             </ul>
-            <p>CreatedBy: {proposal.createdBy.username}</p>
+            <p>CreatedBy: {proposal.createdBy.username} <img src={proposal.createdBy.picture} width="20"/></p>
 
               <Link to={`/proposals/${tripId}/${proposal._id}`}>
                 <button type='button'>View proposal</button>

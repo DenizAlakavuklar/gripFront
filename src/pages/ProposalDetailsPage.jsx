@@ -52,7 +52,7 @@ function ProposalDetailsPage() {
             <p><b>Type:</b> {proposals.type}</p>
             <p><b>Location:</b> {proposals.location}</p>
             <p><b>Total Price:</b> {proposals.totalPrice}</p>
-            <p><b>Price per night:</b> {proposals.totalPrice / proposals.nights}</p>
+            <p><b>Price per night:</b> {Math.round(proposals.totalPrice / proposals.nights)}</p>
             <p><b>Nights:</b> {proposals.nights}</p>
 
         <Link to={proposals.link} target="_blank">
@@ -63,8 +63,8 @@ function ProposalDetailsPage() {
             <button type='button'>More info</button>
         </Link>) : '' }
 
-            <p>Votes: {proposals.votes}</p>
-            <p>Created By: {proposals.createdBy}</p>
+            <p>Votes: {proposals.votes.username}</p>
+            <p>CreatedBy: {proposals.createdBy.username} <img src={proposals.createdBy.picture} width="20"/></p>
 
         {/* Only show update and delete buttons if you were the creator */}
         {userId===proposals.createdBy ? 

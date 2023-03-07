@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect, useState, useContext } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import VoteButton from '../components/VoteButton';
+import Votes from '../components/Votes';
 import VotingList from '../components/VotingList';
 import { SessionContext } from '../contexts/SessionContext';
 
@@ -43,18 +44,13 @@ const TripPage = () => {
 
   useEffect(() => {
     fetchTrip()
-    /* fetchProposals() */
   }, [tripId])
 
- /*  const fetchProposals = async () => {
-    try {
+/*   useEffect(() => {
+    fetchTrip()
+  }, [proposals])
 
-      setIsLoading(false)
-      //console.log("parsed :", parsed)
-    } catch (error) {
-      console.log(error)
-    }
-  } */
+ */
 
   const handleDelete = async () => {
     await fetch(`http://localhost:5005/trip/trips/${tripId}`, {
@@ -116,10 +112,10 @@ const TripPage = () => {
       <div style={{ display: "flex", width: "600px" }}>
         {proposals.map(proposal => {
           return (
-
             <div key={proposal.title} style={{ border: "1px solid black", padding: "10px" }}>
 
-
+              {console.log(proposal)
+}
               <h3>{proposal.title}</h3>
               {/* <img src={proposal.image} alt={proposal.title} width="300"/> */}
               <p><b>Type:</b> {proposal.type}</p>
@@ -136,19 +132,8 @@ const TripPage = () => {
               </Link>) : ''}
 
                <p>Votes: </p>
-               <VotingList /* key={proposal._id} */ allVotes={proposal.votes}/>
 
-            <VoteButton key={proposal._id}  
-            allVotes={proposal.votes} proposalId={proposal._id}  trip={trip._id} tripId={trip._id}
-            title={proposal.title}
-            image={proposal.image}
-            location={proposal.location}
-            type={proposal.type}
-            totalPrice={proposal.totalPrice}
-            nights={proposal.nights}
-            link={proposal.link}
-            link2={proposal.link2}
-            />
+               <Votes proposal={proposal} allVotes={proposal.votes} trip={trip._id} tripId={trip._id}/>
             <p>CreatedBy: {proposal.createdBy.username} <img src={proposal.createdBy.picture} width="20"/></p>
 
               <Link to={`/proposals/${tripId}/${proposal._id}`}>

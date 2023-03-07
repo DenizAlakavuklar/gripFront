@@ -11,7 +11,8 @@ function VoteButton({allVotes, proposalId, tripId, trip,
     totalPrice,
     nights,
     link,
-    link2}) {
+    link2, 
+    votes, setVotes}) {
 
     const [allUsers, setAllUsers] = useState("")
 
@@ -33,15 +34,15 @@ function VoteButton({allVotes, proposalId, tripId, trip,
 
 
 const { userId } = useContext(SessionContext);
-const [votes, setVotes] = useState(allVotes)
 
-console.log("votes:", votes)
+
+//console.log("votes:", votes)
 
 //checks is user has already voted which is used to set state (button)
 const proposalVote = {...votes}
-//console.log(proposalVote)
+//console.log("proposalVote: ", proposalVote)
 const proposalVoteInfo = Object.values(proposalVote).filter(vote => vote._id===userId)[0]
-console.log("proposalVoteInfo", proposalVoteInfo)
+//console.log("proposalVoteInfo", proposalVoteInfo)
 
 //has user already voted? sets voted state at beginning
 const [voted, setVoted] = useState(proposalVoteInfo ? true : false)
@@ -56,26 +57,26 @@ const loggedinUserInfo = Object.values(userInfo).filter(user => user._id===userI
 
 
 
-const addVote = ()=>{
-    console.log("votes-before", votes)
+/* const addVote = ()=>{
+    //console.log("votes-before", votes)
     //if user has voted, when they click button they are removing the vote
-    if(voted){
-      const votesWithoutUser = votes.filter((vote)=>vote._id !==userId)
-      setVotes(votesWithoutUser)
-      //this will add their vote to votes
-    } else {
-        //current votes + logged in user
-        setVotes([...votes, loggedinUserInfo])
-    }
-    setVoted(!voted)
+   
 
-}
+} */
 
 
 
 const handleSubmit = async (event) => {
-    //console.log("IN HANDLE SUBMIT")
-    console.log("votes-after", votes)
+  if(voted){
+    const votesWithoutUser = votes.filter((vote)=>vote._id !==userId)
+    setVotes(votesWithoutUser)
+    //this will add their vote to votes
+  } else {
+      //current votes + logged in user
+      setVotes([...votes, loggedinUserInfo])
+  }
+  setVoted(!voted)
+    //console.log("votes-after", votes)
     event.preventDefault()
     try {
         const response = await fetch(
@@ -114,7 +115,7 @@ const handleSubmit = async (event) => {
     <div>
 <form  onSubmit={handleSubmit}>
 
-<button onClick={addVote}>{voted ? "Remove Vote": "Add Vote"}</button>
+<button>{voted ? "Remove Vote": "Add Vote"}</button>
 
 </form>
 

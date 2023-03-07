@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect, useState, useContext } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext';
+import Votes from '../components/Votes';
 import { Card, Image, Flex, Text, Container, Group, Button, Grid, Space } from '@mantine/core';
 
 
@@ -65,8 +66,10 @@ function ProposalDetailsPage() {
             <button type='button'>More info</button>
         </Link>) : '' }
 
-            <p>Votes: {proposals.votes}</p>
-            <p>Created By: {proposals.createdBy}</p>
+        <p><b>Votes:</b></p>
+
+<Votes proposal={proposals} allVotes={proposals.votes} trip={tripId} tripId={tripId}/>
+<p>Added By: {proposals.createdBy.username} <img src={proposals.createdBy.picture} width="20"/></p>
 
         {/* Only show update and delete buttons if you were the creator */}
         {userId===proposals.createdBy ? 

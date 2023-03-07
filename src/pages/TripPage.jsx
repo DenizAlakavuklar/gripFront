@@ -1,11 +1,12 @@
 import React from 'react'
 import { useEffect, useState, useContext } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import VoteButton from '../components/VoteButton';
-import VotingList from '../components/VotingList';
-import { SessionContext } from '../contexts/SessionContext';
+import VoteButton from '../components/VoteButton'
+import Votes from '../components/Votes'
+import VotingList from '../components/VotingList'
+import { SessionContext } from '../contexts/SessionContext'
 import { Card, Image, Flex, Text, Container, Group, Button, Grid, Space, Box, Divider } from '@mantine/core';
-import { Row } from 'react-bootstrap';
+
 
 const TripPage = () => {
   const { tripId } = useParams()
@@ -48,15 +49,10 @@ const TripPage = () => {
     /* fetchProposals() */
   }, [tripId])
 
-  /*  const fetchProposals = async () => {
-     try {
- 
-       setIsLoading(false)
-       //console.log("parsed :", parsed)
-     } catch (error) {
-       console.log(error)
-     }
-   } */
+  /*   useEffect(() => {
+      fetchTrip()
+    }, [proposals])
+   */
 
   const handleDelete = async () => {
     await fetch(`http://localhost:5005/trip/trips/${tripId}`, {
@@ -148,7 +144,7 @@ const TripPage = () => {
                       <Text size="sm" ><b>Location:</b> {proposal.location}</Text>
 
                       <Text size="sm" ><b>Nights:</b> {proposal.nights}</Text>
-                      <Link to={`/proposals/${tripId}/${proposal._id}`} style={{color:"indigo"}}>
+                      <Link to={`/proposals/${tripId}/${proposal._id}`} style={{ color: "indigo" }}>
                         View details
                       </Link>
 
@@ -158,15 +154,15 @@ const TripPage = () => {
                 */}
                       <Divider size="sm" mt={30} />
 
-                      <Flex justify="space-between" align="flex-start" direction={"row"} gap="xl" mt={20}>
-                      <Text size="sm" ><b>Votes:  </b> </Text>
-                      <VoteButton allVotes={proposal.votes}/>
-</Flex>
-                      <VotingList key={proposal._id} allVotes={proposal.votes} />
+                     
+                        <Text size="sm" ><b>Votes:  </b> </Text>
+                        <Votes proposal={proposal} allVotes={proposal.votes} trip={trip._id} tripId={trip._id}/>
+                
+               
 
-                   
+
                       <Flex justify="flex-start" align="flex-start" direction={"row"} gap="xl" mt={20}>
-                        <Text color="cyan.9" underline italic>CreatedBy: {proposal.createdBy.username} <img src={proposal.createdBy.picture} width="20" /></Text>
+                        <Text color="cyan.9" underline italic>Added By:  {proposal.createdBy.username} <img src={proposal.createdBy.picture} width="20" /></Text>
 
                         {/* Only show update and delete buttons if you were the creator */}
                         {userId === proposal.createdBy._id ?

@@ -142,7 +142,7 @@ const TripForm= ({allUsers}) => {
                 </label>
 
                 <Box mt={50}>
-                    <button type="submit">{"Create your trip"}</button>
+                    <button type="submit" style={{ backgroundColor: 'white', fontSize: '20px', color:'black' }}>{"Create your trip"}</button>
                 </Box>
 
             </form>

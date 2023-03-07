@@ -14,9 +14,9 @@ const NavBar = () => {
         Home
       </Button>
       <Box>
-      <Button component={Link} to='/about' variant='subtle' color='cyan'>
+      {/* <Button component={Link} to='/about' variant='subtle' color='cyan'>
           AboutGRIP
-        </Button>
+        </Button> */}
         {!isAuthenticated && (
           <>
         <Button component={Link} to='/signup' variant='subtle' color='cyan'>

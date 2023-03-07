@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { SessionContext } from '../contexts/SessionContext';
+import { Box, Flex, Button, PasswordInput, Text, TextInput, BackgroundImage } from '@mantine/core'
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -50,27 +51,88 @@ function Profile() {
       };
       fetchTrips();
     }, [userId, token]);
+    
+    
     useEffect(() => {
       setTripCount(trips.length);
     }, [trips]);
     if (!user) {
       return <div>Loading...</div>;
-    }
+    } 
 
-  return (
+    console.log("Thus is the username:", typeof user.username)
+  
+  
+    return (
     <div>
-   <h1>Welcome, {user.username}!</h1>
-   <p>Explore and blah blah.</p>
-   <p><b>Trips created: </b> {tripCount}</p>
-   <p><b>Trips attending: </b> {trips.length + attendeesTrips.length}</p>
 
-<Link to="/trips/new">
-  <button>Create a trip</button>
-</Link>
-<Link to="/trips/usertrips">
-  <button>Explore my trips</button>
-</Link>
+
+    <BackgroundImage
+        src="https://images.unsplash.com/photo-1542235222-30e843cb43a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80"
+    >
+
+
+
+
+      <Flex justify="center" align="center">
+
+        <Box mt={300}>
+
+                {user.username ? <h1>Welcome home, {user.username.charAt(0).toUpperCase() + user.username.substring(1)}!</h1> : "Loading"}
+      
+
+                <p>Explore and blah blah.</p>
+              <p>
+                <b>You have created </b> 
+                <b style={{color: "#9c3002", fontSize:"30px"}}> {tripCount} </b>
+                <b>trip </b>
+              </p>
+
+              <p>
+                <b>You are attending </b> 
+                <b style={{color: "#9c3002", fontSize:"30px"}}> {trips.length + attendeesTrips.length} </b>
+                <b>trips </b>
+              </p>
+
+           <Flex>
+
+               <Box mr={40}>
+                  <Link to="/trips/new" mr={50}>
+                <button>Create a trip</button>
+                  </Link>
+              </Box>
+
+              <Box>
+                <Link to="/trips/usertrips">
+                  <button>Explore my trips</button>
+                </Link>
+              </Box>
+
+           </Flex>
+
+            <Box
+            sx={{
+              margin: '0 auto',
+              maxWidth: '400px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              height: 'calc(30vh - 10px)',
+            }}
+          />
+        </Box>
+       
+
+  </Flex>
+
+  </BackgroundImage>
+  
+
+
+
+
 </div>
 );
 }
+
 export default Profile;

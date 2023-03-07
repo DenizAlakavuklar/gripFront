@@ -3,9 +3,9 @@ import {  useState, useEffect } from 'react'
 import { useNavigate, useParams} from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext'
 
-const TripUpdateForm= ({tripName, image, description, budget, location, attendees}) => {
+const TripUpdateForm= ({tripName, image, description, budget, location, currentAttendees, allUsers}) => {
 
-    console.log(tripName)
+    //console.log(tripName)
   const { tripId } = useParams()
   const navigate = useNavigate()
   const { userId } = useContext(SessionContext);
@@ -18,9 +18,39 @@ const TripUpdateForm= ({tripName, image, description, budget, location, attendee
   const [img, setImg] = useState(image)
   const [budg, setBudg] = useState(budget)
   const [loc, setLoc] = useState(location)
-//   const [tripAttendees, setTripAttendees] = useState([attendees])
 
-  console.log("this is the userid:", userId)
+  const [attendees, setAttendees] = useState(currentAttendees)
+const [updatedAttendees, setUpdatedAttendees] = useState()
+const [attendeesId, setAttendeesId] = useState(attendees.map(attendee => attendee._id))
+const [attendeesString, setAttendeesString] = useState()
+
+
+const handleAttendeesChange = (e) => {
+  //console.log("HELLO")
+      let options = e.target.options;
+      let attendeesArr = [];
+      for (let i = 0, l = options.length; i < l; i++) {
+        if (options[i].selected) {
+          attendeesArr.push(options[i].value);
+          }
+      }
+
+      console.log("attendeesArr: ", attendeesArr)
+
+       //set attendees as array
+       setUpdatedAttendees(attendeesArr)
+       //console.log("updatedAttendees", updatedAttendees)
+       //stringify the attendees array because form takes string
+       const regex = /['"]/g
+       const stringifiedAttendees = JSON.stringify(attendeesArr.join(",")).replace(regex, ``)
+       console.log("stringifiedAttendees", stringifiedAttendees)
+
+      
+      setAttendeesString(stringifiedAttendees)
+
+    } 
+
+  //console.log("this is the userid:", userId)
 
    const handleSubmit = async event => {
         event.preventDefault()
@@ -38,7 +68,7 @@ const TripUpdateForm= ({tripName, image, description, budget, location, attendee
                         description: desc,
                         budget: budg,
                         location: loc,
-                        // attendees: tripAttendees,
+                        attendees: attendeesString,
                         createdBy: userId,
                     }),
                 }
@@ -85,10 +115,38 @@ const TripUpdateForm= ({tripName, image, description, budget, location, attendee
         <label> Location:
             <input type="text" value={loc} onChange={event => setLoc(event.target.value)}/>
         </label>
+        
 
         <label> Attendees:
-            {/* <input type="text" value={tripAttendees} onChange={event => setTripAttendees(event.target.value)}/> */}
-        </label>
+        
+        {
+       /*  attendees.map(attendee => console.log(attendee._id)) */
+         //console.log("attendeesId", attendeesId)
+                  }
+
+
+                <select name="attendees" id="attendees-select" multiple value={updatedAttendees}   onChange={(e)=>handleAttendeesChange(e)}>
+                    <option value="" disabled>--Please choose an option--</option>
+                    {attendees.map(user=>{
+
+                            return <option value={user._id} key={user._id} selected>{user.username}</option>
+
+                    })}
+
+                   
+                    
+                    {allUsers ? allUsers
+                    .filter( ( el ) => !attendeesId.includes( el._id ) )
+                    .map(user=>{
+
+                            return <option value={user._id} key={user._id}>{user.username}</option>
+
+                    }) : "Loading"}
+                    
+
+                </select>
+
+                </label>
 <button type="submit">{ "Update your trip"}</button>
 
     </form>

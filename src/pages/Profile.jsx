@@ -6,6 +6,7 @@ function Profile() {
   const [user, setUser] = useState(null);
   const { userId } = useParams();
   const { token } = useContext(SessionContext);
+  const [attendeesTrips, setAttendeesTrips] = useState([]);
   const [trips, setTrips] = useState([]);
   const [tripCount, setTripCount] = useState(0);
   
@@ -27,7 +28,8 @@ function Profile() {
     useEffect(() => {
       fetchUser();
       const fetchTrips = async () => {
-        const response = await fetch(`http://localhost:5005/trip/user/${userId}`, {
+        //trips that user made
+        const response = await fetch(`http://localhost:5005/trip/trips/usertrips/${userId}`, {
           method: 'GET',
           headers: {
             authorization: `Hopper ${token}`
@@ -35,6 +37,16 @@ function Profile() {
         });
         const parsed = await response.json();
         setTrips(parsed);
+
+        //trips that user is an attendee of
+        const response2 = await fetch(`http://localhost:5005/trip/trips/usertrips/${userId}/attendees`, {
+          method: 'GET',
+          headers: {
+            authorization: `Hopper ${token}`
+          },
+        });
+        const parsed2 = await response2.json();
+        setAttendeesTrips(parsed2);
       };
       fetchTrips();
     }, [userId, token]);
@@ -48,7 +60,9 @@ function Profile() {
   return (
     <div>
    <h1>Welcome, {user.username}!</h1>
-   <p>Explore and .</p>
+   <p>Explore and blah blah.</p>
+   <p><b>Trips created: </b> {tripCount}</p>
+   <p><b>Trips attending: </b> {trips.length + attendeesTrips.length}</p>
 
 <Link to="/trips/new">
   <button>Create a trip</button>

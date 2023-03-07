@@ -1,5 +1,6 @@
-import { BackgroundImage, Box, Text, Flex, Button, Grid,ThemeIcon, Paper } from '@mantine/core';
+import { BackgroundImage, Box, Text, Flex, Button, Grid,ThemeIcon, Paper, Image, Divider, Blockquote } from '@mantine/core';
 import { IconBackpack, IconDirections, IconBrain  } from '@tabler/icons-react';
+import { Link } from 'react-router-dom'
 
 const HomePage = () => {
 
@@ -8,13 +9,13 @@ const HomePage = () => {
         <Box>
           <BackgroundImage  src="https://images.unsplash.com/photo-1606933988322-a3cb8968e5ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80" >
           <Flex   justify="flex-start" align="center"  >
-          <Text mt={-250} ml={150} align='center' size={50} weight='bold' color="white">
-            <h2> Make traveling with friends, easy</h2>
-          </Text>
-          <Text  mt={-90} ml={-1100}  size={20} weight='bold' color="white">
-            <h2> Welcome to your next adventure, welcome to Grip</h2>
-          </Text>
-          <Button color="cyan" mt={50} ml={-700} >
+            <Text mt={-250} ml={150} align='center' size={50} weight='bold' color="white">
+              <h2> Make traveling with friends, easy</h2>
+            </Text>
+            <Text  mt={-90} ml={-1100}  size={20} weight='bold' color="white">
+              <h2> Welcome to your next adventure, welcome to Grip</h2>
+            </Text>
+          <Button component={Link} to='/about' color="cyan" mt={80} ml={-700}  radius="md" size="lg">
             Learn more
           </Button>
               
@@ -33,7 +34,7 @@ const HomePage = () => {
         </Box>
 
         <Box>
-          <Flex   justify="center" align="center" >
+          <Flex justify="center" align="center" >
 
             <Text size={20} weight='bold'>
               <h2> Travel with peace of mind </h2>
@@ -43,7 +44,7 @@ const HomePage = () => {
 
           <Box mt={50}>
               <Flex justify="center" align="center">
-                <Grid  gutter={300}>
+                <Grid  gutter={250}>
                     <Grid.Col  span={4} width={550}> 
                     <Paper shadow="xl" radius="md" p="xl" >
                       <ThemeIcon variant="light" radius="xl" size="xl" color="cyan">
@@ -69,20 +70,102 @@ const HomePage = () => {
                       </ThemeIcon>
                       <h3>Centralized decision making </h3>
                   </Paper> 
-                  </Grid.Col> 
+                  </Grid.Col>
+                 
 
                 </Grid>
               </Flex>
           </Box>
-          
         </Box>
 
-        <Box mt={50} >
-          <Paper shadow="xl" radius="md" p="xl">
-            <Text> Hello </Text>
-          </Paper>
+
+        <Flex justify="center" align="center" mt={80}>
+          <Box>
+            <Button component={Link} to='/signup' variant='subtle' color='cyan' radius="md" size="lg">
+              Plan your next trip
+            </Button>
+          </Box>
+        </Flex>
+
+
+
+        <Box mt={60}>
+        <Divider size="xs" />
         </Box>
 
+
+        <Box>
+          <Flex justify="center" align="center" direction="row" mt={80}>
+            <Box >
+              <Paper shadow="xl" radius="md" p="xl"  maw={350}>
+                  <Blockquote cite="– Grip girls">
+                  The world is vast, a tapestry,
+                  A wonderland of sights to see,
+                  From snowy peaks to sandy shores,
+                  It calls us out, it longs for more.
+                </Blockquote>
+              </Paper>
+            </Box>
+            <Box ml={260}>
+              <Image maw={480} mx="auto" radius="md" src="https://images.unsplash.com/photo-1611089804502-245fcc83ae81?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=900&q=60" alt="Random image" />
+            </Box>
+          </Flex>
+        </Box>
+
+        <Box>
+          <Flex justify="center" align="center" direction="row" mt={80}>
+            <Box mr={260}>
+              <Image maw={480} mx="auto" radius="md" src="https://images.unsplash.com/photo-1508108712903-49b7ef9b1df8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTZ8fHR1cnF1b2lzZSUyMG1vdW50YWlufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60" alt="Random image" />
+            </Box>
+            <Box >
+              <Paper shadow="xl" radius="md" p="xl"  maw={350}>
+                  <Blockquote cite="– Grip girls">
+                  The winding roads and twisting turns,
+                  The mountain paths where freedom burns,
+                  The open skies where dreams take flight,
+                  And cities bathed in neon light.
+                </Blockquote>
+              </Paper>
+            </Box>
+          </Flex>
+        </Box>
+
+
+        <Box>
+          <Flex justify="center" align="center" direction="row" mt={80}>
+            <Box >
+              <Paper shadow="xl" radius="md" p="xl"  maw={350}>
+                  <Blockquote cite="– Grip girls">
+                  With every step, a new surprise,
+                  A chance to see with different eyes,
+                  To taste, to touch, to feel, to know,
+                  And watch the world in wonder grow.
+                </Blockquote>
+              </Paper>
+            </Box>
+            <Box ml={260}>
+              <Image maw={480} mx="auto" radius="md" src="https://images.unsplash.com/photo-1515060939377-d73d9c162a66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2304&q=80" alt="Random image" />
+            </Box>
+          </Flex>
+        </Box>
+
+        <Box>
+          <Flex justify="center" align="center" direction="row" mt={80}>
+            <Box mr={260}>
+              <Image maw={480} mx="auto" radius="md" src="https://images.unsplash.com/photo-1457583221838-6bf5ad5ea874?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2304&q=80" alt="Random image" />
+            </Box>
+            <Box >
+              <Paper shadow="xl" radius="md" p="xl"  maw={350}>
+                  <Blockquote cite="– Grip girls">
+                  So let us travel far and wide,
+                  With open hearts and eyes so wide,
+                  And let the world embrace our soul,
+                  And lead us on to paths unknown.
+                </Blockquote>
+              </Paper>
+            </Box>
+          </Flex>
+        </Box>
 
 
 

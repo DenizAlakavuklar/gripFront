@@ -1,6 +1,8 @@
 import { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext';
+import { Card, Image, Text, Group, Container, Button, Grid } from '@mantine/core';
+
 function UserTrips() {
     const [userTrips, setUserTrips] = useState([]);
     const [attendeesTrips, setAttendeesTrips] = useState([]);
@@ -61,52 +63,65 @@ function UserTrips() {
         return (
             <>
             <h1>Explore your next trips</h1>
+            
+            <Container size="xl" px="xs">
 
-            <h2>Trips you made</h2>
-            <div>
+            <Text fz="xl" c="blue.9" fw={700}>Trips you made</Text>
+            <br/>
+      <Grid gutter="lg">
                      {userTrips.map((userTrip) => {
                   return(
-            <div key={userTrip._id} style={{ justifyContent:"center", alignItems:"center", border: "1px solid black", padding: "20px", margin: "20px" }}>
-
+           
+  <Grid.Col key={userTrip._id} md={6} lg={3} maw={150}>
+ <Card shadow="sm" padding="lg" radius="md" withBorder>
+                <Card.Section component="a">
 <Link to={`/trips/${userTrip._id}/`}>
     <h2>{userTrip.tripName}</h2>
     </Link>
                 <img src={userTrip.image} alt="Trip" width="300" />
+                </Card.Section>
                 <p>Description: {userTrip.description}</p>
                 <Link to={`/trips/${userTrip._id}`}>
                     <button type='button'>Details</button>
                 </Link>
-        
-              </div>
+                </Card>
+                </Grid.Col>
                     )})}
-            </div>
+              </Grid>
+
+            </Container>
 
 
+            <Container size="xl" px="xs" mt={50}>
 
-
-
-
-            <h2>Trips you are attending</h2>
-            <div>
+            <Text fz="xl" c="blue.9" fw={700}>Trips you are attending</Text>
+            <br/>
+            <Grid gutter="lg">
+           
                      {attendeesTrips.map((userTrip) => {
                   return(
-            <div key={userTrip._id} style={{ justifyContent:"center", alignItems:"center", border: "1px solid black", padding: "20px", margin: "20px" }}>
-
+            
+ <Grid.Col key={userTrip._id} md={6} lg={3} maw={150}>
+  <Card shadow="sm" padding="lg" radius="md" withBorder>
+                <Card.Section component="a">
 <Link to={`/trips/${userTrip._id}/`}>
     <h2>{userTrip.tripName}</h2>
     </Link>
                 <img src={userTrip.image} alt="Trip" width="300" />
+                </Card.Section>
                 <p>Description: {userTrip.description}</p>
                 <Link to={`/trips/${userTrip._id}`}>
                     <button type='button'>Details</button>
                 </Link>
-        
-              </div>
+                </Card>
+                </Grid.Col>
                     )
                     
                     
                     })}
-            </div>
+           
+            </Grid>
+            </Container>
             </>
           )
         }

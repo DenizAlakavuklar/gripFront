@@ -13,8 +13,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       {/* <-- Wrap your application with your context --> */}
       <MantineProvider withGlobalStyles withNormalizeCSS>
         <SessionContextProvider>
+{/*         <AllUsersContextProvider> */}
           <App />
-        </SessionContextProvider>
+{/*           </AllUsersContextProvider> */}
+          </SessionContextProvider>
       </MantineProvider>
       {/* <-- Wrap your application with your context --> */}
     </BrowserRouter>

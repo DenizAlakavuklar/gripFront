@@ -16,6 +16,7 @@ import AboutGRIP from './pages/AboutGrip'
 import UserTrips from './pages/UserTrips'
 import { useContext } from 'react'
 import { SessionContext } from './contexts/SessionContext'
+import Footer from './components/Footer'
 
 function App() {
   const { userId } = useContext(SessionContext);
@@ -25,9 +26,12 @@ function App() {
       padding='md'
       header={
         <Header height={60} p='xs' sx={{ display: 'flex', justifyContent: 'space-between' }}>
-       <NavBar />
+          <NavBar />
         </Header>
       }
+      footer={<Footer>
+
+      </Footer>}
     >
       <Routes>
         <Route path='/' element={<HomePage />} />

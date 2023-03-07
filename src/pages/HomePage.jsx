@@ -178,7 +178,7 @@ const HomePage = () => {
 
 </Box>
 
-<Flex justify="center" align="center" direction="row" mt={50}>
+<Flex justify="center" align="center" direction="row" mt={50} mb={50}>
     <Box maw={430} mah={600} ml={50} mr={50}>
       <Card shadow="sm" padding="lg" radius="md" withBorder>
         <Card.Section>

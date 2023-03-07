@@ -1,12 +1,12 @@
-import React from 'react'
-import VoteButton from './VoteButton'
+import React, { useState, useContext, useEffect } from 'react'
 import VotingList from './VotingList'
 
 function Votes({proposal, allVotes, trip}) {
+
   return (
     <div>
        
-<VotingList allVotes={allVotes} proposal trip tripId/>
+<VotingList allVotes={allVotes} proposal={proposal} trip={trip}/>
     </div>
   )
 }

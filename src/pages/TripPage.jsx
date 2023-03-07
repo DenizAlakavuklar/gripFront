@@ -114,8 +114,6 @@ const TripPage = () => {
           return (
             <div key={proposal.title} style={{ border: "1px solid black", padding: "10px" }}>
 
-              {console.log(proposal)
-}
               <h3>{proposal.title}</h3>
               {/* <img src={proposal.image} alt={proposal.title} width="300"/> */}
               <p><b>Type:</b> {proposal.type}</p>
@@ -131,10 +129,10 @@ const TripPage = () => {
                 <button type='button'>More info</button>
               </Link>) : ''}
 
-               <p>Votes: </p>
+               <p><b>Votes:</b></p>
 
                <Votes proposal={proposal} allVotes={proposal.votes} trip={trip._id} tripId={trip._id}/>
-            <p>CreatedBy: {proposal.createdBy.username} <img src={proposal.createdBy.picture} width="20"/></p>
+            <p>Added By: {proposal.createdBy.username} <img src={proposal.createdBy.picture} width="20"/></p>
 
               <Link to={`/proposals/${tripId}/${proposal._id}`}>
                 <button type='button'>View proposal</button>

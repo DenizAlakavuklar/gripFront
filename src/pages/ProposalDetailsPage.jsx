@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect, useState, useContext } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import Votes from '../components/Votes';
 import { SessionContext } from '../contexts/SessionContext';
 
 
@@ -63,8 +64,10 @@ function ProposalDetailsPage() {
             <button type='button'>More info</button>
         </Link>) : '' }
 
-            <p>Votes: {proposals.votes.username}</p>
-            <p>CreatedBy: {proposals.createdBy.username} <img src={proposals.createdBy.picture} width="20"/></p>
+            <p><b>Votes:</b></p>
+
+            <Votes proposal={proposals} allVotes={proposals.votes} trip={tripId} tripId={tripId}/>
+            <p>Added By: {proposals.createdBy.username} <img src={proposals.createdBy.picture} width="20"/></p>
 
         {/* Only show update and delete buttons if you were the creator */}
         {userId===proposals.createdBy ? 

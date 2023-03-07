@@ -19,6 +19,7 @@ function VotingList({proposal, allVotes, trip}) {
           const response2 = await fetch(`http://localhost:5005/proposals/${tripId}/`)
           const parsed2 = await response2.json()
           setProposals(parsed2)
+          //console.log("parsed2", parsed2)
 
         } catch (error) {
           console.log(error)
@@ -33,26 +34,26 @@ function VotingList({proposal, allVotes, trip}) {
 
   return (
     <div>
-  <VoteButton key={proposal._id}  
-  allVotes={proposal.votes} proposalId={proposal._id} trip={trip._id} tripId={trip._id}
-  title={proposal.title}
-  image={proposal.image}
-  location={proposal.location}
-  type={proposal.type}
-  totalPrice={proposal.totalPrice}
-  nights={proposal.nights}
-  link={proposal.link}
-  link2={proposal.link2}
-  votes={votes}
-  setVotes={setVotes}
-  />
-
-<ul>
-              {votes.map(user =>{
-            return <li>{user.username}</li>
-            })}
-            </ul>
-
+{votes.length ?
+(<ul>
+               {votes.map(user =>{
+                 return <li key={user.username}>{user.username}</li>
+                })}
+            </ul>) : <p>No votes yet!</p>}
+          
+                <VoteButton key={proposal._id}  
+                allVotes={proposal.votes} proposalId={proposal._id} trip={proposal.trip} tripId={tripId}
+                title={proposal.title}
+                image={proposal.image}
+                location={proposal.location}
+                type={proposal.type}
+                totalPrice={proposal.totalPrice}
+                nights={proposal.nights}
+                link={proposal.link}
+                link2={proposal.link2}
+                votes={votes}
+                setVotes={setVotes}
+                />
 
     </div>
   )

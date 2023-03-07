@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext';
-import { Card, Image, Text, Group, Container, Button, Grid } from '@mantine/core';
+import { Card, Image, Text, Group, Container, Button, Grid, Space  } from '@mantine/core';
 
 function UserTrips() {
     const [userTrips, setUserTrips] = useState([]);
@@ -62,10 +62,13 @@ function UserTrips() {
        
         return (
             <>
-            <h1>Explore your next trips</h1>
+
+            
+            
             
             <Container size="xl" px="xs">
-
+              
+<h1>Explore your next trips</h1>
             <Text fz="xl" c="blue.9" fw={700}>Trips you made</Text>
             <br/>
       <Grid gutter="lg">
@@ -74,13 +77,16 @@ function UserTrips() {
            
   <Grid.Col key={userTrip._id} md={6} lg={3} maw={150}>
  <Card shadow="sm" padding="lg" radius="md" withBorder>
+
+ <Text fz="lg" c="blue.9" fw={500}>{userTrip.tripName}</Text>
+ <Space h="md" />
                 <Card.Section component="a">
-<Link to={`/trips/${userTrip._id}/`}>
-    <h2>{userTrip.tripName}</h2>
-    </Link>
-                <img src={userTrip.image} alt="Trip" width="300" />
+
+   
+    <Link to={`/trips/${userTrip._id}/`}>
+                <img src={userTrip.image} alt="Trip" width="300" /></Link>
                 </Card.Section>
-                <p>Description: {userTrip.description}</p>
+                <p>{userTrip.description}</p>
                 <Link to={`/trips/${userTrip._id}`}>
                     <button type='button'>Details</button>
                 </Link>
@@ -103,13 +109,16 @@ function UserTrips() {
             
  <Grid.Col key={userTrip._id} md={6} lg={3} maw={150}>
   <Card shadow="sm" padding="lg" radius="md" withBorder>
-                <Card.Section component="a">
-<Link to={`/trips/${userTrip._id}/`}>
-    <h2>{userTrip.tripName}</h2>
-    </Link>
+                
+    <Text fz="lg" c="blue.9" fw={500}>{userTrip.tripName}</Text>
+    <Space h="md" />
+<Card.Section component="a">
+
+    <Link to={`/trips/${userTrip._id}/`}>
                 <img src={userTrip.image} alt="Trip" width="300" />
+                </Link>
                 </Card.Section>
-                <p>Description: {userTrip.description}</p>
+                <p>{userTrip.description}</p>
                 <Link to={`/trips/${userTrip._id}`}>
                     <button type='button'>Details</button>
                 </Link>

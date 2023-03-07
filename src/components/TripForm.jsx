@@ -10,6 +10,7 @@ import placeholderImage4 from "../images/placeholder-image4.jpg"
 import placeholderImage5 from "../images/placeholder-image5.jpg"
 import placeholderImage6 from "../images/placeholder-image6.jpg"
 import axios from 'axios'
+import { Box, Flex, Button, PasswordInput, Text, TextInput, BackgroundImage } from '@mantine/core'
 
 const TripForm= ({allUsers}) => {
     const navigate = useNavigate()
@@ -97,34 +98,38 @@ const TripForm= ({allUsers}) => {
 
 
     return (
-        <div>
+        <>
+<Box>
+        <BackgroundImage src="https://images.unsplash.com/photo-1617287287784-7e6b90c6cfd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80">
+        <Flex justify="center" align="center">
+            <Box mt={300} >
             <form onSubmit={handleSubmit}  style={{ display: "flex", flexDirection: "column" }}>
-                <label> Trip Name:
+            <label> <Text color="white" mb={-20}><h3>Trip Name:</h3></Text>
                     <input type="text" value={name} onChange={event => setName(event.target.value)} />
                 </label>
-                <label> Image:
+
+                <label> <Text color="white" mb={-20}><h3>Image:</h3></Text>
                     <input type="text" value={img} onChange={event => setImg(event.target.value)} />
                 </label>
-                <label> Description:
+                <label> <Text color="white" mb={-20}><h3>Description:</h3></Text>
                     <input type="text" value={desc} onChange={event => setDesc(event.target.value)} />
                 </label>
 
-                <label>
-                    Budget:
+                <label> <Text color="white" mb={-20}><h3>Budget:</h3></Text>
                     <select value={budg} onChange={(e) => setBudg(e.target.value)}>
                         <option value="budget">Budget</option>
                         <option value="moderate">Moderate</option>
                         <option value="luxury">Luxury</option>
                     </select>
                 </label>
-                <label> Location:
+                <label> <Text color="white" mb={-20}><h3>Location:</h3></Text>
                     <input type="text" value={loc} onChange={event => setLoc(event.target.value)} />
                 </label>
                 {/* <label> Attendees:
                     <input type="text" value={tripAttendees} onChange={event => setTripAttendees(event.target.value)} />
                 </label> */}
        {/*  {console.log({allUsers})} */}
-                <label> Attendees:
+                <label> <Text color="white" mb={-20}><h3>Attendees:</h3></Text>
                 <select name="attendees" id="attendees-select" multiple value={attendees} onChange={(e)=>handleAttendeesChange(e)}>
                     <option value="">--Please choose an option--</option>
                     {allUsers ? allUsers.map(user=>{
@@ -133,17 +138,47 @@ const TripForm= ({allUsers}) => {
                         }
                     }) : "Loading"}
                     
-
                 </select>
-
                 </label>
 
-                <button type="submit">{"Create your trip"}</button>
+                <Box mt={50}>
+                    <button type="submit">{"Create your trip"}</button>
+                </Box>
 
             </form>
 
+            <Box
+            sx={{
+              margin: '0 auto',
+              maxWidth: '400px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              height: 'calc(35vh - 10px)',
+            }}
+            />
+            </Box>
+        </Flex>
+        
+        
+        
+        </BackgroundImage>
 
-        </div>
+        
+
+
+      
+
+</Box>
+
+
+
+        
+            
+
+
+
+</>
     )
 }
 export default TripForm

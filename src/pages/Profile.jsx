@@ -116,8 +116,8 @@ function Profile() {
               justifyContent: 'center',
               height: 'calc(35vh - 10px)',
             }}
-          />
-        </Box>
+            />
+           </Box>
        
 
   </Flex>

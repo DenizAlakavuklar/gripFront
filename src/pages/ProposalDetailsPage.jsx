@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState, useContext } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext';
-
+import { Card, Image, Flex, Text, Container, Group, Button, Grid, Space } from '@mantine/core';
 
 
 function ProposalDetailsPage() {
@@ -43,21 +43,23 @@ function ProposalDetailsPage() {
         <h1>Loading...</h1>
       ) : (
         <>
-        <div style={{ border: "1px solid black", padding: "10px" }}>
+        <Flex justify="flex-start" align="flex-start" direction={'column'}  >
         <Link to={`/trips/${proposals.trip}/`}>
           <button type='button'>Go back to trip</button>
           </Link>
+       
             <h1>{proposals.title}</h1>
             <img src={proposals.image} alt={proposals.title} width="300"/>
+         
             <p><b>Type:</b> {proposals.type}</p>
             <p><b>Location:</b> {proposals.location}</p>
             <p><b>Total Price:</b> {proposals.totalPrice}</p>
             <p><b>Price per night:</b> {proposals.totalPrice / proposals.nights}</p>
             <p><b>Nights:</b> {proposals.nights}</p>
-
-        <Link to={proposals.link} target="_blank">
+          
+        {/* <Link to={proposals.link} target="_blank">
             <button type='button'>More info</button>
-        </Link>
+        </Link> */}
 
         {proposals.link2 ? (<Link to={proposals.link2} target="_blank">
             <button type='button'>More info</button>
@@ -77,8 +79,9 @@ function ProposalDetailsPage() {
           </button>
         </>
         : ""}
+   
 
-          </div>
+      </Flex>
         </>
       )
 }

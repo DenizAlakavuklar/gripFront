@@ -89,7 +89,7 @@ const addVote = ()=>{
   return (
     <div>
 
-<button onClick={addVote}>{voted ? "Remove Vote": "Add Vote"}</button>
+<button  variant="outline" color="cyan" onClick={addVote}>{voted ? "✖️ Remove": "🗳️ Vote"}</button>
 
     </div>
   )

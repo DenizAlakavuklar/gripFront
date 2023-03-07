@@ -77,8 +77,8 @@ const LoginPage = () => {
           </Box>
           { errorMessage && <p className="error-message" style={{color: "red"}}>{errorMessage}</p> }
     
-    <p>You don't have an account yet?</p>
-    <Link to={"/signup"}> Sign Up Now</Link>
+    <p>Haven't registered yet? <Link to={"/signup"}> Sign Up Now</Link></p>
+    
         </Box>
 
     </BackgroundImage>

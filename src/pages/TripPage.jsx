@@ -13,6 +13,7 @@ const TripPage = () => {
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(true)
   const [trip, setTrip] = useState()
+  const [isSureDelete, setIsSureDelete] = useState(false)
   const [proposals, setProposals] = useState([])
   const { userId } = useContext(SessionContext);
 
@@ -54,10 +55,19 @@ const TripPage = () => {
    */
 
   const handleDelete = async () => {
-    await fetch(`http://localhost:5005/trip/trips/${tripId}`, {
+if(isSureDelete){
+await fetch(`http://localhost:5005/trip/trips/${tripId}`, {
       method: 'DELETE',
     })
+    
     navigate('/trips/usertrips')
+}
+
+if(!isSureDelete){
+  setIsSureDelete(!isSureDelete)
+  }
+
+    
   }
 
   const handleProposalDelete = async (proposalId) => {
@@ -105,9 +115,17 @@ const TripPage = () => {
                 <Link to={`/trips/update/${trip._id}`}>
                   <Button color="cyan" type='button'>Update</Button>
                 </Link>
-                <Button color="cyan" type='button' onClick={handleDelete}>
+                {/* <Button color="cyan" type='button' onClick={handleDelete}>
                   Delete
-                </Button>
+                </Button> */}
+
+                {isSureDelete ? <Button color="red" type='button' onClick={handleDelete}>
+                  Are you sure?
+                </Button>:  <Button color="cyan" type='button' onClick={handleDelete}>
+                  Delete
+                </Button>}
+
+                
               </>
               : ""}
 

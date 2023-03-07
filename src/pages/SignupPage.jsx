@@ -67,8 +67,8 @@ const SignupPage = () => {
       </Box>
 
       { errorMessage && <p className="error-message" style={{color: "red"}}>{errorMessage}</p> }
-      <p >Already have account?</p>
-      <Link to={"/auth/login"}> Login</Link>
+      <p >Already have account? <Link to={"/login"}> Login</Link></p>
+      
     </Box>
 
     </BackgroundImage>

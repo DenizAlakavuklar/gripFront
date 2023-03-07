@@ -4,7 +4,7 @@ import { SessionContext } from '../contexts/SessionContext';
 
 
 function VotingList({allVotes}) {
-    console.log("allVotes", allVotes)
+    //console.log("allVotes", allVotes)
     const { userId } = useContext(SessionContext);
     const {tripId} = useParams()
     const [proposals, setProposals] = useState([])
@@ -27,7 +27,7 @@ function VotingList({allVotes}) {
       useEffect(() => {
         fetchProposals()
         
-        console.log("INSIDE THE USE EFFECT FOR VOTES2")
+        //console.log("INSIDE THE USE EFFECT FOR VOTES2")
       }, [votes])
     
 

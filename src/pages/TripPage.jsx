@@ -19,7 +19,7 @@ const TripPage = () => {
       //TRIPS
       const response = await fetch(`http://localhost:5005/trip/trips/${tripId}`)
       const parsed = await response.json()
-      console.log(parsed)
+      //console.log(parsed)
 
       //PROPOSALS
 
@@ -31,7 +31,7 @@ const TripPage = () => {
       if (parsed === null || parsed2 === null) {
         navigate('/trips/:tripId')
       } else {
-        console.log(parsed)
+       // console.log(parsed)
         setTrip(parsed)
         setProposals(parsed2)
         setIsLoading(false)
@@ -117,7 +117,7 @@ const TripPage = () => {
         {proposals.map(proposal => {
           return (
 
-            <div key={proposal._id} style={{ border: "1px solid black", padding: "10px" }}>
+            <div key={proposal.title} style={{ border: "1px solid black", padding: "10px" }}>
 
 
               <h3>{proposal.title}</h3>
@@ -136,10 +136,19 @@ const TripPage = () => {
               </Link>) : ''}
 
                <p>Votes: </p>
+               <VotingList /* key={proposal._id} */ allVotes={proposal.votes}/>
 
-               <VotingList key={proposal._id} allVotes={proposal.votes}/>
-
-            <VoteButton allVotes={proposal.votes}/>
+            <VoteButton key={proposal._id}  
+            allVotes={proposal.votes} proposalId={proposal._id}  trip={trip._id} tripId={trip._id}
+            title={proposal.title}
+            image={proposal.image}
+            location={proposal.location}
+            type={proposal.type}
+            totalPrice={proposal.totalPrice}
+            nights={proposal.nights}
+            link={proposal.link}
+            link2={proposal.link2}
+            />
             <p>CreatedBy: {proposal.createdBy.username} <img src={proposal.createdBy.picture} width="20"/></p>
 
               <Link to={`/proposals/${tripId}/${proposal._id}`}>

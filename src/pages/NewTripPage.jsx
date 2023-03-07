@@ -23,8 +23,9 @@ function NewTripPage() {
   }, [])
 
   return (
+    
     <div>
-        <h2>Create your trip</h2>
+      
         <TripForm allUsers={allUsers}/>
     
 

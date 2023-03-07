@@ -64,19 +64,16 @@ function Profile() {
   
   
     return (
-    <div>
+   
 
-
+<Box>
     <BackgroundImage
         src="https://images.unsplash.com/photo-1542235222-30e843cb43a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80"
     >
 
-
-
-
       <Flex justify="center" align="center">
 
-        <Box mt={300}>
+        <Box mt={300} >
 
                 {user.username ? <h1>Welcome home, {user.username.charAt(0).toUpperCase() + user.username.substring(1)}!</h1> : "Loading"}
       
@@ -85,7 +82,7 @@ function Profile() {
               <p>
                 <b>You have created </b> 
                 <b style={{color: "#9c3002", fontSize:"30px"}}> {tripCount} </b>
-                <b>trip </b>
+                <b>trips </b>
               </p>
 
               <p>
@@ -117,21 +114,18 @@ function Profile() {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
-              height: 'calc(30vh - 10px)',
+              height: 'calc(35vh - 10px)',
             }}
-          />
-        </Box>
+            />
+           </Box>
        
 
   </Flex>
 
   </BackgroundImage>
+  </Box>
   
 
-
-
-
-</div>
 );
 }
 

@@ -31,7 +31,7 @@ return(
             <Flex  justify="center" direction="row">
                     <Box  >
                         <Blockquote cite="– Forrest Gump">
-                            Life is like an npm install – you never know what you are going to get.
+                           <Text color="lightgrey" > Life is like an npm install – you never know what you are going to get.</Text>
                         </Blockquote>
                     </Box>
              </Flex>

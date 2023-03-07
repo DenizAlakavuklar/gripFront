@@ -2,15 +2,12 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useParams } from 'react-router';
 import { SessionContext } from '../contexts/SessionContext';
 import VoteButton from './VoteButton';
-
-
 function VotingList({proposal, allVotes, trip}) {
     //console.log("allVotes", allVotes)
     const { userId } = useContext(SessionContext);
     const {tripId} = useParams()
     const [proposals, setProposals] = useState([])
     const [votes, setVotes] = useState(allVotes)
-
     const fetchProposals = async () => {
         try {
   
@@ -28,7 +25,6 @@ function VotingList({proposal, allVotes, trip}) {
     
       useEffect(() => {
         fetchProposals()
-
       }, [votes])
     
 
@@ -41,7 +37,7 @@ function VotingList({proposal, allVotes, trip}) {
                 })}
             </ul>) : <p>No votes yet!</p>}
           
-                <VoteButton key={proposal._id}  
+            <VoteButton key={proposal._id}  
                 allVotes={proposal.votes} proposalId={proposal._id} trip={proposal.trip} tripId={tripId}
                 title={proposal.title}
                 image={proposal.image}
@@ -58,5 +54,4 @@ function VotingList({proposal, allVotes, trip}) {
     </div>
   )
 }
-
 export default VotingList

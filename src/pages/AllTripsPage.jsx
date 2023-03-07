@@ -28,7 +28,7 @@ const AllTripsPage = () => {
 
   return (
     <Container size="xl" px="xs">
-      <Text fz="xl" c="violet.9" fw={700}>All the trips you've ever wanted</Text>
+      <Text fz="xl" c="blue.9" fw={700}>All the trips you've ever wanted</Text>
       <br/>
       <Grid gutter="lg">
         {trips.map((trip) => {
@@ -45,7 +45,7 @@ const AllTripsPage = () => {
                 </Card.Section>
 
                 <Button variant="light" color="cyan" fullWidth mt="md" radius="md">
-                  <Link to={`/trips/${trip._id}`} style={{textDecoration:"none" , color:"indigo"}}>{trip.tripName}</Link>
+                  <Link to={`/trips/${trip._id}`} style={{textDecoration:"none" , color:"#0B7285"}}>{trip.tripName}</Link>
                 </Button>
               </Card>
 

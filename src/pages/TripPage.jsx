@@ -1,10 +1,12 @@
 import React from 'react'
 import { useEffect, useState, useContext } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import VoteButton from '../components/VoteButton';
-import Votes from '../components/Votes';
-import VotingList from '../components/VotingList';
-import { SessionContext } from '../contexts/SessionContext';
+import VoteButton from '../components/VoteButton'
+import Votes from '../components/Votes'
+import VotingList from '../components/VotingList'
+import { SessionContext } from '../contexts/SessionContext'
+import { Card, Image, Flex, Text, Container, Group, Button, Grid, Space, Box, Divider } from '@mantine/core';
+
 
 const TripPage = () => {
   const { tripId } = useParams()
@@ -26,7 +28,7 @@ const TripPage = () => {
 
       const response2 = await fetch(`http://localhost:5005/proposals/${tripId}/`)
       const parsed2 = await response2.json()
-      
+
 
 
       if (parsed === null || parsed2 === null) {
@@ -46,11 +48,10 @@ const TripPage = () => {
     fetchTrip()
   }, [tripId])
 
-/*   useEffect(() => {
-    fetchTrip()
-  }, [proposals])
-
- */
+  /*   useEffect(() => {
+      fetchTrip()
+    }, [proposals])
+   */
 
   const handleDelete = async () => {
     await fetch(`http://localhost:5005/trip/trips/${tripId}`, {
@@ -71,96 +72,125 @@ const TripPage = () => {
     <h1>Loading...</h1>
   ) : (
     <>
-    <div  key={trip._id} style={{ border: "1px solid black", padding: "10px" }}>
-        <h1>{trip.tripName}</h1>
-        <p>Date estimation: {trip.dateDescription}</p>
-        <img src={trip.image} alt="Trip" width="300" />
-        <p>Description: {trip.description}</p>
-        <p>Budget: {trip.budget}</p>
-        <p>Location: {trip.location}</p>
-        <p>Attendees: </p>
-          <ul>
-          {trip.attendees.map(attendee =>{
-         return <li>{attendee.username} <img src={attendee.picture} width="20"/></li>
-        })}
-        </ul>
-        <p>Created By: {trip.createdBy.username}</p>
-       {/*  {console.log("userId: ", userId, "trip.createdBy: ", trip.createdBy)} */}
-{/* Only show update and delete buttons if you were the creator */}
-        {userId===trip.createdBy._id ? 
-        <>
-          <Link to={`/trips/update/${trip._id}`}>
-          <button type='button'>Update</button>
-          </Link>
-          <button type='button' onClick={handleDelete}>
-              Delete
-          </button>
-        </>
-        : ""}
+      <Container size="xl" px="xs" style={{ display: "flex", flexDirection: "column", justifyContent: "left" }} mb={50}>
+        <Box >
+          <Flex justify="flex-start" align="flex-start" direction={"column"} gap="md" >
 
-        
-
-      </div>
-
-        <h2>Proposals</h2>
-        <Link to={`/proposals/${trip._id}/add`}>
-          <button type='button'>Add Proposal</button>
-          </Link>
-        {/* If 0 proposals, show text, if not, show proposals */}
-    {proposals.length===0 ? <p>This trip has no proposals yet! Be the first to create one!</p> :
-
-      <div style={{ display: "flex", width: "600px" }}>
-        {proposals.map(proposal => {
-          return (
-            <div key={proposal.title} style={{ border: "1px solid black", padding: "10px" }}>
-
-              <h3>{proposal.title}</h3>
-              {/* <img src={proposal.image} alt={proposal.title} width="300"/> */}
-              <p><b>Type:</b> {proposal.type}</p>
-              <p><b>Location:</b> {proposal.location}</p>
-              <p><b>Total Price:</b> {proposal.totalPrice}</p>
-              <p><b>Nights:</b> {proposal.nights}</p>
-
-              <Link to={proposal.link} target="_blank">
-                <button type='button'>More info</button>
-              </Link>
-
-              {proposal.link2 ? (<Link to={proposal.link2} target="_blank">
-                <button type='button'>More info</button>
-              </Link>) : ''}
-
-               <p><b>Votes:</b></p>
-
-               <Votes proposal={proposal} allVotes={proposal.votes} trip={trip._id} tripId={trip._id}/>
-            <p>Added By: {proposal.createdBy.username} <img src={proposal.createdBy.picture} width="20"/></p>
-
-              <Link to={`/proposals/${tripId}/${proposal._id}`}>
-                <button type='button'>View proposal</button>
+            <Image src={trip.image} width={600} height={300}
+              alt="trip" />
 
 
-              {/* Only show update and delete buttons if you were the creator */}
-        {userId===proposal.createdBy._id ? 
-        <>
-         {/*  <Link to={`/${trip._id}/${proposal._id}/update/`}>
+            <Text>{trip.tripName}</Text>
+
+            <Text size="sm" ><b>Date estimation:  </b>{trip.dateDescription}</Text>
+            <Text size="sm" ><b>Description:  </b>{trip.description}</Text>
+            <Text size="sm" ><b>Budget:  </b>{trip.budget}</Text>
+            <Text size="sm" ><b>Location:  </b>{trip.location}</Text>
+            <Text size="sm" ><b>Attendees:  </b> </Text>
+            <ul>
+              {trip.attendees.map(attendee => {
+                return <li>{attendee.username} <img src={attendee.picture} width="20" /></li>
+              })}
+            </ul>
+
+            <Text color="cyan.9" underline italic>Created By: {trip.createdBy.username}</Text>
+          </Flex>
+          {/*  {console.log("userId: ", userId, "trip.createdBy: ", trip.createdBy)} */}
+          {/* Only show update and delete buttons if you were the creator */}
+
+          <Flex justify="flex-start" align="flex-start" direction={"row"} gap="md" mt={50}>
+            {userId === trip.createdBy._id ?
+
+              <>
+                <Link to={`/trips/update/${trip._id}`}>
+                  <Button color="cyan" type='button'>Update</Button>
+                </Link>
+                <Button color="cyan" type='button' onClick={handleDelete}>
+                  Delete
+                </Button>
+              </>
+              : ""}
+
+          </Flex>
+          <Divider size="sm" mt={30} />
+
+        </Box>
+        <Box mt={50}>
+          <Flex direction={"row"} gap="5rem" >
+            <Text size="xl" weight={700}>Proposals</Text>
+            <Link to={`/proposals/${trip._id}/add`}>
+              <Button variant="outline" color="cyan" type='button'>Add a New</Button>
+            </Link>
+          </Flex>
+          <br />
+          <br />
+          {/* If 0 proposals, show text, if not, show proposals */}
+          {proposals.length === 0 ? <p>This trip has no proposals yet! Be the first to create one!</p> :
+
+            <Grid gutter="lg">
+              {proposals.map(proposal => {
+                return (
+
+                  <Grid.Col key={proposal._id} md={6} lg={3} maw={150}>
+                    <Card shadow="sm" padding="lg" radius="md" withBorder>
+                      <Card.Section  >
+                        <Image src={proposal.image} alt="trip" />
+
+
+                      </Card.Section>
+                      <h3>{proposal.title}</h3>
+
+                      <Text size="sm" ><b>Location:</b> {proposal.location}</Text>
+
+                      <Text size="sm" ><b>Nights:</b> {proposal.nights}</Text>
+                      <Link to={`/proposals/${tripId}/${proposal._id}`} style={{ color: "indigo" }}>
+                        View details
+                      </Link>
+
+                      {/* <Link to={proposal.link} target="_blank">
+                  <Button type='button'>More info</Button>
+                  </Link>
+                */}
+                      <Divider size="sm" mt={30} />
+
+                     
+                        <Text size="sm" ><b>Votes:  </b> </Text>
+                        <Votes proposal={proposal} allVotes={proposal.votes} trip={trip._id} tripId={trip._id}/>
+                
+               
+
+
+                      <Flex justify="flex-start" align="flex-start" direction={"row"} gap="xl" mt={20}>
+                        <Text color="cyan.9" underline italic>Added By:  {proposal.createdBy.username} <img src={proposal.createdBy.picture} width="20" /></Text>
+
+                        {/* Only show update and delete buttons if you were the creator */}
+                        {userId === proposal.createdBy._id ?
+                          <>
+                            {/*  <Link to={`/${trip._id}/${proposal._id}/update/`}>
           <button type='button'>Update</button>
           </Link> */}
-          <button type='button' onClick={(e)=>{handleProposalDelete(proposal._id)}}>
-              Delete
-          </button>
-        </>
-        : ""}
-                
-              </Link>
 
-            </div>)
-        })
-
-        }
+                            <Button color="cyan.8" type='button' onClick={(e) => { handleProposalDelete(proposal._id) }}>
+                              Delete
+                            </Button>
+                          </>
+                          : ""}
 
 
-      </div>
-}
+                      </Flex>
 
+                    </Card>
+                  </Grid.Col>)
+              })
+
+              }
+
+
+            </Grid>
+
+          }
+        </Box>
+      </Container>
     </>
   )
 }

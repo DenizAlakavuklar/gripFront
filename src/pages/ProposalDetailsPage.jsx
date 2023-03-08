@@ -72,7 +72,7 @@ function ProposalDetailsPage() {
 <p>Added By: {proposals.createdBy.username} <img src={proposals.createdBy.picture} width="20"/></p>
 
         {/* Only show update and delete buttons if you were the creator */}
-        {userId===proposals.createdBy ? 
+        {userId===proposals.createdBy._id ? 
         <>
           {/* <Link to={`/${proposals.trip}/${proposals._id}/update/`}>
           <button type='button'>Update</button>

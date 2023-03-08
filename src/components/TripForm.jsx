@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams} from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext'
-import placeholderImage from "../images/placeholder-image.jpg"
 import placeholderImage1 from "../images/placeholder-image1.jpg"
 import placeholderImage2 from "../images/placeholder-image2.jpg"
 import placeholderImage3 from "../images/placeholder-image3.jpg"
@@ -22,7 +21,7 @@ const TripForm= ({allUsers}) => {
 
     const [name, setName] = useState("")
     const [desc, setDesc] = useState("")
-    const imgArray = [placeholderImage, placeholderImage1, placeholderImage2, placeholderImage3, placeholderImage4, placeholderImage5, placeholderImage6]
+    const imgArray = [/* placeholderImage,  */placeholderImage1, placeholderImage2, placeholderImage3, placeholderImage4, placeholderImage5, placeholderImage6]
     const [img, setImg] = useState(imgArray[Math.floor(Math.random()*imgArray.length)])
     const [budg, setBudg] = useState("")
     const [loc, setLoc] = useState("")

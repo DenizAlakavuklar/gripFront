@@ -13,6 +13,8 @@ const TripPage = () => {
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(true)
   const [trip, setTrip] = useState()
+  const [isDelete, setIsDelete] = useState(false)
+  const [isSureDelete, setIsSureDelete] = useState(false)
   const [proposals, setProposals] = useState([])
   const { userId } = useContext(SessionContext);
 
@@ -46,7 +48,8 @@ const TripPage = () => {
 
   useEffect(() => {
     fetchTrip()
-  }, [tripId])
+    setIsDelete(false)
+  }, [tripId, isDelete])
 
   /*   useEffect(() => {
       fetchTrip()
@@ -54,18 +57,30 @@ const TripPage = () => {
    */
 
   const handleDelete = async () => {
-    await fetch(`http://localhost:5005/trip/trips/${tripId}`, {
+if(isSureDelete){
+await fetch(`http://localhost:5005/trip/trips/${tripId}`, {
       method: 'DELETE',
     })
+    
     navigate('/trips/usertrips')
+}
+
+if(!isSureDelete){
+  setIsSureDelete(!isSureDelete)
   }
 
-  const handleProposalDelete = async (proposalId) => {
+    
+  }
+
+  const handleProposalDelete = async (tripId, proposalId) => {
+    console.log("tripId", tripId)
     console.log("proposalId", proposalId)
     await fetch(`http://localhost:5005/proposals/${tripId}/${proposalId}`, {
       method: 'DELETE',
     })
+    setIsDelete(true)
     navigate(`/trips/${tripId}`)
+
   }
 
   return isLoading ? (
@@ -105,9 +120,17 @@ const TripPage = () => {
                 <Link to={`/trips/update/${trip._id}`}>
                   <Button color="cyan" type='button'>Update</Button>
                 </Link>
-                <Button color="cyan" type='button' onClick={handleDelete}>
+                {/* <Button color="cyan" type='button' onClick={handleDelete}>
                   Delete
-                </Button>
+                </Button> */}
+
+                {isSureDelete ? <Button color="red" type='button' onClick={handleDelete}>
+                  Are you sure?
+                </Button>:  <Button color="cyan" type='button' onClick={handleDelete}>
+                  Delete
+                </Button>}
+
+                
               </>
               : ""}
 
@@ -170,7 +193,7 @@ const TripPage = () => {
           <button type='button'>Update</button>
           </Link> */}
 
-                            <Button color="cyan.8" type='button' onClick={(e) => { handleProposalDelete(proposal._id) }}>
+                            <Button color="cyan.8" type='button' onClick={(e) => { handleProposalDelete(tripId, proposal._id) }}>
                               Delete
                             </Button>
                           </>

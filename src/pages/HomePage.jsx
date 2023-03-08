@@ -1,8 +1,26 @@
-import { BackgroundImage, Box, Text, Flex, Button, Grid,ThemeIcon, Paper, Image, Divider, Blockquote, Card, Badge, Group } from '@mantine/core';
+import { Container, BackgroundImage, Box, Text, Flex, Button, Grid,ThemeIcon, Paper, Image, Divider, Blockquote, Card, Badge, Group } from '@mantine/core';
 import { IconBackpack, IconDirections, IconBrain  } from '@tabler/icons-react';
 import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react';
 
 const HomePage = () => {
+  const [newestUsers, setNewestUsers] = useState("")
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch('http://localhost:5005/auth/newestusers')
+      const parsed = await response.json()
+      console.log("newestUsers", newestUsers)
+      setNewestUsers(parsed)
+      //console.log("Parsed users is :", parsed)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(()=>{
+    fetchUsers()
+             
+  }, [])
 
       return (
         <>
@@ -90,6 +108,29 @@ const HomePage = () => {
 
 
         <Box mt={60}>
+        <Divider size="xs" />
+        </Box>
+
+        <Box mt={40}>
+          <Flex justify="center" align="center" direction="column">
+            <Box>
+
+            
+            <Text size={20} weight='bold'>
+              
+            <h2> Newest members </h2></Text>
+</Box>
+<Box>
+<Container size="md" px="xs">
+{newestUsers ? newestUsers.map(user =>{ 
+return <img src={user.picture} width="60" alt={user.username}/> }) : "Loading"}
+</Container>
+</Box>
+            
+
+          </Flex>
+          </Box>
+          <Box mt={60}>
         <Divider size="xs" />
         </Box>
 

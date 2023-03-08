@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { SessionContext } from '../contexts/SessionContext';
-import { Box, Flex, Button, PasswordInput, Text, TextInput, BackgroundImage } from '@mantine/core'
+import { Box, Flex, Paper, Button, PasswordInput, Text, TextInput, BackgroundImage } from '@mantine/core'
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -73,12 +73,13 @@ function Profile() {
 
       <Flex justify="center" align="center">
 
-        <Box mt={300} >
+        <Box mt={230} mb={60}>
+        <Paper shadow="xl" radius="md" p={100} pt={80}>
 
                 {user.username ? <h1>Welcome home, {user.username.charAt(0).toUpperCase() + user.username.substring(1)}!</h1> : "Loading"}
       
 
-                <p>Explore and blah blah.</p>
+                <p>Explore and discover the world, with us.</p>
               <p>
                 <b>You have created </b> 
                 <b style={{color: "#9c3002", fontSize:"30px"}}> {tripCount} </b>
@@ -106,7 +107,7 @@ function Profile() {
               </Box>
 
            </Flex>
-
+</Paper>
             <Box
             sx={{
               margin: '0 auto',
@@ -114,9 +115,11 @@ function Profile() {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
-              height: 'calc(35vh - 10px)',
+              height: 'calc(20vh - 1px)',
             }}
             />
+
+
            </Box>
        
 

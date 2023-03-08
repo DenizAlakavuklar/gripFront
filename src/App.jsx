@@ -18,6 +18,8 @@ import { useContext } from 'react'
 import { SessionContext } from './contexts/SessionContext'
 import Footer from './components/Footer'
 
+
+
 function App() {
   const { userId } = useContext(SessionContext);
  return (
@@ -29,6 +31,7 @@ function App() {
           <NavBar />
         </Header>
       }
+      
       footer={<Footer>
 
       </Footer>}

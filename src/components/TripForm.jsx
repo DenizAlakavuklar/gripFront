@@ -101,15 +101,16 @@ const TripForm= ({allUsers}) => {
 
 <Flex direction="row" >
 
-    <Box ml={100} mr={100}>
-        <Image width={700} height={900} radius="md" src="https://images.unsplash.com/photo-1616767640558-be39eb203507?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGxpZ2h0JTIwdHVycXVvaXNlJTIwc2VhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60">
+    <Box ml={50} mr={100}>
+        <Image width={800} height={900} radius="md" src="https://images.unsplash.com/photo-1616767640558-be39eb203507?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGxpZ2h0JTIwdHVycXVvaXNlJTIwc2VhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60">
        
         </Image>
     </Box>
 
-    <Box mt={130} width={700}>
-        <Flex justify="center" align="center">
-             <Paper shadow="xl" radius="md" p="xl" width={500}>          
+    <Box>
+        <Flex justify="center" align="center" width={800} height={20}>
+             <Paper mr={50} ml={150} shadow="xl" radius="md" p={100} width={900} pt={80}>     
+             <Text mb={60}> <h1>Create a new trip</h1></Text>     
                <form onSubmit={handleSubmit}  style={{ display: "flex", flexDirection: "column" }}>
             <label> <Text color="black" mb={-20}><h3>Trip Name:</h3></Text>
                     <input type="text" value={name} onChange={event => setName(event.target.value)} />
@@ -149,7 +150,7 @@ const TripForm= ({allUsers}) => {
                 </label>
 
                 <Box mt={50}>
-                    <button type="submit" style={{ backgroundColor: 'darkgrey', fontSize: '20px', color:'white' }}>{"Create your trip"}</button>
+                    <button type="submit" style={{ backgroundColor: '#4ECAC8', fontSize: '20px', color:'white' }}>{"Create your trip"}</button>
                 </Box>
 
             </form>

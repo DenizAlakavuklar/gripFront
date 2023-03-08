@@ -23,13 +23,13 @@ const TripPage = () => {
     try {
       //console.log(userId)
       //TRIPS
-      const response = await fetch(`http://localhost:5005/trip/trips/${tripId}`)
+      const response = await fetch(`${import.meta.env.VITE_HOST}/trip/trips/${tripId}`)
       const parsed = await response.json()
       //console.log(parsed)
 
       //PROPOSALS
 
-      const response2 = await fetch(`http://localhost:5005/proposals/${tripId}/`)
+      const response2 = await fetch(`${import.meta.env.VITE_HOST}/proposals/${tripId}/`)
       const parsed2 = await response2.json()
 
 
@@ -51,7 +51,7 @@ const TripPage = () => {
     try {
 
       //trips where user is an attendee
-      const response = await fetch(`http://localhost:5005/trip/trips/usertrips/${userId}/attendeesAll`);
+      const response = await fetch(`${import.meta.env.VITE_HOST}/trip/trips/usertrips/${userId}/attendeesAll`);
       const parsed = await response.json();
 
       setAttendeesAllTrips(parsed.map(trip => trip._id));
@@ -73,7 +73,7 @@ const TripPage = () => {
 
   const handleDelete = async () => {
     if (isSureDelete) {
-      await fetch(`http://localhost:5005/trip/trips/${tripId}`, {
+      await fetch(`${import.meta.env.VITE_HOST}/trip/trips/${tripId}`, {
         method: 'DELETE',
       })
 
@@ -90,7 +90,7 @@ const TripPage = () => {
   const handleProposalDelete = async (tripId, proposalId) => {
     console.log("tripId", tripId)
     console.log("proposalId", proposalId)
-    await fetch(`http://localhost:5005/proposals/${tripId}/${proposalId}`, {
+    await fetch(`${import.meta.env.VITE_HOST}/proposals/${tripId}/${proposalId}`, {
       method: 'DELETE',
     })
     setIsDelete(true)

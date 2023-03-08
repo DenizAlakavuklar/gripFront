@@ -12,7 +12,7 @@ const UpdateTripPage = () => {
   
     const fetchTypedTripData = async () => {
       try {
-        const response = await fetch(`http://localhost:5005/trip/trips/${tripId}`)
+        const response = await fetch(`${import.meta.env.VITE_HOST}/trip/trips/${tripId}`)
         console.log("This is the resp", response)
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
@@ -36,7 +36,7 @@ const UpdateTripPage = () => {
 
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:5005/auth/allusers')
+        const response = await fetch(`${import.meta.env.VITE_HOST}/auth/allusers`)
         const parsed = await response.json()
         setAllUsers(parsed)
         console.log("Parsed users is :", parsed)

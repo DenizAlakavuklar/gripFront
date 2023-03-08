@@ -14,8 +14,8 @@ const SessionContextProvider = ({ children }) => {
     const verifyToken = async (jwt) => {
         console.log("JWT: ", jwt);
         try {
-            // await axios.post("http://localhost:5005/auth/verify", undefined, {
-            let user = await axios.post("http://localhost:5005/auth/verify", undefined, {
+
+            let user = await axios.post(`${import.meta.env.VITE_HOST}/auth/verify`, undefined, {
                 headers: {
                     authorization: `Hopper ${jwt}`
                 },

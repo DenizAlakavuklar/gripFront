@@ -17,7 +17,7 @@ function ProposalDetailsPage() {
 
    const fetchProposals = async () => {
       try {
-        const response = await fetch(`http://localhost:5005/proposals/${tripId}/${proposalId}`)
+        const response = await fetch(`${import.meta.env.VITE_HOST}/proposals/${tripId}/${proposalId}`)
         const parsed = await response.json()
         setProposals(parsed[0])
         setIsLoading(false)
@@ -33,7 +33,7 @@ function ProposalDetailsPage() {
 
     const handleProposalDelete = async (proposalId) => {
       console.log("proposalId", proposalId)
-      await fetch(`http://localhost:5005/proposals/${tripId}/${proposalId}`, {
+      await fetch(`${import.meta.env.VITE_HOST}/proposals/${tripId}/${proposalId}`, {
         method: 'DELETE',
       })
       navigate(`/trips/${tripId}`)

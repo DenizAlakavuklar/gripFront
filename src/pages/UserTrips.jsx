@@ -10,18 +10,15 @@ function UserTrips() {
   console.log("This is the user", userId)
   const fetchUserTrips = async () => {
     try {
-      // with query:
-      // const response = await fetch(`http://localhost:5005/trip/trips/usertrips/?user=${userId}`);
-      // with params (I'd need to update the backedn routes): 
-      //usertrips
-      const response = await fetch(`http://localhost:5005/trip/trips/usertrips/${userId}`);
+
+      const response = await fetch(`${import.meta.env.VITE_HOST}/trip/trips/usertrips/${userId}`);
       const parsed = await response.json();
       setUserTrips(parsed);
       console.log('Parsed is :', parsed);
 
 
       //trips where user is an attendee
-      const response2 = await fetch(`http://localhost:5005/trip/trips/usertrips/${userId}/attendees`);
+      const response2 = await fetch(`${import.meta.env.VITE_HOST}/trip/trips/usertrips/${userId}/attendees`);
       const parsed2 = await response2.json();
       setAttendeesTrips(parsed2);
       console.log('Parsed2 is :', parsed2);

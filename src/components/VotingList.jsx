@@ -14,7 +14,7 @@ function VotingList({proposal, allVotes, trip}) {
   
           //PROPOSALS
     
-          const response2 = await fetch(`http://localhost:5005/proposals/${tripId}/`)
+          const response2 = await fetch(`${import.meta.env.VITE_HOST}/proposals/${tripId}/`)
           const parsed2 = await response2.json()
           setProposals(parsed2)
           //console.log("parsed2", parsed2)
@@ -34,7 +34,7 @@ function VotingList({proposal, allVotes, trip}) {
         try {
 
           //trips where user is an attendee
-          const response = await fetch(`http://localhost:5005/trip/trips/usertrips/${userId}/attendeesAll`);
+          const response = await fetch(`${import.meta.env.VITE_HOST}/trip/trips/usertrips/${userId}/attendeesAll`);
           const parsed = await response.json();
 
           setAttendeesAllTrips(parsed.map(trip => trip._id));

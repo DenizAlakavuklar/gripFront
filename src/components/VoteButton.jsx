@@ -14,7 +14,7 @@ function VoteButton({allVotes, proposalId, tripId, trip,
 
     const fetchUsers = async () => {
         try {
-          const response = await fetch('http://localhost:5005/auth/allusers')
+          const response = await fetch(`${import.meta.env.VITE_HOST}/auth/allusers`)
           const parsed = await response.json()
           setAllUsers(parsed)
           //console.log("Parsed users is :", parsed)
@@ -66,7 +66,7 @@ const handleSubmit = async (event) => {
     event.preventDefault()
     try {
         const response = await fetch(
-            `http://localhost:5005/proposals/${tripId}/${proposalId}`,
+            `${import.meta.env.VITE_HOST}/proposals/${tripId}/${proposalId}`,
             {
                 method: 'PUT',
                 headers: {

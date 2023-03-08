@@ -12,7 +12,7 @@ function Profile() {
   const [tripCount, setTripCount] = useState(0);
   
   const fetchUser = async () => {
-    const response = await fetch(`http://localhost:5005/auth/user/${userId}`, {
+    const response = await fetch(`${import.meta.env.VITE_HOST}/auth/user/${userId}`, {
       method: 'GET',
       headers: {
         authorization: `Hopper ${token}`
@@ -30,7 +30,7 @@ function Profile() {
       fetchUser();
       const fetchTrips = async () => {
         //trips that user made
-        const response = await fetch(`http://localhost:5005/trip/trips/usertrips/${userId}`, {
+        const response = await fetch(`${import.meta.env.VITE_HOST}/trip/trips/usertrips/${userId}`, {
           method: 'GET',
           headers: {
             authorization: `Hopper ${token}`
@@ -40,7 +40,7 @@ function Profile() {
         setTrips(parsed);
 
         //trips that user is an attendee of
-        const response2 = await fetch(`http://localhost:5005/trip/trips/usertrips/${userId}/attendees`, {
+        const response2 = await fetch(`${import.meta.env.VITE_HOST}/trip/trips/usertrips/${userId}/attendees`, {
           method: 'GET',
           headers: {
             authorization: `Hopper ${token}`

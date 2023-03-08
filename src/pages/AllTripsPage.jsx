@@ -8,7 +8,7 @@ const AllTripsPage = () => {
 
   const fetchTrips = async () => {
     try {
-      const response = await fetch('http://localhost:5005/trip/trips/alltrips')
+      const response = await fetch(`${import.meta.env.VITE_HOST}/trip/trips/alltrips`)
       const parsed = await response.json()
       setTrips(parsed)
       console.log("Parsed is :", parsed)

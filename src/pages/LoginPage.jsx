@@ -21,10 +21,11 @@ const LoginPage = () => {
     // console.log("This is the userID:", userId)
     try {
       const response = await axios.post("http://localhost:5005/auth/login", {username: username, password: password}) 
-      setToken(response.data.token);
+     
 
       const userId = response.data.userId;
       setUserId(userId);
+      setToken(response.data.token);
       navigate(`/profile/${userId}`);
       
       console.log(response.data)

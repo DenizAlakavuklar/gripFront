@@ -13,6 +13,7 @@ import { Box, Flex, Button, PasswordInput, Text, TextInput, Image, Paper } from 
 function ProposalForm() {
     const navigate = useNavigate()
     const { tripId } = useParams()
+    const [errorMessage, setErrorMessage] = useState(undefined);
 
     const { userId } = useContext(SessionContext);
     const [trip, setTrip] = useState()
@@ -48,6 +49,14 @@ function ProposalForm() {
     const handleSubmit = async event => {
       event.preventDefault()
       try {
+
+
+        if(title == "" || image == "" || location == "" || type == "" ||  link == ""){
+            setErrorMessage("You must fill out all fields before you can submit");
+
+            }
+
+            else{
           const response = await fetch(
               `http://localhost:5005/proposals/${tripId}/add`,
               {
@@ -79,6 +88,9 @@ function ProposalForm() {
           if (response.status === 200) {
               navigate(`/trips/${tripId}`)
           }
+
+        }
+
       } catch (error) {
           console.log(error)
       }
@@ -145,6 +157,8 @@ function ProposalForm() {
     
                 <Box mt={50} mb={-35}>
                     <button type="submit" style={{ backgroundColor: '#4ECAC8', fontSize: '20px', color:'white' }}>{"Create your proposal"}</button>
+
+                    { errorMessage && <p className="error-message" style={{color: "red"}}>{errorMessage}</p> }
                 </Box>
 
             </form>

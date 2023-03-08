@@ -14,6 +14,7 @@ import { Box, Flex, Button, PasswordInput, Text, TextInput, Image, Paper } from 
 const TripForm= ({allUsers}) => {
     const navigate = useNavigate()
     const { tripId } = useParams()
+    const [errorMessage, setErrorMessage] = useState(undefined);
 
     const { userId } = useContext(SessionContext);
     const [attendees, setAttendees] = useState([])
@@ -52,8 +53,13 @@ const TripForm= ({allUsers}) => {
         event.preventDefault()
         try {
 
-            /* const tripAttendeesArr = tripAttendees.split(',')
-            console.log("tripAttendeesArr:", tripAttendeesArr) */
+            if(name == "" || img == "" || desc == "" || loc == "" || attendeesString == ""){
+            setErrorMessage("You must fill out all fields before you can submit");
+
+            }
+
+            else{
+
             const response = await fetch(
                 `http://localhost:5005/trip/trips`,
                 {
@@ -73,14 +79,6 @@ const TripForm= ({allUsers}) => {
                 }
             );
 
-            /* const response = await axios.post("http://localhost:5005/trip/trips", { 
-            tripName: name,
-            image: img,
-            description: desc,
-            budget: budg,
-            location: loc,
-            attendees: tripAttendees,
-            createdBy: userId,}) */
 
             if (response.status === 201) {
                 const parsed = await response.json()
@@ -89,8 +87,11 @@ const TripForm= ({allUsers}) => {
             if (response.status === 200) {
                 navigate(`/trips/${tripId}`)
             }
+
+            }
+ 
         } catch (error) {
-            console.log(error)
+            console.log(error);      
         }
     }
 
@@ -139,7 +140,7 @@ const TripForm= ({allUsers}) => {
        {/*  {console.log({allUsers})} */}
                 <label> <Text color="black" mb={-20}><h3>Attendees:</h3></Text>
                 <select name="attendees" id="attendees-select" multiple value={attendees} onChange={(e)=>handleAttendeesChange(e)}>
-                    <option value="">--Please choose an option--</option>
+                    <option value="" disabled>--Please choose an option--</option>
                     {allUsers ? allUsers.map(user=>{
                         if(userId !== user._id){
                             return <option value={user._id} key={user._id}>{user.username}</option>
@@ -151,6 +152,8 @@ const TripForm= ({allUsers}) => {
 
                 <Box mt={50}>
                     <button type="submit" style={{ backgroundColor: '#4ECAC8', fontSize: '20px', color:'white' }}>{"Create your trip"}</button>
+
+                    { errorMessage && <p className="error-message" style={{color: "red"}}>{errorMessage}</p> }
                 </Box>
 
             </form>

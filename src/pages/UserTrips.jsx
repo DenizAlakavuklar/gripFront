@@ -49,13 +49,11 @@ function UserTrips() {
         </Flex>
       </Box>
 
-
       <Box>
         <Paper mr={50} ml={50} shadow="xl" radius="md" p={100} width={900}>
-          <Text fz="xl" fw={700} mt={-50}>
+          <Text fz="xl" fw={700} mt={-60}>
             <h3>Trips you created: </h3>
           </Text>
-
 
           {userTrips.length > 0 ?
 
@@ -65,8 +63,8 @@ function UserTrips() {
                 {userTrips.map((userTrip) => {
                   return (
 
-                    <Grid.Col key={userTrip._id} md={6} lg={3} maw={150} w={300}>
-                      <Card shadow="sm" padding="lg" radius="md" withBorder p="xl">
+                    <Grid.Col key={userTrip._id} md={6} lg={3} >
+                      <Card shadow="sm" padding="lg" radius="md" withBorder p="xl" w={300}>
                         <Flex align="center" justify="center" direction="column">
                           <Paper h={60} >
                            
@@ -74,14 +72,14 @@ function UserTrips() {
                             
                           </Paper>
                           <Space h="md" />
-                          <Card.Section mb={20} >
+                          <Card.Section  >
                             <Link to={`/trips/${userTrip._id}/`}>
-                            <Image src={userTrip.image} alt="Trip" w={300} h={200}/>
+                            <Image src={userTrip.image} alt="Trip" width={300} height={200}/>
                             </Link>
                           </Card.Section>
                           <Paper h={120} mt={20}>
                             <Box h={60}>
-                          <Text lineClamp={3} size="md">{userTrip.description}</Text>
+                          <Text lineClamp={3} align="justify" size="md">{userTrip.description}</Text>
                           </Box>
                           <br/>
                           <Flex  align="center" justify="center" >
@@ -114,7 +112,7 @@ function UserTrips() {
 
       <Box mt={50}>
         <Paper mr={50} ml={50} shadow="xl" radius="md" p={100} width={900}>
-          <Text fz="xl" fw={700} mt={-50}>
+          <Text fz="xl" fw={700} mt={-100}>
             <h3>Other trips that you have been invited to: </h3>
           </Text>
 
@@ -126,23 +124,30 @@ function UserTrips() {
                 {attendeesTrips.map((userTrip) => {
                   return (
 
-                    <Grid.Col key={userTrip._id} md={6} lg={3} maw={150}>
-                      <Card shadow="sm" padding="lg" radius="md" withBorder>
+                    <Grid.Col key={userTrip._id} md={6} lg={3} >
+                      <Card shadow="sm" padding="lg" radius="md" withBorder p="xl" w={300}>
                         <Flex align="center" justify="center" direction="column">
                         <Paper h={60} >
-                          <Text fz="lg" fw={900}>{userTrip.tripName}
+                        <Text fz="lg" lineClamp={2} fw={800} align="center">{userTrip.tripName}
                           </Text>
                           </Paper>
-                          <Space h="md" />
-                          <Card.Section component="a">
+                        
+                          <Card.Section >
                             <Link to={`/trips/${userTrip._id}/`}>
-                              <img src={userTrip.image} alt="Trip" width="300" />
+                            <Image src={userTrip.image} alt="Trip" width={300} height={200} />
                             </Link>
                           </Card.Section>
-                          <p>{userTrip.description}</p>
+                          <Paper h={120} mt={20}>
+                            <Box h={60}>
+                            <Text lineClamp={3} align="justify" size="md">{userTrip.description}</Text>
+                            </Box>
+                          <br/>
+                          <Flex  align="center" justify="center" >
                           <Link to={`/trips/${userTrip._id}`}>
                             <button type='button'>Details</button>
                           </Link>
+                          </Flex>
+                          </Paper>
                         </Flex>
                       </Card>
                     </Grid.Col>

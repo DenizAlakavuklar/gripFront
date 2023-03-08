@@ -1,8 +1,13 @@
 import React, { useContext } from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, useParams} from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext'
-import placeholderImage from "../images/placeholder-image.jpg"
+import placeholderImage1 from "../images/placeholder-image1.jpg"
+import placeholderImage2 from "../images/placeholder-image2.jpg"
+import placeholderImage3 from "../images/placeholder-image3.jpg"
+import placeholderImage4 from "../images/placeholder-image4.jpg"
+import placeholderImage5 from "../images/placeholder-image5.jpg"
+import placeholderImage6 from "../images/placeholder-image6.jpg"
 import { Box, Flex, Button, PasswordInput, Text, TextInput, Image, Paper } from '@mantine/core'
 
 function ProposalForm() {
@@ -10,9 +15,10 @@ function ProposalForm() {
     const { tripId } = useParams()
 
     const { userId } = useContext(SessionContext);
-
+    const [trip, setTrip] = useState()
     const [title, setTitle] = useState("")
-    const [image, setImage] = useState(placeholderImage)
+    const imgArray = [/* placeholderImage,  */placeholderImage1, placeholderImage2, placeholderImage3, placeholderImage4, placeholderImage5, placeholderImage6]
+    const [image, setImage] = useState(imgArray[Math.floor(Math.random()*imgArray.length)])
     const [location, setLocation] = useState("")
     const [type, setType] = useState("AirBnB")
     const [totalPrice, setTotalPrice] = useState(0)
@@ -20,6 +26,24 @@ function ProposalForm() {
     const [link, setLink] = useState("")
     const [link2, setLink2] = useState("")
     console.log(userId)
+
+    const fetchTrip = async () => {
+        try {
+          const response = await fetch(`http://localhost:5005/trip/trips/${tripId}`)
+          const parsed = await response.json()
+          console.log("parsed", parsed)
+            setTrip(parsed)
+ 
+        } catch (error) {
+          console.log(error)
+        }
+      }
+    
+
+      useEffect(() => {
+        fetchTrip()
+      }, [])
+      
 
     const handleSubmit = async event => {
       event.preventDefault()
@@ -79,7 +103,8 @@ function ProposalForm() {
              <Paper mr={50} ml={50} shadow="xl" radius="md" p={100} width={900} pt={80}>     
              <Flex justify="center" align="center" direction="column" height={20}>
 
-      <h1>Create a new proposal for: {tripId} </h1>
+      <h1>Create new proposal</h1> 
+      <h2>{trip ? trip.tripName: "Loading"} </h2>
       
 
       <div>

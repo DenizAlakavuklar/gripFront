@@ -100,7 +100,7 @@ const handleSubmit = async (event) => {
     return (
       <div>
   <form  onSubmit={handleSubmit}>
-  <button onClick={addVote}>{voted ? "Remove Vote": "Add Vote"}</button>
+  <button onClick={addVote}>{voted ? "✖️ Remove": "🗳️ Vote"}</button>
 
 </form>
 

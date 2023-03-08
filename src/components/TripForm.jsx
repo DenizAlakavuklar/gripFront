@@ -102,26 +102,26 @@ const TripForm= ({allUsers}) => {
 
 <Flex direction="row" >
 
-    <Box ml={50} mr={100}>
+    <Box ml={20} mr={20}>
         <Image width={800} height={900} radius="md" src="https://images.unsplash.com/photo-1616767640558-be39eb203507?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGxpZ2h0JTIwdHVycXVvaXNlJTIwc2VhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60">
        
         </Image>
     </Box>
 
     <Box>
-        <Flex justify="center" align="center" width={800} height={20}>
-             <Paper mr={50} ml={150} shadow="xl" radius="md" p={100} width={900} pt={80}>     
+        <Flex justify="center" align="center" w={800} height={20}>
+             <Paper mr={50} ml={20}  shadow="xl" radius="md" p={100} width={900} pt={80}>     
              <Text mb={60}> <h1>Create a new trip</h1></Text>     
                <form onSubmit={handleSubmit}  style={{ display: "flex", flexDirection: "column" }}>
             <label> <Text color="black" mb={-20}><h3>Trip Name:</h3></Text>
-                    <input type="text" value={name} onChange={event => setName(event.target.value)} />
+                    <input style={{ width: 500 }} type="text" value={name} onChange={event => setName(event.target.value)} />
                 </label>
 
                 <label> <Text color="black" mb={-20}><h3>Image:</h3></Text>
-                    <input type="text" value={img} onChange={event => setImg(event.target.value)} />
+                    <input  style={{ width: 500 }} type="text" value={img} onChange={event => setImg(event.target.value)} />
                 </label>
                 <label> <Text color="black" mb={-20}><h3>Description:</h3></Text>
-                    <input type="text" value={desc} onChange={event => setDesc(event.target.value)} />
+                    <input  style={{ width: 500 }} type="text" value={desc} onChange={event => setDesc(event.target.value)} />
                 </label>
 
                 <label> <Text color="black" mb={-20}><h3>Budget:</h3></Text>
@@ -132,7 +132,7 @@ const TripForm= ({allUsers}) => {
                     </select>
                 </label>
                 <label> <Text color="black" mb={-20}><h3>Location:</h3></Text>
-                    <input type="text" value={loc} onChange={event => setLoc(event.target.value)} />
+                    <input  style={{ width: 500 }} type="text" value={loc} onChange={event => setLoc(event.target.value)} />
                 </label>
                 {/* <label> Attendees:
                     <input type="text" value={tripAttendees} onChange={event => setTripAttendees(event.target.value)} />
@@ -143,7 +143,7 @@ const TripForm= ({allUsers}) => {
                     <option value="" disabled>--Please choose an option--</option>
                     {allUsers ? allUsers.map(user=>{
                         if(userId !== user._id){
-                            return <option value={user._id} key={user._id}>{user.username}</option>
+                            return <option  value={user._id} key={user._id}>{user.username}</option>
                         }
                     }) : "Loading"}
                     

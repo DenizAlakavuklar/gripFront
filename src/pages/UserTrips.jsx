@@ -65,22 +65,30 @@ function UserTrips() {
                 {userTrips.map((userTrip) => {
                   return (
 
-                    <Grid.Col key={userTrip._id} md={6} lg={3} maw={150}>
-                      <Card shadow="sm" padding="lg" radius="md" withBorder>
+                    <Grid.Col key={userTrip._id} md={6} lg={3} maw={150} w={300}>
+                      <Card shadow="sm" padding="lg" radius="md" withBorder p="xl">
                         <Flex align="center" justify="center" direction="column">
-                          <Paper h={60}>
-                            <Text fz="lg" lineClamp={2} fw={900}>{userTrip.tripName}</Text>
+                          <Paper h={60} >
+                           
+                            <Text fz="lg" lineClamp={2} fw={800} align="center">{userTrip.tripName}</Text>
+                            
                           </Paper>
                           <Space h="md" />
-                          <Card.Section >
+                          <Card.Section mb={20} >
                             <Link to={`/trips/${userTrip._id}/`}>
-                            <Image src={userTrip.image} alt="Trip" width="300" height={200}/></Link>
+                            <Image src={userTrip.image} alt="Trip" w={300} h={200}/>
+                            </Link>
                           </Card.Section>
                           <Paper h={120} mt={20}>
-                          <Text size="md">{userTrip.description}</Text>
+                            <Box h={60}>
+                          <Text lineClamp={3} size="md">{userTrip.description}</Text>
+                          </Box>
+                          <br/>
+                          <Flex  align="center" justify="center" >
                           <Link to={`/trips/${userTrip._id}`}>
                             <button type='button'>Details</button>
                           </Link>
+                          </Flex>
                           </Paper>
                         </Flex>
                       </Card>
@@ -104,9 +112,6 @@ function UserTrips() {
         </Paper>
       </Box>
 
-
-
-
       <Box mt={50}>
         <Paper mr={50} ml={50} shadow="xl" radius="md" p={100} width={900}>
           <Text fz="xl" fw={700} mt={-50}>
@@ -124,9 +129,10 @@ function UserTrips() {
                     <Grid.Col key={userTrip._id} md={6} lg={3} maw={150}>
                       <Card shadow="sm" padding="lg" radius="md" withBorder>
                         <Flex align="center" justify="center" direction="column">
-
+                        <Paper h={60} >
                           <Text fz="lg" fw={900}>{userTrip.tripName}
                           </Text>
+                          </Paper>
                           <Space h="md" />
                           <Card.Section component="a">
                             <Link to={`/trips/${userTrip._id}/`}>

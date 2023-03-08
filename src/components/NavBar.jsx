@@ -11,7 +11,7 @@ const NavBar = () => {
   return (
     <>
       <Button component={Link} to='/' variant='subtle' color='cyan'>
-        Home
+        <h1>GRIP</h1>
       </Button>
       <Box>
       {/* <Button component={Link} to='/about' variant='subtle' color='cyan'>

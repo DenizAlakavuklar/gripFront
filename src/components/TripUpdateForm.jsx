@@ -63,7 +63,7 @@ const TripUpdateForm = ({ tripName, image, description, budget, location, curren
     event.preventDefault()
     try {
       const response = await fetch(
-        `http://localhost:5005/trip/trips/${tripId}`,
+        `${import.meta.env.VITE_HOST}/trip/trips/${tripId}`,
         {
           method: 'PUT',
           headers: {

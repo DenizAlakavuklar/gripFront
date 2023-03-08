@@ -61,7 +61,7 @@ const TripForm= ({allUsers}) => {
             else{
 
             const response = await fetch(
-                `http://localhost:5005/trip/trips`,
+                `${import.meta.env.VITE_HOST}/trip/trips`,
                 {
                     method: 'POST',
                     headers: {

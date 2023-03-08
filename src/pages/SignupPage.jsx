@@ -17,7 +17,7 @@ const SignupPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      await axios.post("http://localhost:5005/auth/signup", { username: username, email: email, password: password });
+      await axios.post(`${import.meta.env.VITE_HOST}/auth/signup`, { username: username, email: email, password: password });
       navigate("/login")
     } catch (error) {
       console.log(error, "???????");

@@ -30,7 +30,7 @@ function ProposalForm() {
 
     const fetchTrip = async () => {
         try {
-          const response = await fetch(`http://localhost:5005/trip/trips/${tripId}`)
+          const response = await fetch(`${import.meta.env.VITE_HOST}/trip/trips/${tripId}`)
           const parsed = await response.json()
           console.log("parsed", parsed)
             setTrip(parsed)
@@ -58,7 +58,7 @@ function ProposalForm() {
 
             else{
           const response = await fetch(
-              `http://localhost:5005/proposals/${tripId}/add`,
+              `${import.meta.env.VITE_HOST}/proposals/${tripId}/add`,
               {
                   method: 'POST',
                   headers: {

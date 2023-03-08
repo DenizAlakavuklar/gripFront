@@ -7,7 +7,7 @@ const HomePage = () => {
   const [newestUsers, setNewestUsers] = useState("")
   const fetchUsers = async () => {
     try {
-      const response = await fetch('http://localhost:5005/auth/newestusers')
+      const response = await fetch(`${import.meta.env.VITE_HOST}/auth/newestusers`)
       const parsed = await response.json()
       console.log("newestUsers", newestUsers)
       setNewestUsers(parsed)

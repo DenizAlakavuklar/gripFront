@@ -20,7 +20,7 @@ const LoginPage = () => {
     event.preventDefault()
     // console.log("This is the userID:", userId)
     try {
-      const response = await axios.post("http://localhost:5005/auth/login", {username: username, password: password}) 
+      const response = await axios.post(`${import.meta.env.VITE_HOST}/auth/login`, {username: username, password: password}) 
      
       const userId = response.data.userId;
       setUserId(userId);

@@ -5,7 +5,7 @@ import VoteButton from '../components/VoteButton'
 import Votes from '../components/Votes'
 import VotingList from '../components/VotingList'
 import { SessionContext } from '../contexts/SessionContext'
-import { Card, Image, Flex, Text, Container, Group, Button, Grid, Space, Box, Divider } from '@mantine/core';
+import { Card, Image, Flex, Text, Container, Button, Grid, Space, Box, Divider, Textarea, Paper } from '@mantine/core';
 
 
 const TripPage = () => {
@@ -36,7 +36,7 @@ const TripPage = () => {
       if (parsed === null || parsed2 === null) {
         navigate('/trips/:tripId')
       } else {
-       // console.log(parsed)
+        // console.log(parsed)
         setTrip(parsed)
         setProposals(parsed2)
         setIsLoading(false)
@@ -57,19 +57,19 @@ const TripPage = () => {
    */
 
   const handleDelete = async () => {
-if(isSureDelete){
-await fetch(`http://localhost:5005/trip/trips/${tripId}`, {
-      method: 'DELETE',
-    })
-    
-    navigate('/trips/usertrips')
-}
+    if (isSureDelete) {
+      await fetch(`http://localhost:5005/trip/trips/${tripId}`, {
+        method: 'DELETE',
+      })
 
-if(!isSureDelete){
-  setIsSureDelete(!isSureDelete)
-  }
+      navigate('/trips/usertrips')
+    }
 
-    
+    if (!isSureDelete) {
+      setIsSureDelete(!isSureDelete)
+    }
+
+
   }
 
   const handleProposalDelete = async (tripId, proposalId) => {
@@ -91,14 +91,15 @@ if(!isSureDelete){
         <Box >
           <Flex justify="flex-start" align="flex-start" direction={"column"} gap="md" >
 
-            <Image src={trip.image} width={600} height={300}
+            <Image src={trip.image} width={600} height={400}
               alt="trip" />
 
 
             <Text>{trip.tripName}</Text>
 
             <Text size="sm" ><b>Date estimation:  </b>{trip.dateDescription}</Text>
-            <Text size="sm" ><b>Description:  </b>{trip.description}</Text>
+            <Paper w={600}>
+              <Text size="sm" minRows={2} ><b>Description:  </b>{trip.description}</Text></Paper>
             <Text size="sm" ><b>Budget:  </b>{trip.budget}</Text>
             <Text size="sm" ><b>Location:  </b>{trip.location}</Text>
             <Text size="sm" ><b>Attendees:  </b> </Text>
@@ -126,11 +127,11 @@ if(!isSureDelete){
 
                 {isSureDelete ? <Button color="red" type='button' onClick={handleDelete}>
                   Are you sure?
-                </Button>:  <Button color="cyan" type='button' onClick={handleDelete}>
+                </Button> : <Button color="cyan" type='button' onClick={handleDelete}>
                   Delete
                 </Button>}
 
-                
+
               </>
               : ""}
 
@@ -153,55 +154,42 @@ if(!isSureDelete){
             <Grid gutter="lg">
               {proposals.map(proposal => {
                 return (
-
-                  <Grid.Col key={proposal._id} md={6} lg={3} maw={150}>
-                    <Card shadow="sm" padding="lg" radius="md" withBorder>
-                      <Card.Section  >
-                        <Image src={proposal.image} alt="trip" />
-
+                  <Grid.Col key={proposal._id} md={6} lg={3} >
+                    <Card shadow="sm" padding="lg" radius="md" withBorder p="xl" w={300} >
+                      <Card.Section mb={20} >
+                        <Image src={proposal.image} alt="trip" height={200} />
 
                       </Card.Section>
-                      <h3>{proposal.title}</h3>
+                      <Paper h={150}>
+                        <Text fz="lg" fw={700} lineClamp={2}>{proposal.title}</Text>
+                        <br />
 
-                      <Text size="sm" ><b>Location:</b> {proposal.location}</Text>
+                        <Text size="sm" ><b>Location:</b> {proposal.location}</Text>
 
-                      <Text size="sm" ><b>Nights:</b> {proposal.nights}</Text>
-                      <Link to={`/proposals/${tripId}/${proposal._id}`} style={{ color: "indigo" }}>
-                        View details
-                      </Link>
-
-                      {/* <Link to={proposal.link} target="_blank">
-                  <Button type='button'>More info</Button>
-                  </Link>
-                */}
+                        <Text size="sm" ><b>Nights:</b> {proposal.nights}</Text>
+                        <Link to={`/proposals/${tripId}/${proposal._id}`} style={{ color: "indigo" }}>
+                          View details
+                        </Link>
+                      </Paper>
                       <Divider size="sm" mt={30} />
-
-                     
+                      <Paper mt={20}>
                         <Text size="sm" ><b>Votes:  </b> </Text>
-                        <Votes proposal={proposal} allVotes={proposal.votes} trip={trip._id} tripId={trip._id}/>
-                
-               
+                        <Votes proposal={proposal} allVotes={proposal.votes} trip={trip._id} tripId={trip._id} />
 
+                        <Flex justify="flex-start" align="flex-start" direction={"row"} gap="xl" mt={20}>
+                          <Text color="cyan.9" underline italic>Added By:  {proposal.createdBy.username} <img src={proposal.createdBy.picture} width="20" /></Text>
 
-                      <Flex justify="flex-start" align="flex-start" direction={"row"} gap="xl" mt={20}>
-                        <Text color="cyan.9" underline italic>Added By:  {proposal.createdBy.username} <img src={proposal.createdBy.picture} width="20" /></Text>
+                          {/* Only show update and delete buttons if you were the creator */}
+                          {userId === proposal.createdBy._id ?
+                            <>
+                              <Button color="cyan.8" type='button' onClick={(e) => { handleProposalDelete(tripId, proposal._id) }}>
+                                Delete
+                              </Button>
+                            </>
+                            : ""}
 
-                        {/* Only show update and delete buttons if you were the creator */}
-                        {userId === proposal.createdBy._id ?
-                          <>
-                            {/*  <Link to={`/${trip._id}/${proposal._id}/update/`}>
-          <button type='button'>Update</button>
-          </Link> */}
-
-                            <Button color="cyan.8" type='button' onClick={(e) => { handleProposalDelete(tripId, proposal._id) }}>
-                              Delete
-                            </Button>
-                          </>
-                          : ""}
-
-
-                      </Flex>
-
+                        </Flex>
+                      </Paper>
                     </Card>
                   </Grid.Col>)
               })

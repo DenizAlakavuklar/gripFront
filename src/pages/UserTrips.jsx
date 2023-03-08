@@ -49,7 +49,7 @@ function UserTrips() {
         </Flex>
       </Box>
 
-          
+
     <Box>
         <Paper mr={50} ml={150} shadow="xl" radius="md" p={100} width={900}>
             <Text fz="xl"  fw={700}  mt={-50}>
@@ -67,20 +67,19 @@ function UserTrips() {
                               return(
                       
                       <Grid.Col key={userTrip._id} md={6} lg={3} maw={150}>
-                          
                               <Card shadow="sm" padding="lg" radius="md" withBorder>
-                              <Flex align="center" justify="center" direction="column">
+                                 <Flex align="center" justify="center" direction="column">
                                     <Text fz="lg"  fw={900}>{userTrip.tripName}</Text>
                                     <Space h="md" />
-                                  <Card.Section component="a">
-                                    <Link to={`/trips/${userTrip._id}/`}>
-                                        <img src={userTrip.image} alt="Trip" width="300" /></Link>
-                                  </Card.Section>
-                                        <p>{userTrip.description}</p>
+                                        <Card.Section component="a">
+                                          <Link to={`/trips/${userTrip._id}/`}>
+                                              <img src={userTrip.image} alt="Trip" width="300" /></Link>
+                                        </Card.Section>
+                                          <p>{userTrip.description}</p>
                                         <Link to={`/trips/${userTrip._id}`}>
                                             <button type='button'>Details</button>
                                         </Link>
-                                        </Flex>
+                                     </Flex>
                                 </Card>
                           
                       </Grid.Col>
@@ -104,53 +103,58 @@ function UserTrips() {
                     
                     
                      
+       <Box mt={50}>
+          <Paper mr={50} ml={150} shadow="xl" radius="md" p={100} width={900}>
+              <Text fz="xl"  fw={700}  mt={-50}>
+                <h3>Other trips that you have been invited to: </h3>
+              </Text> 
 
-            <Container size="xl" px="xs" mt={50}>
 
-            <Text fz="xl" fw={700}>Other trips that you have been invited to</Text>
-
-            </Container>
-
-            {attendeesTrips.length > 0 ?  
-            <Container size="xl" px="xs" mt={50}>
-            <Grid gutter="lg">
-           
-                     {attendeesTrips.map((userTrip) => {
-                  return(
-            
- <Grid.Col key={userTrip._id} md={6} lg={3} maw={150}>
-  <Card shadow="sm" padding="lg" radius="md" withBorder>
+                {attendeesTrips.length > 0 ?  
+                <Box mt={50}>
+                    <Grid gutter="lg">
+                  
+                              {attendeesTrips.map((userTrip) => {
+                            return(
+                      
+                        <Grid.Col key={userTrip._id} md={6} lg={3} maw={150}>
+                            <Card shadow="sm" padding="lg" radius="md" withBorder>
+                              <Flex align="center" justify="center" direction="column">
+                                          
+                                      <Text fz="lg" fw={900}>{userTrip.tripName}
+                                      </Text>
+                                        <Space h="md" />
+                                            <Card.Section component="a">
+                                                <Link to={`/trips/${userTrip._id}/`}>
+                                                    <img src={userTrip.image} alt="Trip" width="300" />
+                                                </Link>
+                                              </Card.Section>
+                                          <p>{userTrip.description}</p>
+                                        <Link to={`/trips/${userTrip._id}`}>
+                                            <button type='button'>Details</button>
+                                        </Link>
+                                    </Flex>
+                              </Card>
+                          </Grid.Col>
+                              )})}
+                      </Grid>
+                    </Box>    
                 
-    <Text fz="lg" c="blue.9" fw={500}>{userTrip.tripName}</Text>
-    <Space h="md" />
-<Card.Section component="a">
+                :
+                    <Container size="xl" px="xs" mt={50}>
+                      <p>You haven't been invited to other trips. Share Grip with your friends so they can start inviting you.</p>
+                    </Container>
+                  }
+                
+              </Paper>
+          </Box>
+            
 
-    <Link to={`/trips/${userTrip._id}/`}>
-                <img src={userTrip.image} alt="Trip" width="300" />
-                </Link>
-                </Card.Section>
-                <p>{userTrip.description}</p>
-                <Link to={`/trips/${userTrip._id}`}>
-                    <button type='button'>Details</button>
-                </Link>
-                </Card>
-                </Grid.Col>
-                    )
-                    
-                    
-                    })}
-           
-            </Grid>
-            </Container>
-            
-            :
-            
-            <Container size="xl" px="xs" mt={50}>
-            <p>You haven't been invited to other trips. Share Grip with your friends so they can start inviting you.</p>
-              
-       
-              </Container>}
-            
+
+
+
+
+
             </>
           )
         }

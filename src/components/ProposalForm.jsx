@@ -93,7 +93,7 @@ function ProposalForm() {
     <Flex direction="row" >
 
 <Box ml={50} mr={100}>
-    <Image width={800} height={930} radius="md" src="https://images.unsplash.com/photo-1536745287225-21d689278fd1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80">
+    <Image width={800} height={980} radius="md" src="https://images.unsplash.com/photo-1536745287225-21d689278fd1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80">
    
     </Image>
 </Box>
@@ -103,7 +103,7 @@ function ProposalForm() {
              <Paper mr={50} ml={50} shadow="xl" radius="md" p={100} width={900} pt={80}>     
              <Flex justify="center" align="center" direction="column" height={20}>
 
-      <h1>Create new proposal</h1> 
+      <h1>Create a new proposal for the trip:</h1> 
       <h2>{trip ? trip.tripName: "Loading"} </h2>
       
 

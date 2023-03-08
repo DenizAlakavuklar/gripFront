@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext';
-import { Card, Image, Text, Group, Container, Button, Grid, Space  } from '@mantine/core';
+import { Card, Image, Text, Group, Container, Button, Grid, Space, Paper, Box, Flex } from '@mantine/core';
 
 function UserTrips() {
     const [userTrips, setUserTrips] = useState([]);
@@ -43,58 +43,71 @@ function UserTrips() {
     return (
       <>
 
-      <Container size="xl" px="xs">
-<h1>Explore your next trips</h1>
+      <Box>
+        <Flex justify="center" align="center">
+           <h1>Explore your next trips</h1>
+        </Flex>
+      </Box>
 
-<Text fz="xl" c="blue.9" fw={700}>Trips you made</Text>
-              <br/>
-        </Container>
-      
-      {userTrips.length > 0 ? 
-      
-      <Container size="xl" px="xs">
-              
-             
-        <Grid gutter="lg">
-                       {userTrips.map((userTrip) => {
-                    return(
-             
-    <Grid.Col key={userTrip._id} md={6} lg={3} maw={150}>
-   <Card shadow="sm" padding="lg" radius="md" withBorder>
-  
-   <Text fz="lg" c="blue.9" fw={500}>{userTrip.tripName}</Text>
-   <Space h="md" />
-                  <Card.Section component="a">
-  
-     
-      <Link to={`/trips/${userTrip._id}/`}>
-                  <img src={userTrip.image} alt="Trip" width="300" /></Link>
-                  </Card.Section>
-                  <p>{userTrip.description}</p>
-                  <Link to={`/trips/${userTrip._id}`}>
-                      <button type='button'>Details</button>
-                  </Link>
-                  </Card>
-                  </Grid.Col>
-                      )})}
-                </Grid>
-  
-              </Container> 
-
-              : 
+          
+    <Box>
+        <Paper mr={50} ml={150} shadow="xl" radius="md" p={100} width={900}>
+            <Text fz="xl"  fw={700}  mt={-50}>
+              <h3>Trips you created: </h3>
+            </Text>    
+                    
+            
+                {userTrips.length > 0 ? 
+                
               <Container size="xl" px="xs">
-                <p>You have not created any trips yet. <Link to={`/trips/new`}>
-                      Create a trip now!
-                  </Link></p></Container>
-                }
             
+                      
+                  <Grid gutter="lg">
+                                {userTrips.map((userTrip) => {
+                              return(
+                      
+                      <Grid.Col key={userTrip._id} md={6} lg={3} maw={150}>
+                          
+                              <Card shadow="sm" padding="lg" radius="md" withBorder>
+                              <Flex align="center" justify="center" direction="column">
+                                    <Text fz="lg"  fw={900}>{userTrip.tripName}</Text>
+                                    <Space h="md" />
+                                  <Card.Section component="a">
+                                    <Link to={`/trips/${userTrip._id}/`}>
+                                        <img src={userTrip.image} alt="Trip" width="300" /></Link>
+                                  </Card.Section>
+                                        <p>{userTrip.description}</p>
+                                        <Link to={`/trips/${userTrip._id}`}>
+                                            <button type='button'>Details</button>
+                                        </Link>
+                                        </Flex>
+                                </Card>
+                          
+                      </Grid.Col>
+                                )})}
+                    </Grid>
             
+                </Container>  
+                        : 
+                <Container size="xl" px="xs">
+                          <p>You have not created any trips yet. 
+                            <Link to={`/trips/new`}>
+                                  Create a trip now!
+                            </Link>
+                          </p>
+                </Container>
             
+                          }
+              </Paper>
+       </Box>
 
+                    
+                    
+                     
 
             <Container size="xl" px="xs" mt={50}>
 
-            <Text fz="xl" c="blue.9" fw={700}>Other trips that you have been invited to</Text>
+            <Text fz="xl" fw={700}>Other trips that you have been invited to</Text>
 
             </Container>
 

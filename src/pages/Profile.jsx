@@ -79,7 +79,7 @@ function Profile() {
                 {user.username ? <h1>Welcome home, {user.username.charAt(0).toUpperCase() + user.username.substring(1)}!</h1> : "Loading"}
       
 
-                <p>Explore and discover the world, with us.</p>
+                <p>Explore and discover the world with us.</p>
               <p>
                 <b>You have created </b> 
                 <b style={{color: "#9c3002", fontSize:"30px"}}> {tripCount} </b>

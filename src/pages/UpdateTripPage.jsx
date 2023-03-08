@@ -52,8 +52,7 @@ const UpdateTripPage = () => {
   
     return (
       <div>
-      <> Update your trip!</>
-        {isLoading ? (
+             {isLoading ? (
           <h1>Loading ...</h1>
         ) : (
           <TripUpdateForm

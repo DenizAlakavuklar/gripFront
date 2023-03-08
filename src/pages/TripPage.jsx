@@ -16,7 +16,6 @@ const TripPage = () => {
   const [isDelete, setIsDelete] = useState(false)
   const [isSureDelete, setIsSureDelete] = useState(false)
   const [proposals, setProposals] = useState([])
-  const [attendeesAllTrips, setAttendeesAllTrips] = useState([]);
   const { userId } = useContext(SessionContext);
 
   const fetchTrip = async () => {
@@ -47,29 +46,15 @@ const TripPage = () => {
     }
   }
 
-  const fetchAttendeesTrips = async () => {
-    try {
-
-      //trips where user is an attendee
-      const response = await fetch(`http://localhost:5005/trip/trips/usertrips/${userId}/attendeesAll`);
-      const parsed = await response.json();
-
-      setAttendeesAllTrips(parsed.map(trip => trip._id));
-
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   useEffect(() => {
     fetchTrip()
     setIsDelete(false)
   }, [tripId, isDelete])
 
-  useEffect(() => {
-    fetchAttendeesTrips()
+  /*   useEffect(() => {
+      fetchTrip()
     }, [proposals])
-
+   */
 
   const handleDelete = async () => {
     if (isSureDelete) {
@@ -106,13 +91,14 @@ const TripPage = () => {
       <Container size="xl" px="xs" style={{ display: "flex", flexDirection: "column", justifyContent: "left" }} mb={50}>
      <Box >
 
-<Paper mr={50} ml={50} mt={50} shadow="xl" radius="md" p={50} pl={200} pr={200} width={900}>     
+
+     
           <Box>
             <Flex justify="center" align="center" direction={"column"} gap="md" >
 
               <Image src={trip.image} width={600} height={400} radius="md" alt="trip" />
 
-              <Paper mr={50} ml={50} mt={50} shadow="xl" radius="md" p={50} pl={200} pr={200} width={900}>
+<Paper mr={50} ml={50} mt={50} shadow="xl" radius="md" p={50} pl={200} pr={200} width={900}>
               <Text fw={900}> <h1>{trip.tripName}</h1></Text>
               <Text size="sm" ><b>Description:  </b>{trip.description}</Text>
               <Text size="sm" ><b>Budget:  </b>{trip.budget}</Text>
@@ -156,23 +142,18 @@ const TripPage = () => {
 
             </Flex>
       </Box>
-    </Paper>
 
 
           <Divider size="sm" mt={30} />
 
         </Box>
         <Box mt={50}>
-
-        <Flex direction={"row"} gap="5rem" >
-        <Text size="xl" weight={700}>Proposals</Text>
-        {attendeesAllTrips.includes(tripId) ? 
-        <Link to={`/proposals/${trip._id}/add`}>
-          <Button variant="outline" color="cyan" type='button'>Add New</Button>
-        </Link>
-        : ""}
-      </Flex>
-          
+          <Flex direction={"row"} gap="5rem" >
+            <Text size="xl" weight={700}>Proposals</Text>
+            <Link to={`/proposals/${trip._id}/add`}>
+              <Button variant="outline" color="cyan" type='button'>Add a New</Button>
+            </Link>
+          </Flex>
           <br />
           <br />
           {/* If 0 proposals, show text, if not, show proposals */}

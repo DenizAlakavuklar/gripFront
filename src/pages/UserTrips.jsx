@@ -51,7 +51,7 @@ function UserTrips() {
 
 
     <Box>
-        <Paper mr={50} ml={150} shadow="xl" radius="md" p={100} width={900}>
+        <Paper mr={50} ml={50} shadow="xl" radius="md" p={100} width={900}>
             <Text fz="xl"  fw={700}  mt={-50}>
               <h3>Trips you created: </h3>
             </Text>    
@@ -104,7 +104,7 @@ function UserTrips() {
                     
                      
        <Box mt={50}>
-          <Paper mr={50} ml={150} shadow="xl" radius="md" p={100} width={900}>
+          <Paper mr={50} ml={50} shadow="xl" radius="md" p={100} width={900}>
               <Text fz="xl"  fw={700}  mt={-50}>
                 <h3>Other trips that you have been invited to: </h3>
               </Text> 

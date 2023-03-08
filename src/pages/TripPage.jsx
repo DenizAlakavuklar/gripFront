@@ -87,55 +87,63 @@ const TripPage = () => {
     <h1>Loading...</h1>
   ) : (
     <>
+    
       <Container size="xl" px="xs" style={{ display: "flex", flexDirection: "column", justifyContent: "left" }} mb={50}>
-        <Box >
-          <Flex justify="flex-start" align="flex-start" direction={"column"} gap="md" >
+     <Box >
 
-            <Image src={trip.image} width={600} height={400}
-              alt="trip" />
+<Paper mr={50} ml={50} mt={50} shadow="xl" radius="md" p={50} pl={200} pr={200} width={900}>     
+          <Box>
+            <Flex justify="center" align="center" direction={"column"} gap="md" >
 
+              <Image src={trip.image} width={600} height={400} radius="md" alt="trip" />
 
-            <Text>{trip.tripName}</Text>
+              <Paper mr={50} ml={50} mt={50} shadow="xl" radius="md" p={50} pl={200} pr={200} width={900}>
+              <Text fw={900}> <h1>{trip.tripName}</h1></Text>
+              <Text size="sm" ><b>Description:  </b>{trip.description}</Text>
+              <Text size="sm" ><b>Budget:  </b>{trip.budget}</Text>
+              <Text size="sm" ><b>Location:  </b>{trip.location}</Text>
+              <Text size="sm" ><b>Attendees:  </b> </Text>
+              <ul>
+                {trip.attendees.map(attendee => {
+                  return <li>{attendee.username} <img src={attendee.picture} width="20" /></li>
+                })}
+              </ul>
 
-            {/* <Text size="sm" ><b>Date estimation:  </b>{trip.dateDescription}</Text> */}
-            <Paper w={600}>
-              <Text size="sm" minRows={2} ><b>Description:  </b>{trip.description}</Text></Paper>
-            <Text size="sm" ><b>Budget:  </b>{trip.budget}</Text>
-            <Text size="sm" ><b>Location:  </b>{trip.location}</Text>
-            <Text size="sm" ><b>Attendees:  </b> </Text>
-            <ul>
-              {trip.attendees.map(attendee => {
-                return <li>{attendee.username} <img src={attendee.picture} width="20" /></li>
-              })}
-            </ul>
-
-            <Text color="cyan.9">Created By: {trip.createdBy.username}</Text>
-          </Flex>
-          {/*  {console.log("userId: ", userId, "trip.createdBy: ", trip.createdBy)} */}
-          {/* Only show update and delete buttons if you were the creator */}
-
-          <Flex justify="flex-start" align="flex-start" direction={"row"} gap="md" mt={50}>
-            {userId === trip.createdBy._id ?
-
-              <>
-                <Link to={`/trips/update/${trip._id}`}>
-                  <Button color="cyan" type='button'>Update</Button>
-                </Link>
-                {/* <Button color="cyan" type='button' onClick={handleDelete}>
-                  Delete
-                </Button> */}
-
-                {isSureDelete ? <Button color="red" type='button' onClick={handleDelete}>
-                  Are you sure?
-                </Button> : <Button color="cyan" type='button' onClick={handleDelete}>
-                  Delete
-                </Button>}
+              <Text color="cyan.9">Created By: {trip.createdBy.username}</Text>
+              </Paper>
+            
+            </Flex>
+            {/*  {console.log("userId: ", userId, "trip.createdBy: ", trip.createdBy)} */}
+            {/* Only show update and delete buttons if you were the creator */}
 
 
-              </>
-              : ""}
 
-          </Flex>
+            <Flex justify="center" align="center" direction={"row"} gap="md" mt={50}>
+              {userId === trip.createdBy._id ?
+
+                <>
+                  <Link to={`/trips/update/${trip._id}`}>
+                    <Button color="cyan" type='button'>Update</Button>
+                  </Link>
+                  {/* <Button color="cyan" type='button' onClick={handleDelete}>
+                    Delete
+                  </Button> */}
+
+                  {isSureDelete ? <Button color="red" type='button' onClick={handleDelete}>
+                    Are you sure?
+                  </Button> : <Button color="cyan" type='button' onClick={handleDelete}>
+                    Delete
+                  </Button>}
+
+
+                </>
+                : ""}
+
+            </Flex>
+      </Box>
+    </Paper>
+
+
           <Divider size="sm" mt={30} />
 
         </Box>
@@ -203,6 +211,7 @@ const TripPage = () => {
           }
         </Box>
       </Container>
+ 
     </>
   )
 }

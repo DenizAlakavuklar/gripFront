@@ -37,11 +37,13 @@ const AllTripsPage = () => {
 
               <Card shadow="sm" padding="lg" radius="md" withBorder>
                 <Card.Section component="a">
+                <Link to={`/trips/${trip._id}`} style={{textDecoration:"none" , color:"#0B7285"}}>
                   <Image
                     src={trip.image}
                     height={160}
                     alt="trip"
                   />
+                </Link>
                 </Card.Section>
 
                 <Button variant="light" color="cyan" fullWidth mt="md" radius="md">

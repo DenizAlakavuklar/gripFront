@@ -16,6 +16,7 @@ const TripPage = () => {
   const [isDelete, setIsDelete] = useState(false)
   const [isSureDelete, setIsSureDelete] = useState(false)
   const [proposals, setProposals] = useState([])
+  const [attendeesAllTrips, setAttendeesAllTrips] = useState([]);
   const { userId } = useContext(SessionContext);
 
   const fetchTrip = async () => {
@@ -46,15 +47,29 @@ const TripPage = () => {
     }
   }
 
+  const fetchAttendeesTrips = async () => {
+    try {
+
+      //trips where user is an attendee
+      const response = await fetch(`http://localhost:5005/trip/trips/usertrips/${userId}/attendeesAll`);
+      const parsed = await response.json();
+
+      setAttendeesAllTrips(parsed.map(trip => trip._id));
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     fetchTrip()
     setIsDelete(false)
   }, [tripId, isDelete])
 
-  /*   useEffect(() => {
-      fetchTrip()
+  useEffect(() => {
+    fetchAttendeesTrips()
     }, [proposals])
-   */
+
 
   const handleDelete = async () => {
     if (isSureDelete) {
@@ -148,12 +163,16 @@ const TripPage = () => {
 
         </Box>
         <Box mt={50}>
-          <Flex direction={"row"} gap="5rem" >
-            <Text size="xl" weight={700}>Proposals</Text>
-            <Link to={`/proposals/${trip._id}/add`}>
-              <Button variant="outline" color="cyan" type='button'>Add a New</Button>
-            </Link>
-          </Flex>
+
+        <Flex direction={"row"} gap="5rem" >
+        <Text size="xl" weight={700}>Proposals</Text>
+        {attendeesAllTrips.includes(tripId) ? 
+        <Link to={`/proposals/${trip._id}/add`}>
+          <Button variant="outline" color="cyan" type='button'>Add New</Button>
+        </Link>
+        : ""}
+      </Flex>
+          
           <br />
           <br />
           {/* If 0 proposals, show text, if not, show proposals */}

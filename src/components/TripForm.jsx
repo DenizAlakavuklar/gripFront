@@ -10,7 +10,7 @@ import placeholderImage4 from "../images/placeholder-image4.jpg"
 import placeholderImage5 from "../images/placeholder-image5.jpg"
 import placeholderImage6 from "../images/placeholder-image6.jpg"
 import axios from 'axios'
-import { Box, Flex, Button, PasswordInput, Text, TextInput, BackgroundImage } from '@mantine/core'
+import { Box, Flex, Button, PasswordInput, Text, TextInput, Image, Paper } from '@mantine/core'
 
 const TripForm= ({allUsers}) => {
     const navigate = useNavigate()
@@ -99,37 +99,45 @@ const TripForm= ({allUsers}) => {
 
     return (
         <>
-<Box>
-        <BackgroundImage src="https://images.unsplash.com/photo-1617287287784-7e6b90c6cfd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80">
+
+<Flex direction="row" >
+
+    <Box ml={100} mr={100}>
+        <Image width={700} height={900} radius="md" src="https://images.unsplash.com/photo-1616767640558-be39eb203507?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGxpZ2h0JTIwdHVycXVvaXNlJTIwc2VhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60">
+       
+        </Image>
+    </Box>
+
+    <Box mt={130} width={700}>
         <Flex justify="center" align="center">
-            <Box mt={300} >
-            <form onSubmit={handleSubmit}  style={{ display: "flex", flexDirection: "column" }}>
-            <label> <Text color="white" mb={-20}><h3>Trip Name:</h3></Text>
+             <Paper shadow="xl" radius="md" p="xl" width={500}>          
+               <form onSubmit={handleSubmit}  style={{ display: "flex", flexDirection: "column" }}>
+            <label> <Text color="black" mb={-20}><h3>Trip Name:</h3></Text>
                     <input type="text" value={name} onChange={event => setName(event.target.value)} />
                 </label>
 
-                <label> <Text color="white" mb={-20}><h3>Image:</h3></Text>
+                <label> <Text color="black" mb={-20}><h3>Image:</h3></Text>
                     <input type="text" value={img} onChange={event => setImg(event.target.value)} />
                 </label>
-                <label> <Text color="white" mb={-20}><h3>Description:</h3></Text>
+                <label> <Text color="black" mb={-20}><h3>Description:</h3></Text>
                     <input type="text" value={desc} onChange={event => setDesc(event.target.value)} />
                 </label>
 
-                <label> <Text color="white" mb={-20}><h3>Budget:</h3></Text>
+                <label> <Text color="black" mb={-20}><h3>Budget:</h3></Text>
                     <select value={budg} onChange={(e) => setBudg(e.target.value)}>
                         <option value="budget">Budget</option>
                         <option value="moderate">Moderate</option>
                         <option value="luxury">Luxury</option>
                     </select>
                 </label>
-                <label> <Text color="white" mb={-20}><h3>Location:</h3></Text>
+                <label> <Text color="black" mb={-20}><h3>Location:</h3></Text>
                     <input type="text" value={loc} onChange={event => setLoc(event.target.value)} />
                 </label>
                 {/* <label> Attendees:
                     <input type="text" value={tripAttendees} onChange={event => setTripAttendees(event.target.value)} />
                 </label> */}
        {/*  {console.log({allUsers})} */}
-                <label> <Text color="white" mb={-20}><h3>Attendees:</h3></Text>
+                <label> <Text color="black" mb={-20}><h3>Attendees:</h3></Text>
                 <select name="attendees" id="attendees-select" multiple value={attendees} onChange={(e)=>handleAttendeesChange(e)}>
                     <option value="">--Please choose an option--</option>
                     {allUsers ? allUsers.map(user=>{
@@ -142,34 +150,22 @@ const TripForm= ({allUsers}) => {
                 </label>
 
                 <Box mt={50}>
-                    <button type="submit" style={{ backgroundColor: 'white', fontSize: '20px', color:'black' }}>{"Create your trip"}</button>
+                    <button type="submit" style={{ backgroundColor: 'darkgrey', fontSize: '20px', color:'white' }}>{"Create your trip"}</button>
                 </Box>
 
             </form>
+            </Paper>
+         </Flex>
+         </Box>
 
-            <Box
-            sx={{
-              margin: '0 auto',
-              maxWidth: '400px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              height: 'calc(35vh - 10px)',
-            }}
-            />
-            </Box>
-        </Flex>
-        
-        
-        
-        </BackgroundImage>
+         
 
         
 
 
       
 
-</Box>
+</Flex>
 
 
 

@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useNavigate, useParams} from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext'
 import placeholderImage from "../images/placeholder-image.jpg"
+import { Box, Flex, Button, PasswordInput, Text, TextInput, BackgroundImage } from '@mantine/core'
 
 function ProposalForm() {
     const navigate = useNavigate()

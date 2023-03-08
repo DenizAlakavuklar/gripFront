@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 import Profile from "./pages/Profile";
-import PrivateRoute from './components/Privateroute'
+import PrivateRoute from './components/PrivateRoute'
 import AllTripsPage from './pages/AllTripsPage'
 import NewTripPage from './pages/NewTripPage'
 import TripPage from './pages/TripPage'

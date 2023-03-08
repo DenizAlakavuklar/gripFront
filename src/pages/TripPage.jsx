@@ -13,6 +13,7 @@ const TripPage = () => {
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(true)
   const [trip, setTrip] = useState()
+  const [isDelete, setIsDelete] = useState(false)
   const [isSureDelete, setIsSureDelete] = useState(false)
   const [proposals, setProposals] = useState([])
   const { userId } = useContext(SessionContext);
@@ -47,7 +48,8 @@ const TripPage = () => {
 
   useEffect(() => {
     fetchTrip()
-  }, [tripId])
+    setIsDelete(false)
+  }, [tripId, isDelete])
 
   /*   useEffect(() => {
       fetchTrip()
@@ -70,12 +72,15 @@ if(!isSureDelete){
     
   }
 
-  const handleProposalDelete = async (proposalId) => {
+  const handleProposalDelete = async (tripId, proposalId) => {
+    console.log("tripId", tripId)
     console.log("proposalId", proposalId)
     await fetch(`http://localhost:5005/proposals/${tripId}/${proposalId}`, {
       method: 'DELETE',
     })
+    setIsDelete(true)
     navigate(`/trips/${tripId}`)
+
   }
 
   return isLoading ? (
@@ -188,7 +193,7 @@ if(!isSureDelete){
           <button type='button'>Update</button>
           </Link> */}
 
-                            <Button color="cyan.8" type='button' onClick={(e) => { handleProposalDelete(proposal._id) }}>
+                            <Button color="cyan.8" type='button' onClick={(e) => { handleProposalDelete(tripId, proposal._id) }}>
                               Delete
                             </Button>
                           </>

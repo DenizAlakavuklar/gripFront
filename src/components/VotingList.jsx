@@ -8,6 +8,7 @@ function VotingList({proposal, allVotes, trip}) {
     const {tripId} = useParams()
     const [proposals, setProposals] = useState([])
     const [votes, setVotes] = useState(allVotes)
+    const [attendeesAllTrips, setAttendeesAllTrips] = useState([]);
     const fetchProposals = async () => {
         try {
   
@@ -25,11 +26,28 @@ function VotingList({proposal, allVotes, trip}) {
     
       useEffect(() => {
         fetchProposals()
+        fetchAttendeesTrips()
       }, [votes])
     
 
+      const fetchAttendeesTrips = async () => {
+        try {
+
+          //trips where user is an attendee
+          const response = await fetch(`http://localhost:5005/trip/trips/usertrips/${userId}/attendeesAll`);
+          const parsed = await response.json();
+
+          setAttendeesAllTrips(parsed.map(trip => trip._id));
+  
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
   return (
     <div>
+
+     
 {votes.length ?
 (<ul>
                {votes.map(user =>{
@@ -37,7 +55,8 @@ function VotingList({proposal, allVotes, trip}) {
                 })}
             </ul>) : <p>No votes yet!</p>}
           
-            <VoteButton key={proposal._id}  
+
+{attendeesAllTrips.includes(tripId) ? <VoteButton key={proposal._id}  
                 allVotes={proposal.votes} proposalId={proposal._id} trip={proposal.trip} tripId={tripId}
                 title={proposal.title}
                 image={proposal.image}
@@ -49,7 +68,7 @@ function VotingList({proposal, allVotes, trip}) {
                 link2={proposal.link2}
                 votes={votes}
                 setVotes={setVotes}
-                />
+                /> : ""}
 
     </div>
   )

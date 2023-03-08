@@ -97,7 +97,7 @@ const TripPage = () => {
 
             <Text>{trip.tripName}</Text>
 
-            <Text size="sm" ><b>Date estimation:  </b>{trip.dateDescription}</Text>
+            {/* <Text size="sm" ><b>Date estimation:  </b>{trip.dateDescription}</Text> */}
             <Paper w={600}>
               <Text size="sm" minRows={2} ><b>Description:  </b>{trip.description}</Text></Paper>
             <Text size="sm" ><b>Budget:  </b>{trip.budget}</Text>
@@ -109,7 +109,7 @@ const TripPage = () => {
               })}
             </ul>
 
-            <Text color="cyan.9" underline italic>Created By: {trip.createdBy.username}</Text>
+            <Text color="cyan.9">Created By: {trip.createdBy.username}</Text>
           </Flex>
           {/*  {console.log("userId: ", userId, "trip.createdBy: ", trip.createdBy)} */}
           {/* Only show update and delete buttons if you were the creator */}
@@ -157,8 +157,9 @@ const TripPage = () => {
                   <Grid.Col key={proposal._id} md={6} lg={3} >
                     <Card shadow="sm" padding="lg" radius="md" withBorder p="xl" w={300} >
                       <Card.Section mb={20} >
+                      <Link to={`/proposals/${tripId}/${proposal._id}`}>
                         <Image src={proposal.image} alt="trip" height={200} />
-
+                      </Link>
                       </Card.Section>
                       <Paper h={150}>
                         <Text fz="lg" fw={700} lineClamp={2}>{proposal.title}</Text>
@@ -168,7 +169,7 @@ const TripPage = () => {
 
                         <Text size="sm" ><b>Nights:</b> {proposal.nights}</Text>
                         <Link to={`/proposals/${tripId}/${proposal._id}`} style={{ color: "indigo" }}>
-                          View details
+                          <p>View details</p>
                         </Link>
                       </Paper>
                       <Divider size="sm" mt={30} />
@@ -177,7 +178,7 @@ const TripPage = () => {
                         <Votes proposal={proposal} allVotes={proposal.votes} trip={trip._id} tripId={trip._id} />
 
                         <Flex justify="flex-start" align="flex-start" direction={"row"} gap="xl" mt={20}>
-                          <Text color="cyan.9" underline italic>Added By:  {proposal.createdBy.username} <img src={proposal.createdBy.picture} width="20" /></Text>
+                          <Text color="cyan.9">Added By:  {proposal.createdBy.username} <img src={proposal.createdBy.picture} width="20" /></Text>
 
                           {/* Only show update and delete buttons if you were the creator */}
                           {userId === proposal.createdBy._id ?

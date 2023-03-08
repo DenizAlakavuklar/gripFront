@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useNavigate, useParams} from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext'
 import placeholderImage from "../images/placeholder-image.jpg"
-import { Box, Flex, Button, PasswordInput, Text, TextInput, BackgroundImage } from '@mantine/core'
+import { Box, Flex, Button, PasswordInput, Text, TextInput, Image, Paper } from '@mantine/core'
 
 function ProposalForm() {
     const navigate = useNavigate()
@@ -65,24 +65,36 @@ function ProposalForm() {
 
 
   return (
-    <div>
-      <h1>Create New Proposal</h1>
-      <h2>for: {tripId}</h2>
+    <>
+    <Flex direction="row" >
+
+<Box ml={50} mr={100}>
+    <Image width={800} height={930} radius="md" src="https://images.unsplash.com/photo-1536745287225-21d689278fd1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80">
+   
+    </Image>
+</Box>
+
+<Box>
+        
+             <Paper mr={50} ml={50} shadow="xl" radius="md" p={100} width={900} pt={80}>     
+             <Flex justify="center" align="center" direction="column" height={20}>
+
+      <h1>Create a new proposal for: {tripId} </h1>
+      
 
       <div>
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column" }}>
-                <label> Proposal Title:
+                <label> <Text color="black" mb={-20}><h3>Proposal title:</h3></Text>
                     <input type="text" value={title} onChange={event => setTitle(event.target.value)} />
                 </label>
-                <label> Image:
+                <label> <Text color="black" mb={-20}><h3>Image:</h3></Text>
                     <input type="text" value={image} onChange={event => setImage(event.target.value)} />
                 </label>
-                <label> Location:
+                <label> <Text color="black" mb={-20}><h3>Location:</h3></Text>
                     <input type="text" value={location} onChange={event => setLocation(event.target.value)} />
                 </label>
 
-                <label>
-                    Type:
+                <label> <Text color="black" mb={-20}><h3>Type:</h3></Text>
                     <select value={type} onChange={(e) => setType(e.target.value)}>
                         <option value="AirBnB">AirBnB</option>
                         <option value="Camping">Camping</option>
@@ -91,32 +103,39 @@ function ProposalForm() {
                         <option value="Serviced Apartment">Serviced Apartment</option>
                     </select>
                 </label>
-                <label> Total Price:
+                <label> <Text color="black" mb={-20}><h3>Total price:</h3></Text>
                     <input type="number" value={totalPrice} onChange={event => setTotalPrice(event.target.value)} />
                 </label>
-                <label> Number of Nights:
+                <label> <Text color="black" mb={-20}><h3># of nights:</h3></Text>
                     <input type="number" value={nights} onChange={event => setNights(event.target.value)} />
                 </label>
 
-                <label> Link:
+                <label><Text color="black" mb={-20}><h3>Link #1:</h3></Text>
                     <input type="text" value={link} onChange={event => setLink(event.target.value)} />
                 </label>
 
-                <label> Another Link:
+                <label> <Text color="black" mb={-20}><h3>Link #2:</h3></Text>
                     <input type="text" value={link2} onChange={event => setLink2(event.target.value)} />
                 </label>
     
-
-                <button type="submit">{"Create your proposal"}</button>
+                <Box mt={50} mb={-35}>
+                    <button type="submit" style={{ backgroundColor: '#4ECAC8', fontSize: '20px', color:'white' }}>{"Create your proposal"}</button>
+                </Box>
 
             </form>
 
 
         </div>
+        </Flex>
+        </Paper>
+       
+        </Box>
+
+    </Flex>
 
 
-
-    </div>
+   
+    </>
   )
 }
 

@@ -15,12 +15,12 @@ const NavBar = () => {
       <Box ml={20} mb={10}>
       {/* <Button component={Link} to='/' variant='subtle' color='cyan'> */}
         <a href="/">
-          <img src={grip_logo} width="170" height="75"/>
+          <img src={grip_logo} width="120" height="50"/>
         </a>
       </Box>
 
       {/* </Button> */}
-      <Box mt={20}>
+      <Box mt={10}>
 
       
       {/* <Button component={Link} to='/about' variant='subtle' color='cyan'>
@@ -28,10 +28,10 @@ const NavBar = () => {
         </Button> */}
         {!isAuthenticated && (
           <>
-        <Button component={Link} to='/signup' variant='subtle' color='cyan'>
+        <Button component={Link} to='/signup' variant='subtle' color='cyan' size='md'>
           Signup
         </Button>
-        <Button component={Link} to='/login' variant='subtle' color='cyan'>
+        <Button component={Link} to='/login' variant='subtle' color='cyan' size='md'>
           Login
         </Button>
         </>

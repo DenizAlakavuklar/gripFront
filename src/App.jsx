@@ -28,7 +28,7 @@ function App() {
     <AppShell
       padding='md'
       header={
-        <Header height={90} p='xs' shadow="xl" sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Header height={70} p='xs' shadow="xl" sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <NavBar />
         </Header>
       }

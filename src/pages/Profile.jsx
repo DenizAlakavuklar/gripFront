@@ -57,7 +57,15 @@ function Profile() {
       setTripCount(trips.length);
     }, [trips]);
     if (!user) {
-      return <div>Loading...</div>;
+      return <div><ColorRing
+      visible={true}
+      height="80"
+      width="80"
+      ariaLabel="blocks-loading"
+      wrapperStyle={{}}
+      wrapperClass="blocks-wrapper"
+      colors={['#d6f5f9', '#13daf4', '#a7f0f9', '#40d2e5', '#15aabf']}
+      /></div>;
     } 
 
     //console.log("Thus is the username:", typeof user.username)

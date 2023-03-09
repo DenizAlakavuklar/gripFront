@@ -2,7 +2,7 @@ import { Box, Button, Image } from '@mantine/core'
 import { Link } from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext'
 import { useContext } from 'react'
-import grip_logo from "../images/grip_logo.png"
+import grip_logo from "../images/grip_long.png"
 
 
 
@@ -14,7 +14,9 @@ const NavBar = () => {
     <>
       <Box ml={20} mb={10}>
       {/* <Button component={Link} to='/' variant='subtle' color='cyan'> */}
-        <img src={grip_logo} width="70" height="75"/>
+        <a href="/">
+          <img src={grip_logo} width="170" height="75"/>
+        </a>
       </Box>
 
       {/* </Button> */}

@@ -37,7 +37,7 @@ const HomePage = () => {
               <h2> Welcome to your next adventure, welcome to Grip</h2>
             </Text>
           <Button component={Link} to={userId === null ? '/login' : '/trips/usertrips'} color="cyan" mt={80} ml={-700}  radius="md" size="lg">
-            {userId === null ? "Login" : "Explore your trips"}
+          Explore your trips
           </Button>
               
           <Box

@@ -130,7 +130,7 @@ const TripUpdateForm = ({ tripName, image, description, budget, location, curren
                 </label>
 
                 <label><Text color="black" mb={-20}><h3>Budget:</h3></Text>
-                  <select value={budg} onChange={(e) => setBudg(e.target.value)}>
+                  <select value={budg} onChange={(e) => setBudg(e.target.value)} size="3">
                     <option value="budget">Budget</option>
                     <option value="moderate">Moderate</option>
                     <option value="luxury">Luxury</option>
@@ -141,12 +141,23 @@ const TripUpdateForm = ({ tripName, image, description, budget, location, curren
                   <input style={{ width: 700 }} type="text" value={loc} onChange={event => setLoc(event.target.value)} />
                 </label>
 
-
+{console.log(attendees)}
                 <label><Text color="black" mb={-20}><h3>Attendees:</h3></Text>
 
-                  <select  name="attendees" id="attendees-select" multiple value={updatedAttendees} onChange={(e) => handleAttendeesChange(e)}>
+                  <select  name="attendees" id="attendees-select" multiple value={updatedAttendees} onChange={(e) => handleAttendeesChange(e)} size="20">
                     <option  value="" disabled>--Please choose an option--</option>
-                    {attendees.map(user => {
+                    {attendees.sort((a, b) => {
+  const nameA = a.username
+  const nameB = b.username
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+
+  return 0;
+}).map(user => {
 
                       return <option value={user._id} key={user._id} selected>{user.username}</option>
 
@@ -156,6 +167,18 @@ const TripUpdateForm = ({ tripName, image, description, budget, location, curren
 
                     {allUsers ? allUsers
                       .filter((el) => !attendeesId.includes(el._id))
+                      .sort((a, b) => {
+                        const nameA = a.username
+                        const nameB = b.username
+                        if (nameA < nameB) {
+                          return -1;
+                        }
+                        if (nameA > nameB) {
+                          return 1;
+                        }
+                      
+                        return 0;
+                      })
                       .map(user => {
 
                         return <option value={user._id} key={user._id}>{user.username}</option>

@@ -137,7 +137,7 @@ colors={['#d6f5f9', '#13daf4', '#a7f0f9', '#40d2e5', '#15aabf']}
                                 </label>
 
                                 <label> <Text color="black" mb={-20}><h3>Type:</h3></Text>
-                                    <select value={type} onChange={(e) => setType(e.target.value)}>
+                                    <select value={type} onChange={(e) => setType(e.target.value)} size="5">
                                         <option value="AirBnB">AirBnB</option>
                                         <option value="Camping">Camping</option>
                                         <option value="Crash at a friends">Crash at a friends</option>

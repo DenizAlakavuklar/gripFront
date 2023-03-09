@@ -6,6 +6,7 @@ import SignupPage from './pages/SignupPage'
 import Profile from "./pages/Profile";
 import PrivateRoute from './components/PrivateRoute'
 import AllTripsPage from './pages/AllTripsPage'
+import NotFound404 from './pages/NotFound404'
 import NewTripPage from './pages/NewTripPage'
 import TripPage from './pages/TripPage'
 import UpdateTripPage from './pages/UpdateTripPage'
@@ -57,7 +58,7 @@ function App() {
         <Route path='/proposals/:tripId/:proposalId' element={<ProposalDetailsPage />} />
 
       {/* //Adding a page not found: */}
-      <Route path='*' element={<h1>404 Not Found</h1>} />
+      <Route path='*' element={<NotFound404 />} />
         {/* Add some new route(s) on what you want to work, don't forget to make a PrivateRoute component */}
       </Routes>
     </AppShell>

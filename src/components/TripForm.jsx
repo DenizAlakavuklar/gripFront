@@ -125,7 +125,7 @@ const TripForm= ({allUsers}) => {
                 </label>
 
                 <label> <Text color="black" mb={-20}><h3>Budget:</h3></Text>
-                    <select value={budg} onChange={(e) => setBudg(e.target.value)}>
+                    <select value={budg} onChange={(e) => setBudg(e.target.value)} size="3">
                         <option value="budget">Budget</option>
                         <option value="moderate">Moderate</option>
                         <option value="luxury">Luxury</option>
@@ -136,9 +136,20 @@ const TripForm= ({allUsers}) => {
                 </label>
 
                 <label> <Text color="black" mb={-20}><h3>Attendees:</h3></Text>
-                <select name="attendees" id="attendees-select" multiple value={attendees} onChange={(e)=>handleAttendeesChange(e)}>
+                <select name="attendees" id="attendees-select" multiple value={attendees} onChange={(e)=>handleAttendeesChange(e)} size="20">
                     <option value="" disabled>--Please choose an option--</option>
-                    {allUsers ? allUsers.map(user=>{
+                    {allUsers ? allUsers.sort((a, b) => {
+  const nameA = a.username
+  const nameB = b.username
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+
+  return 0;
+}).map(user=>{
                         if(userId !== user._id){
                             return <option  value={user._id} key={user._id}>{user.username}</option>
                         }

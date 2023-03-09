@@ -70,12 +70,12 @@ function ProposalDetailsPage() {
                   <p><b>Type:</b> {proposals.type}</p>
                   <p><b>Location:</b> {proposals.location}</p>
                   <p><b>Total Price:</b> {proposals.totalPrice}</p>
-                  <p><b>Price per night:</b> {proposals.totalPrice / proposals.nights}</p>
+                  <p><b>Price per night:</b> {Math.round(proposals.totalPrice / proposals.nights)}</p>
                   <p><b>Nights:</b> {proposals.nights}</p>
                 
-              {/* <Link to={proposals.link} target="_blank">
+              <a href={proposals.link} target="_blank">
                   <button type='button'>More info</button>
-              </Link> */}
+              </a>
 
               {proposals.link2 ? (<Link to={proposals.link2} target="_blank">
                   <button type='button'>More info</button>

@@ -96,16 +96,24 @@ const TripUpdateForm = ({ tripName, image, description, budget, location, curren
 
   return (
     <>
+      <Box mt={30} mb={50}>
+        <Flex justify="center" align="center">
+            <h1> Udpate your trip</h1>
+        </Flex>
+      </Box>
 
-      <Flex direction="row" >
-        <Box ml={50} mr={20}>
-          <Image radius="md" src={image} width={300}>
+      <Flex direction="row" justify="center" align="center">
+      
+        <Box  mr={20} >
+          <Image radius="md" src={image} width={800} height={700}>
           </Image>
         </Box>
 
         <Box>
+      
           <Flex justify="center" align="center" width={800} height={20}>
-            <Paper mr={20} ml={-50} mt={-100} radius="md" p={100} width={900} pt={80}>
+          
+            <Paper radius="md" p={100} width={800} pt={20} shadow="xl">
 
               <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column" }}>
 
@@ -146,7 +154,7 @@ const TripUpdateForm = ({ tripName, image, description, budget, location, curren
                     <option  value="" disabled>--Please choose an option--</option>
                     {attendees.map(user => {
 
-                      return <option style={{background:"cyan"}} value={user._id} key={user._id} selected>{user.username}</option>
+                      return <option value={user._id} key={user._id} selected>{user.username}</option>
 
                     })}
 

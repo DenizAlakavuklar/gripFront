@@ -1,10 +1,12 @@
 import { Container, BackgroundImage, Box, Text, Flex, Button, Grid,ThemeIcon, Paper, Image, Divider, Blockquote, Card, Badge, Group } from '@mantine/core';
 import { IconBackpack, IconDirections, IconBrain  } from '@tabler/icons-react';
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { ColorRing } from 'react-loader-spinner';
+import { SessionContext } from '../contexts/SessionContext';
 
 const HomePage = () => {
+  const { userId } = useContext(SessionContext);
   const [newestUsers, setNewestUsers] = useState("")
   const fetchUsers = async () => {
     try {
@@ -29,13 +31,13 @@ const HomePage = () => {
           <BackgroundImage  src="https://images.unsplash.com/photo-1606933988322-a3cb8968e5ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80" >
           <Flex   justify="flex-start" align="center"  >
             <Text mt={-250} ml={150} align='center' size={50} weight='bold' color="white">
-              <h2> Make traveling with friends, easy</h2>
+              <h2> Make traveling with friends easy</h2>
             </Text>
             <Text  mt={-90} ml={-1100}  size={20} weight='bold' color="white">
               <h2> Welcome to your next adventure, welcome to Grip</h2>
             </Text>
-          <Button component={Link} to='/about' color="cyan" mt={80} ml={-700}  radius="md" size="lg">
-            Learn more
+          <Button component={Link} to={userId === null ? '/login' : '/trips/usertrips'} color="cyan" mt={80} ml={-700}  radius="md" size="lg">
+            {userId === null ? "Login" : "Explore your trips"}
           </Button>
               
           <Box
@@ -78,7 +80,7 @@ const HomePage = () => {
                       <ThemeIcon variant="light" radius="xl" size="xl" color="cyan">
                         <IconBackpack  />
                       </ThemeIcon>
-                      <h3>Friendly exploration   </h3>
+                      <h3>Friendly <br/>exploration   </h3>
                   </Paper> 
                   </Grid.Col> 
 
@@ -87,7 +89,7 @@ const HomePage = () => {
                       <ThemeIcon variant="light" radius="xl" size="xl" color="cyan">
                         <IconDirections  />
                       </ThemeIcon>
-                      <h3>Centralized decision making </h3>
+                      <h3>Centralized <br/>decision making </h3>
                   </Paper> 
                   </Grid.Col>
                  
@@ -251,7 +253,7 @@ return <img src={user.picture} width="60" alt={user.username}/> }) : <ColorRing
           activities on and around the fjords of Norway
         </Text>
 
-        <Button component={Link} to='/signup' variant='light' color='cyan' radius="md" size="lg" mt={30}>
+        <Button component={Link} to={userId === null ? '/login' : '/trips/alltrips'} variant='light' color='cyan' radius="md" size="lg" mt={30}>
           See details
         </Button>
       </Card>
@@ -278,7 +280,7 @@ return <img src={user.picture} width="60" alt={user.username}/> }) : <ColorRing
         Getting ready for an adventure in Costa Rica, where we'll be exploring the stunning beaches, hiking through lush rainforests, and experiencing the vibrant culture of the land.
         </Text>
 
-        <Button component={Link} to='/signup' variant='light' color='cyan' radius="md" size="lg" mt={30}>
+        <Button component={Link} to={userId === null ? '/login' : '/trips/alltrips'} variant='light' color='cyan' radius="md" size="lg" mt={30}>
           See details
         </Button>
       </Card>
@@ -305,7 +307,7 @@ return <img src={user.picture} width="60" alt={user.username}/> }) : <ColorRing
         We'll be savoring the flavors of authentic Mexican cuisine, marveling at the ancient ruins of the Mayan civilization, and soaking up the sun on the beaches of the Riviera Maya!
         </Text>
 
-        <Button component={Link} to='/signup' variant='light' color='cyan' radius="md" size="lg" mt={30}>
+        <Button component={Link} to={userId === null ? '/login' : '/trips/alltrips'} variant='light' color='cyan' radius="md" size="lg" mt={30}>
           See details
         </Button>
       </Card>

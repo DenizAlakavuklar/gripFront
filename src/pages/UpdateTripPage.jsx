@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import TripUpdateForm from '../components/TripUpdateForm'
-
+import { ColorRing } from 'react-loader-spinner';
 
 const UpdateTripPage = () => {
     const { tripId } = useParams()
@@ -20,8 +20,8 @@ const UpdateTripPage = () => {
         const parsed = await response.json()
         setTrip(parsed)
 
-        console.log("This is the parse", parsed)
-        console.log("This is the trip", trip)
+        //console.log("This is the parse", parsed)
+        //console.log("This is the trip", trip)
         setIsLoading(false)
       } catch (error) {
         console.log(error)
@@ -53,7 +53,15 @@ const UpdateTripPage = () => {
     return (
       <div>
              {isLoading ? (
-          <h1>Loading ...</h1>
+          <ColorRing
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          colors={['#d6f5f9', '#13daf4', '#a7f0f9', '#40d2e5', '#15aabf']}
+          />
         ) : (
           <TripUpdateForm
           tripName={trip.tripName}

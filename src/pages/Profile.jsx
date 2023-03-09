@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { SessionContext } from '../contexts/SessionContext';
 import { Box, Flex, Paper, Button, PasswordInput, Text, TextInput, BackgroundImage } from '@mantine/core'
-
+import { ColorRing } from 'react-loader-spinner';
 function Profile() {
   const [user, setUser] = useState(null);
   const { userId } = useParams();
@@ -60,7 +60,7 @@ function Profile() {
       return <div>Loading...</div>;
     } 
 
-    console.log("Thus is the username:", typeof user.username)
+    //console.log("Thus is the username:", typeof user.username)
   
   
     return (
@@ -76,7 +76,15 @@ function Profile() {
         <Box mt={230} mb={60}>
         <Paper shadow="xl" radius="md" p={100} pt={80}>
 
-                {user.username ? <h1>Welcome home, {user.username.charAt(0).toUpperCase() + user.username.substring(1)}!</h1> : "Loading"}
+                {user.username ? <h1>Welcome home, {user.username.charAt(0).toUpperCase() + user.username.substring(1)}!</h1> : <ColorRing
+visible={true}
+height="80"
+width="80"
+ariaLabel="blocks-loading"
+wrapperStyle={{}}
+wrapperClass="blocks-wrapper"
+colors={['#d6f5f9', '#13daf4', '#a7f0f9', '#40d2e5', '#15aabf']}
+/>}
       
 
                 <p>Explore and discover the world with us.</p>

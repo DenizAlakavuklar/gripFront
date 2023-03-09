@@ -6,7 +6,7 @@ import Votes from '../components/Votes'
 import VotingList from '../components/VotingList'
 import { SessionContext } from '../contexts/SessionContext'
 import { Card, Image, Flex, Text, Container, Button, Grid, Space, Box, Divider, Textarea, Paper } from '@mantine/core';
-
+import { ColorRing } from 'react-loader-spinner';
 
 const TripPage = () => {
   const { tripId } = useParams()
@@ -98,7 +98,15 @@ const TripPage = () => {
   }
 
   return isLoading ? (
-    <h1>Loading...</h1>
+    <ColorRing
+visible={true}
+height="80"
+width="80"
+ariaLabel="blocks-loading"
+wrapperStyle={{}}
+wrapperClass="blocks-wrapper"
+colors={['#d6f5f9', '#13daf4', '#a7f0f9', '#40d2e5', '#15aabf']}
+/>
   ) : (
     <>
     

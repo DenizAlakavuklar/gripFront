@@ -9,6 +9,7 @@ import placeholderImage4 from "../images/placeholder-image4.jpg"
 import placeholderImage5 from "../images/placeholder-image5.jpg"
 import placeholderImage6 from "../images/placeholder-image6.jpg"
 import { Box, Flex, Button, PasswordInput, Text, TextInput, Image, Paper } from '@mantine/core'
+import { ColorRing } from 'react-loader-spinner';
 
 function ProposalForm() {
     const navigate = useNavigate()
@@ -26,13 +27,13 @@ function ProposalForm() {
     const [nights, setNights] = useState(0)
     const [link, setLink] = useState("")
     const [link2, setLink2] = useState("")
-    console.log(userId)
+    //console.log(userId)
 
     const fetchTrip = async () => {
         try {
             const response = await fetch(`${import.meta.env.VITE_HOST}/trip/trips/${tripId}`)
             const parsed = await response.json()
-            console.log("parsed", parsed)
+            //console.log("parsed", parsed)
             setTrip(parsed)
 
         } catch (error) {
@@ -78,11 +79,11 @@ function ProposalForm() {
                         }),
                     }
                 )
-                console.log("response", response)
+                //console.log("response", response)
 
                 if (response.status === 201) {
                     const parsed = await response.json()
-                    console.log("parsed", parsed)
+                    //console.log("parsed", parsed)
                     navigate(`/trips/${tripId}/`)
                 }
                 if (response.status === 200) {
@@ -114,7 +115,15 @@ function ProposalForm() {
                     <Flex justify="center" align="center" w={800} height={20}>
                         <Paper mr={50} ml={20} shadow="xl" radius="md" p={100} width={900} pt={80}>
                             <Text mb={60}> <h1>Create a new proposal for the trip:</h1></Text>
-                            <Text mb={60}><h2>{trip ? trip.tripName : "Loading"} </h2></Text>
+                            <Text mb={60}><h2>{trip ? trip.tripName : <ColorRing
+visible={true}
+height="80"
+width="80"
+ariaLabel="blocks-loading"
+wrapperStyle={{}}
+wrapperClass="blocks-wrapper"
+colors={['#d6f5f9', '#13daf4', '#a7f0f9', '#40d2e5', '#15aabf']}
+/>} </h2></Text>
 
                             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column" }}>
                                 <label> <Text color="black" mb={-20}><h3>Proposal title:</h3></Text>

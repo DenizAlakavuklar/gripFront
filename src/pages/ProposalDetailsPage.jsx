@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { SessionContext } from '../contexts/SessionContext';
 import Votes from '../components/Votes';
 import { Card, Image, Flex, Text, Container, Group, Button, Grid, Space, Box, Paper} from '@mantine/core';
-
+import { ColorRing } from 'react-loader-spinner';
 
 function ProposalDetailsPage() {
     const { tripId, proposalId } = useParams()
@@ -41,7 +41,15 @@ function ProposalDetailsPage() {
 
 
     return isLoading ? (
-        <h1>Loading...</h1>
+      <ColorRing
+      visible={true}
+      height="80"
+      width="80"
+      ariaLabel="blocks-loading"
+      wrapperStyle={{}}
+      wrapperClass="blocks-wrapper"
+      colors={['#d6f5f9', '#13daf4', '#a7f0f9', '#40d2e5', '#15aabf']}
+      />
       ) : (
         <>
         <Flex justify="flex-start" align="flex-start" direction={'column'}  >

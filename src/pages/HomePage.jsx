@@ -2,6 +2,7 @@ import { Container, BackgroundImage, Box, Text, Flex, Button, Grid,ThemeIcon, Pa
 import { IconBackpack, IconDirections, IconBrain  } from '@tabler/icons-react';
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react';
+import { ColorRing } from 'react-loader-spinner';
 
 const HomePage = () => {
   const [newestUsers, setNewestUsers] = useState("")
@@ -123,7 +124,15 @@ const HomePage = () => {
 <Box>
 <Container size="md" px="xs">
 {newestUsers ? newestUsers.map(user =>{ 
-return <img src={user.picture} width="60" alt={user.username}/> }) : "Loading"}
+return <img src={user.picture} width="60" alt={user.username}/> }) : <ColorRing
+  visible={true}
+  height="80"
+  width="80"
+  ariaLabel="blocks-loading"
+  wrapperStyle={{}}
+  wrapperClass="blocks-wrapper"
+  colors={['#d6f5f9', '#13daf4', '#a7f0f9', '#40d2e5', '#15aabf']}
+/>}
 </Container>
 </Box>
             

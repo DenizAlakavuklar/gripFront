@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, Image, Text, Group, Container, Button, Grid, Box, Paper, Flex } from '@mantine/core';
-
+import { ColorRing } from 'react-loader-spinner';
 const AllTripsPage = () => {
   const [trips, setTrips] = useState([])
 
@@ -23,7 +23,7 @@ const AllTripsPage = () => {
 
   console.log("THESE ARE TRIPS:", trips)
   if (trips.length === 0) {
-    <p> Loading...</p>
+    <p> There are no trips in the database. </p>
   }
 
   return (
@@ -31,9 +31,11 @@ const AllTripsPage = () => {
       <Flex align="center" justify="center" >
         <Text fz="xl" fw={900}> <h2>Discover the trips created by the Grip community </h2> </Text>
       </Flex>
+
+
       <Paper mt={-50} mr={50} ml={50} shadow="xl" radius="md" p={100} width={900}>
         <Grid gutter="lg">
-          {trips.map((trip) => {
+          {trips ? trips.map((trip) => {
             return (
               <Grid.Col key={trip._id} md={6} lg={3} maw={150}>
 
@@ -59,7 +61,15 @@ const AllTripsPage = () => {
 
               </Grid.Col>
             )
-          })}
+          }) : <ColorRing
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          colors={['#d6f5f9', '#13daf4', '#a7f0f9', '#40d2e5', '#15aabf']}
+          />}
         </Grid>
       </Paper>
     </Container>

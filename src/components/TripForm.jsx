@@ -134,10 +134,7 @@ const TripForm= ({allUsers}) => {
                 <label> <Text color="black" mb={-20}><h3>Location:</h3></Text>
                     <input  style={{ width: 500 }} type="text" value={loc} onChange={event => setLoc(event.target.value)} />
                 </label>
-                {/* <label> Attendees:
-                    <input type="text" value={tripAttendees} onChange={event => setTripAttendees(event.target.value)} />
-                </label> */}
-       {/*  {console.log({allUsers})} */}
+
                 <label> <Text color="black" mb={-20}><h3>Attendees:</h3></Text>
                 <select name="attendees" id="attendees-select" multiple value={attendees} onChange={(e)=>handleAttendeesChange(e)}>
                     <option value="" disabled>--Please choose an option--</option>

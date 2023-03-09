@@ -141,7 +141,6 @@ const TripUpdateForm = ({ tripName, image, description, budget, location, curren
                   <input style={{ width: 700 }} type="text" value={loc} onChange={event => setLoc(event.target.value)} />
                 </label>
 
-{console.log(attendees)}
                 <label><Text color="black" mb={-20}><h3>Attendees:</h3></Text>
 
                   <select  name="attendees" id="attendees-select" multiple value={updatedAttendees} onChange={(e) => handleAttendeesChange(e)} size="20">

@@ -112,7 +112,7 @@ function ProposalForm() {
 
                 <Box>
                     <Flex justify="center" align="center" w={800} height={20}>
-                        <Paper mr={50} ml={20} shadow="xl" radius="md" p={100} width={900} pt={80}>
+                        <Paper mr={50} ml={20} shadow="xl" radius="md" p={100} width={900} pt={30}>
                             <Text mb={60}> <h1>Create a new proposal for the trip:</h1></Text>
                             <Text mb={60}><h2>{trip ? trip.tripName : "Loading"} </h2></Text>
 

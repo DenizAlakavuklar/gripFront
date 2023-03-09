@@ -22,7 +22,7 @@ return(
                 <h2>Grip </h2>
                 </Text>
                 <Text color="white" mt={-20}>
-                Simplifying traveling
+                Simplify group traveling
                 </Text>
             </Flex>
 

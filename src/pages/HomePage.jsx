@@ -242,7 +242,7 @@ return <img src={user.picture} width="60" alt={user.username}/> }) : "Loading"}
           activities on and around the fjords of Norway
         </Text>
 
-        <Button vcomponent={Link} to='/signup' variant='light' color='cyan' radius="md" size="lg" mt={30}>
+        <Button component={Link} to='/signup' variant='light' color='cyan' radius="md" size="lg" mt={30}>
           See details
         </Button>
       </Card>
@@ -269,7 +269,7 @@ return <img src={user.picture} width="60" alt={user.username}/> }) : "Loading"}
         Getting ready for an adventure in Costa Rica, where we'll be exploring the stunning beaches, hiking through lush rainforests, and experiencing the vibrant culture of the land.
         </Text>
 
-        <Button vcomponent={Link} to='/signup' variant='light' color='cyan' radius="md" size="lg" mt={30}>
+        <Button component={Link} to='/signup' variant='light' color='cyan' radius="md" size="lg" mt={30}>
           See details
         </Button>
       </Card>
@@ -296,7 +296,7 @@ return <img src={user.picture} width="60" alt={user.username}/> }) : "Loading"}
         We'll be savoring the flavors of authentic Mexican cuisine, marveling at the ancient ruins of the Mayan civilization, and soaking up the sun on the beaches of the Riviera Maya!
         </Text>
 
-        <Button vcomponent={Link} to='/signup' variant='light' color='cyan' radius="md" size="lg" mt={30}>
+        <Button component={Link} to='/signup' variant='light' color='cyan' radius="md" size="lg" mt={30}>
           See details
         </Button>
       </Card>

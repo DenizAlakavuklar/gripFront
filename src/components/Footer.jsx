@@ -21,7 +21,7 @@ return(
             <Flex align="center" justify="center" direction="column">
                 <Text color="white">
                 <Box ml={20} mb={30}>
-                    <img src={grip_logo} width="70" height="75"/>
+                    <img src={grip_logo} width="60" height="75"/>
                 </Box>
                 
                 </Text>

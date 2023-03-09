@@ -14,7 +14,9 @@ const NavBar = () => {
     <>
       <Box ml={20} mb={10}>
       {/* <Button component={Link} to='/' variant='subtle' color='cyan'> */}
+        <Link to={'/'}>
         <img src={grip_logo} width="70" height="75"/>
+          </Link>
       </Box>
 
       {/* </Button> */}

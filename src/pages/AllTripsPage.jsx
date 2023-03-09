@@ -29,42 +29,40 @@ const AllTripsPage = () => {
   return (
     <Container size="xl" px="xs">
       <Flex align="center" justify="center" >
-        <Text fz="xl"  fw={900}> <h2>Discover the trips created by the Grip community </h2> </Text>
+        <Text fz="xl" fw={900}> <h2>Discover the trips created by the Grip community </h2> </Text>
       </Flex>
-      <br/>
-
-    <Paper  mt={60} mr={50} ml={50} shadow="xl" radius="md" p={100} width={900}>
+      <Paper mt={-50} mr={50} ml={50} shadow="xl" radius="md" p={100} width={900}>
         <Grid gutter="lg">
           {trips.map((trip) => {
             return (
               <Grid.Col key={trip._id} md={6} lg={3} maw={150}>
 
                 <Card shadow="sm" padding="lg" radius="md" withBorder>
-                    <Card.Section component="a">
-                        <Link to={`/trips/${trip._id}`} style={{textDecoration:"none" , color:"#0B7285"}}>
-                          <Image
-                            src={trip.image}
-                            height={160}
-                            alt="trip"
-                          />
-                        </Link>
-                    </Card.Section>
+                  <Card.Section component="a">
+                    <Link to={`/trips/${trip._id}`} style={{ textDecoration: "none", color: "#0B7285" }}>
+                      <Image
+                        src={trip.image}
+                        height={160}
+                        alt="trip"
+                      />
+                    </Link>
+                  </Card.Section>
 
-                    <Box p={20}>
-                        <Button variant="light" color="cyan" fullWidth mt="md" radius="md">
-                          
-                              <Link to={`/trips/${trip._id}`} style={{textDecoration:"none" , color:"#0B7285"}}>{trip.tripName}</Link>
-                          
-                        </Button>
-                    </Box>
+                  <Box p={20}>
+                    <Button variant="light" color="cyan" fullWidth mt="md" radius="md">
+
+                      <Link to={`/trips/${trip._id}`} style={{ textDecoration: "none", color: "#0B7285" }}>{trip.tripName}</Link>
+
+                    </Button>
+                  </Box>
                 </Card>
 
               </Grid.Col>
             )
           })}
         </Grid>
-    </Paper>   
- </Container>
+      </Paper>
+    </Container>
 
 
   )

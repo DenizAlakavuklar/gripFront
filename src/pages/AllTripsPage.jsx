@@ -11,7 +11,7 @@ const AllTripsPage = () => {
       const response = await fetch(`${import.meta.env.VITE_HOST}/trip/trips/alltrips`)
       const parsed = await response.json()
       setTrips(parsed)
-      console.log("Parsed is :", parsed)
+      //console.log("Parsed is :", parsed)
     } catch (error) {
       console.log(error)
     }
@@ -21,7 +21,7 @@ const AllTripsPage = () => {
     fetchTrips()
   }, [])
 
-  console.log("THESE ARE TRIPS:", trips)
+  //console.log("THESE ARE TRIPS:", trips)
   if (trips.length === 0) {
     <p> There are no trips in the database. </p>
   }

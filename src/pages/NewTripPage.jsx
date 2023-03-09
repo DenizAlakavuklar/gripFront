@@ -11,7 +11,7 @@ function NewTripPage() {
       const response = await fetch(`${import.meta.env.VITE_HOST}/auth/allusers`)
       const parsed = await response.json()
       setAllUsers(parsed)
-      console.log("Parsed users is :", parsed)
+      //console.log("Parsed users is :", parsed)
     } catch (error) {
       console.log(error)
     }
@@ -19,7 +19,6 @@ function NewTripPage() {
 
   useEffect(()=>{
     fetchUsers()
-    console.log("HELLO mounted")
   }, [])
 
   return (

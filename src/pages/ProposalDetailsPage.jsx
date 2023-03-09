@@ -32,7 +32,7 @@ function ProposalDetailsPage() {
     }, [proposalId]) 
 
     const handleProposalDelete = async (proposalId) => {
-      console.log("proposalId", proposalId)
+      //console.log("proposalId", proposalId)
       await fetch(`${import.meta.env.VITE_HOST}/proposals/${tripId}/${proposalId}`, {
         method: 'DELETE',
       })

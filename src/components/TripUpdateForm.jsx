@@ -144,12 +144,6 @@ const TripUpdateForm = ({ tripName, image, description, budget, location, curren
 
                 <label><Text color="black" mb={-20}><h3>Attendees:</h3></Text>
 
-                  {
-                    /*  attendees.map(attendee => console.log(attendee._id)) */
-                    //console.log("attendeesId", attendeesId)
-                  }
-
-
                   <select  name="attendees" id="attendees-select" multiple value={updatedAttendees} onChange={(e) => handleAttendeesChange(e)}>
                     <option  value="" disabled>--Please choose an option--</option>
                     {attendees.map(user => {

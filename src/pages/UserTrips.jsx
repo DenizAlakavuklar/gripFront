@@ -7,21 +7,21 @@ function UserTrips() {
   const [userTrips, setUserTrips] = useState([]);
   const [attendeesTrips, setAttendeesTrips] = useState([]);
   const { userId } = useContext(SessionContext);
-  console.log("This is the user", userId)
+  //console.log("This is the user", userId)
   const fetchUserTrips = async () => {
     try {
 
       const response = await fetch(`${import.meta.env.VITE_HOST}/trip/trips/usertrips/${userId}`);
       const parsed = await response.json();
       setUserTrips(parsed);
-      console.log('Parsed is :', parsed);
+      //console.log('Parsed is :', parsed);
 
 
       //trips where user is an attendee
       const response2 = await fetch(`${import.meta.env.VITE_HOST}/trip/trips/usertrips/${userId}/attendees`);
       const parsed2 = await response2.json();
       setAttendeesTrips(parsed2);
-      console.log('Parsed2 is :', parsed2);
+      //console.log('Parsed2 is :', parsed2);
 
     } catch (error) {
       console.log(error);
@@ -34,7 +34,7 @@ function UserTrips() {
     }
   }, [userId]);
 
-  console.log('These are the user trips', userTrips);
+  //console.log('These are the user trips', userTrips);
 
 
   return (

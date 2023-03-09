@@ -10,7 +10,7 @@ const HomePage = () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_HOST}/auth/newestusers`)
       const parsed = await response.json()
-      console.log("newestUsers", newestUsers)
+      //console.log("newestUsers", newestUsers)
       setNewestUsers(parsed)
       //console.log("Parsed users is :", parsed)
     } catch (error) {

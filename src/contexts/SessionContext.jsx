@@ -12,7 +12,7 @@ const SessionContextProvider = ({ children }) => {
     const [userId, setUserId] = useState(null);
 
     const verifyToken = async (jwt) => {
-        console.log("JWT: ", jwt);
+        //console.log("JWT: ", jwt);
         try {
 
             let user = await axios.post(`${import.meta.env.VITE_HOST}/auth/verify`, undefined, {
@@ -37,7 +37,7 @@ const SessionContextProvider = ({ children }) => {
 
     useEffect(() => {
         const localToken = window.localStorage.getItem("hopper");
-        console.log("LOCAL TOKEN: ", localToken)
+        //console.log("LOCAL TOKEN: ", localToken)
         verifyToken(localToken);
     }, [])
 

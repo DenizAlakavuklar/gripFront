@@ -87,8 +87,8 @@ const TripPage = () => {
   }
 
   const handleProposalDelete = async (tripId, proposalId) => {
-    console.log("tripId", tripId)
-    console.log("proposalId", proposalId)
+    //console.log("tripId", tripId)
+    //console.log("proposalId", proposalId)
     await fetch(`${import.meta.env.VITE_HOST}/proposals/${tripId}/${proposalId}`, {
       method: 'DELETE',
     })
@@ -136,10 +136,8 @@ colors={['#d6f5f9', '#13daf4', '#a7f0f9', '#40d2e5', '#15aabf']}
               </Paper>
             
             </Flex>
-            {/*  {console.log("userId: ", userId, "trip.createdBy: ", trip.createdBy)} */}
+
             {/* Only show update and delete buttons if you were the creator */}
-
-
 
             <Flex justify="center" align="center" direction={"row"} gap="md" mt={50}>
               {userId === trip.createdBy._id ?

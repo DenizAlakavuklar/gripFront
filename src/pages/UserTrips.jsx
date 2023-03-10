@@ -51,7 +51,7 @@ function UserTrips() {
           <Text fz="xl" fw={700} mt={-60}>
             <h3>Trips you created: </h3>
           </Text>
-
+          {console.log(userTrips)}
           {userTrips.length > 0 ?
 
             <Container size="xl" px="xs">

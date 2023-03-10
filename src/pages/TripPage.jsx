@@ -16,6 +16,7 @@ const TripPage = () => {
   const [isDelete, setIsDelete] = useState(false)
   const [isSureDelete, setIsSureDelete] = useState(false)
   const [proposals, setProposals] = useState([])
+  const [attendeesAllTrips, setAttendeesAllTrips] = useState([]);
   const { userId } = useContext(SessionContext);
 
   const fetchTrip = async () => {
@@ -65,10 +66,9 @@ const TripPage = () => {
     setIsDelete(false)
   }, [tripId, isDelete])
 
-  /*   useEffect(() => {
-      fetchTrip()
+  useEffect(() => {
+    fetchAttendeesTrips()
     }, [proposals])
-   */
 
   const handleDelete = async () => {
     if (isSureDelete) {
@@ -168,12 +168,14 @@ colors={['#d6f5f9', '#13daf4', '#a7f0f9', '#40d2e5', '#15aabf']}
 
         </Box>
         <Box mt={50}>
-          <Flex direction={"row"} gap="5rem" >
-            <Text size="xl" weight={700}>Proposals</Text>
-            <Link to={`/proposals/${trip._id}/add`}>
-              <Button variant="outline" color="cyan" type='button'>Add a New</Button>
-            </Link>
-          </Flex>
+        <Flex direction={"row"} gap="5rem" >
+        <Text size="xl" weight={700}>Proposals</Text>
+        {attendeesAllTrips.includes(tripId) ? 
+        <Link to={`/proposals/${trip._id}/add`}>
+          <Button variant="outline" color="cyan" type='button'>Add New</Button>
+        </Link>
+        : ""}
+      </Flex>
           <br />
           <br />
           {/* If 0 proposals, show text, if not, show proposals */}

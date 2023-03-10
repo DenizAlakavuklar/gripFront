@@ -98,14 +98,14 @@ const TripUpdateForm = ({ tripName, image, description, budget, location, curren
     <>
       <Box mt={30} mb={50}>
         <Flex justify="center" align="center">
-            <h1> Udpate your trip</h1>
+            <h1> Update your trip</h1>
         </Flex>
       </Box>
 
-      <Flex direction="row" justify="center" align="center">
+      <Flex direction="row" justify="left" align="top">
       
         <Box  mr={20} >
-          <Image radius="md" src={image} width={800} height={700}>
+          <Image radius="md" src={image} width={400} height={300}>
           </Image>
         </Box>
 
@@ -143,7 +143,7 @@ const TripUpdateForm = ({ tripName, image, description, budget, location, curren
 
                 <label><Text color="black" mb={-20}><h3>Attendees:</h3></Text>
 
-                  <select  name="attendees" id="attendees-select" multiple value={updatedAttendees} onChange={(e) => handleAttendeesChange(e)} size="20">
+                  <select  name="attendees" id="attendees-select" multiple value={updatedAttendees} onChange={(e) => handleAttendeesChange(e)} size="5">
                     <option  value="" disabled>--Please choose an option--</option>
                     {attendees.sort((a, b) => {
   const nameA = a.username

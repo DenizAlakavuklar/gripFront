@@ -39,6 +39,17 @@ return(
                         </Blockquote>
                     </Box>
              </Flex>
+
+             <Divider my="sm" variant="dotted" />
+
+             <Grid>
+      <Grid.Col span={4}><a href="https://github.com/Lorex-ia" target="_blank" style={{color: "lightgrey", textDecoration: "none"}}>Alexia Lorenza Martinel</a>
+</Grid.Col>
+      <Grid.Col span={4}><a href="https://github.com/DenizAlakavuklar" target="_blank" style={{color: "lightgrey", textDecoration: "none"}}>Deniz Alakavuklar</a></Grid.Col>
+      <Grid.Col span={4} >
+      <a href="https://github.com/sorfbourt" target="_blank" style={{color: "lightgrey", textDecoration: "none"}}>Krystina Witt</a>
+    </Grid.Col>
+    </Grid>
         </Box>
 
     </>

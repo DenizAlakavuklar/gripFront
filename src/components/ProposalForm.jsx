@@ -98,24 +98,21 @@ function ProposalForm() {
     }
 
 
-
-
-
     return (
         <>
             <Flex direction="row" >
 
                 <Box ml={20} mr={20}>
-                    <Image width={800} height={980} radius="md" src="https://images.unsplash.com/photo-1536745287225-21d689278fd1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80">
+                    <Image width={800} height={1000} radius="md" src="https://images.unsplash.com/photo-1536745287225-21d689278fd1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80">
 
                     </Image>
                 </Box>
 
                 <Box>
                     <Flex justify="center" align="center" w={800} height={20}>
-                        <Paper mr={50} ml={20} shadow="xl" radius="md" p={100} width={900} pt={30}>
-                            <Text mb={60}> <h1>Create a new proposal for the trip:</h1></Text>
-                            <Text mb={60}><h2>{trip ? trip.tripName : <ColorRing
+                        <Paper mr={50} ml={20} mt={-20} shadow="xl" radius="md" p={100} width={900} pt={30}>
+                            <Text mb={30}> <h1>Create a new proposal for the trip:</h1></Text>
+                            <Text mb={30}><h2>{trip ? trip.tripName : <ColorRing
 visible={true}
 height="80"
 width="80"

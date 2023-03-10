@@ -111,7 +111,7 @@ const TripForm= ({allUsers}) => {
     <Box>
         <Flex justify="center" align="center" w={800} height={20}>
              <Paper mr={50} ml={20}  shadow="xl" radius="md" p={100} width={900} pt={90}>     
-             <Text mb={60}> <h1>Create a new trip</h1></Text>     
+             <Text mb={10} mt={-15}> <h1>Create a new trip</h1></Text>     
                <form onSubmit={handleSubmit}  style={{ display: "flex", flexDirection: "column" }}>
             <label> <Text color="black" mb={-20}><h3>Trip Name:</h3></Text>
                     <input style={{ width: 500 }} type="text" value={name} onChange={event => setName(event.target.value)} />
@@ -136,7 +136,7 @@ const TripForm= ({allUsers}) => {
                 </label>
 
                 <label> <Text color="black" mb={-20}><h3>Attendees:</h3></Text>
-                <select name="attendees" id="attendees-select" multiple value={attendees} onChange={(e)=>handleAttendeesChange(e)} size="20">
+                <select name="attendees" id="attendees-select" multiple value={attendees} onChange={(e)=>handleAttendeesChange(e)} size="5">
                     <option value="" disabled>--Please choose an option--</option>
                     {allUsers ? allUsers.sort((a, b) => {
   const nameA = a.username

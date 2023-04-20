@@ -13,7 +13,6 @@ import UpdateTripPage from './pages/UpdateTripPage'
 import ProposalDetailsPage from './pages/ProposalDetailsPage'
 import NewProposalPage from './pages/NewProposalPage'
 import NavBar from './components/NavBar'
-import AboutGRIP from './pages/AboutGrip'
 import UserTrips from './pages/UserTrips'
 import { useContext } from 'react'
 import { SessionContext } from './contexts/SessionContext'
@@ -41,8 +40,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/signup' element={<SignupPage />} />
         <Route path='/login' element={<LoginPage />} />
-        <Route path='/about' element={<AboutGRIP />} />
-        {/* <Route path='/profile/' element={<PrivateRoute><Profile /></PrivateRoute>} /> */}
+       {/* <Route path='/profile/' element={<PrivateRoute><Profile /></PrivateRoute>} /> */}
         <Route path='/profile/:userId' element={<PrivateRoute><Profile /></PrivateRoute>} />
        
         

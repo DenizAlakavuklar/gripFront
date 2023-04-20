@@ -35,28 +35,21 @@ function ProposalForm() {
             const parsed = await response.json()
             //console.log("parsed", parsed)
             setTrip(parsed)
-
         } catch (error) {
             console.log(error)
         }
     }
 
-
     useEffect(() => {
         fetchTrip()
     }, [])
 
-
     const handleSubmit = async event => {
         event.preventDefault()
         try {
-
-
             if (title == "" || image == "" || location == "" || type == "" || link == "") {
                 setErrorMessage("You must fill out all fields before you can submit");
-
             }
-
             else {
                 const response = await fetch(
                     `${import.meta.env.VITE_HOST}/proposals/${tripId}/add`,
@@ -89,38 +82,31 @@ function ProposalForm() {
                 if (response.status === 200) {
                     navigate(`/trips/${tripId}`)
                 }
-
             }
-
         } catch (error) {
             console.log(error)
         }
     }
-
-
     return (
         <>
             <Flex direction="row" >
-
                 <Box ml={20} mr={20}>
                     <Image width={800} height={1000} radius="md" src="https://images.unsplash.com/photo-1536745287225-21d689278fd1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80">
-
                     </Image>
                 </Box>
-
                 <Box>
                     <Flex justify="center" align="center" w={800} height={20}>
                         <Paper mr={50} ml={20} mt={-20} shadow="xl" radius="md" p={100} width={900} pt={30}>
                             <Text mb={30}> <h1>Create a new proposal for the trip:</h1></Text>
                             <Text mb={30}><h2>{trip ? trip.tripName : <ColorRing
-visible={true}
-height="80"
-width="80"
-ariaLabel="blocks-loading"
-wrapperStyle={{}}
-wrapperClass="blocks-wrapper"
-colors={['#d6f5f9', '#13daf4', '#a7f0f9', '#40d2e5', '#15aabf']}
-/>} </h2></Text>
+                                visible={true}
+                                height="80"
+                                width="80"
+                                ariaLabel="blocks-loading"
+                                wrapperStyle={{}}
+                                wrapperClass="blocks-wrapper"
+                                colors={['#d6f5f9', '#13daf4', '#a7f0f9', '#40d2e5', '#15aabf']}
+                            />} </h2></Text>
 
                             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column" }}>
                                 <label> <Text color="black" mb={-20}><h3>Proposal title:</h3></Text>
@@ -162,24 +148,11 @@ colors={['#d6f5f9', '#13daf4', '#a7f0f9', '#40d2e5', '#15aabf']}
 
                                     {errorMessage && <p className="error-message" style={{ color: "red" }}>{errorMessage}</p>}
                                 </Box>
-
                             </form>
-
-
-
-
                         </Paper>
-
-
-
-
                     </Flex>
                 </Box>
-
             </Flex>
-
-
-
         </>
     )
 }

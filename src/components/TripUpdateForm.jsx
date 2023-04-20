@@ -13,7 +13,6 @@ const TripUpdateForm = ({ tripName, image, description, budget, location, curren
   // const [trip, setTrip] = useState()
   // const [isLoading, setIsLoading] = useState(true)
 
-
   const [name, setName] = useState(tripName)
   const [desc, setDesc] = useState(description)
   const [img, setImg] = useState(image)
@@ -28,9 +27,6 @@ const TripUpdateForm = ({ tripName, image, description, budget, location, curren
   const regex = /['"]/g
   const stringifiedAttendees = JSON.stringify(currenAttendeesIds.join(",")).replace(regex, ``)
   const [attendeesString, setAttendeesString] = useState(stringifiedAttendees)
-
-
-
 
   const handleAttendeesChange = (e) => {
     //console.log("HELLO")
@@ -51,12 +47,8 @@ const TripUpdateForm = ({ tripName, image, description, budget, location, curren
     const regex = /['"]/g
     const stringifiedAttendees = JSON.stringify(attendeesArr.join(",")).replace(regex, ``)
     console.log("stringifiedAttendees", stringifiedAttendees)
-
-
     setAttendeesString(stringifiedAttendees)
-
   }
-
   //console.log("this is the userid:", userId)
 
   const handleSubmit = async event => {
@@ -92,27 +84,20 @@ const TripUpdateForm = ({ tripName, image, description, budget, location, curren
       console.log(error)
     }
   }
-
-
   return (
     <>
       <Box mt={30} mb={50}>
         <Flex justify="center" align="center">
-            <h1> Update your trip</h1>
+          <h1> Update your trip</h1>
         </Flex>
       </Box>
-
       <Flex direction="row" justify="left" align="top">
-      
-        <Box  mr={20} >
+        <Box mr={20} >
           <Image radius="md" src={image} width={400} height={300}>
           </Image>
         </Box>
-
         <Box>
-      
           <Flex justify="center" align="center" width={800} height={20}>
-          
             <Paper radius="md" p={100} width={800} pt={20} shadow="xl">
 
               <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column" }}>
@@ -124,11 +109,9 @@ const TripUpdateForm = ({ tripName, image, description, budget, location, curren
                 <label><Text color="black" mb={-20}><h3>Image:</h3></Text>
                   <input style={{ width: 700 }} type="text" value={img} onChange={event => setImg(event.target.value)} />
                 </label>
-
                 <label><Text color="black" mb={-20}><h3>Description:</h3></Text>
                   <input style={{ width: 700 }} type="text" value={desc} onChange={event => setDesc(event.target.value)} />
                 </label>
-
                 <label><Text color="black" mb={-20}><h3>Budget:</h3></Text>
                   <select value={budg} onChange={(e) => setBudg(e.target.value)} size="3">
                     <option value="budget">Budget</option>
@@ -136,34 +119,25 @@ const TripUpdateForm = ({ tripName, image, description, budget, location, curren
                     <option value="luxury">Luxury</option>
                   </select>
                 </label>
-
                 <label><Text color="black" mb={-20}><h3>Location:</h3></Text>
                   <input style={{ width: 700 }} type="text" value={loc} onChange={event => setLoc(event.target.value)} />
                 </label>
-
                 <label><Text color="black" mb={-20}><h3>Attendees:</h3></Text>
-
-                  <select  name="attendees" id="attendees-select" multiple value={updatedAttendees} onChange={(e) => handleAttendeesChange(e)} size="5">
-                    <option  value="" disabled>--Please choose an option--</option>
+                  <select name="attendees" id="attendees-select" multiple value={updatedAttendees} onChange={(e) => handleAttendeesChange(e)} size="5">
+                    <option value="" disabled>--Please choose an option--</option>
                     {attendees.sort((a, b) => {
-  const nameA = a.username
-  const nameB = b.username
-  if (nameA < nameB) {
-    return -1;
-  }
-  if (nameA > nameB) {
-    return 1;
-  }
-
-  return 0;
-}).map(user => {
-
+                      const nameA = a.username
+                      const nameB = b.username
+                      if (nameA < nameB) {
+                        return -1;
+                      }
+                      if (nameA > nameB) {
+                        return 1;
+                      }
+                      return 0;
+                    }).map(user => {
                       return <option value={user._id} key={user._id} selected>{user.username}</option>
-
                     })}
-
-
-
                     {allUsers ? allUsers
                       .filter((el) => !attendeesId.includes(el._id))
                       .sort((a, b) => {
@@ -175,28 +149,21 @@ const TripUpdateForm = ({ tripName, image, description, budget, location, curren
                         if (nameA > nameB) {
                           return 1;
                         }
-                      
                         return 0;
                       })
                       .map(user => {
-
                         return <option value={user._id} key={user._id}>{user.username}</option>
-
                       }) : "Loading"}
-
-
                   </select>
-
                 </label>
                 <Box mt={50}>
-                <Button variant="outline" color="cyan" type="submit">{"Update your trip"}</Button>
+                  <Button variant="outline" color="cyan" type="submit">{"Update your trip"}</Button>
                 </Box>
               </form>
             </Paper>
           </Flex>
         </Box>
       </Flex>
-
     </>
   )
 }

@@ -54,11 +54,7 @@ const addVote = ()=>{
       //current votes + logged in user
       setVotes([...votes, loggedinUserInfo])
   }
-
 }
-
-
-
 const handleSubmit = async (event) => {
 
   setVoted(!voted)
@@ -103,8 +99,6 @@ const handleSubmit = async (event) => {
   <button onClick={addVote}>{voted ? "✖️ Remove": "🗳️ Vote"}</button>
 
 </form>
-
-
     </div>
   )
 }
